@@ -1,0 +1,32 @@
+<body class="vertical">
+  <h2>Account aanmaken</h2>
+  <div class="vertical gap">
+    <div class="vertical">
+      <label>Voor- en achternaam</label>
+      <input [(ngModel)]="name" placeholder="Voer uw naam in">
+      <small style="color: red" [hidden]="!registerCalled || nameSufficient()"><mat-icon>error_outline</mat-icon>Er moet een naam ingevuld worden.</small>
+    </div>
+    <div class="vertical">
+      <label>E-mailadres</label>
+      <input [(ngModel)]="email" placeholder="Voer uw e-mailadres in">
+      <small style="color: red" [hidden]="!registerCalled || emailSufficient()"><mat-icon>error_outline</mat-icon>Er moet een geldig e-mailadres ingevuld worden.</small>
+    </div>
+    <div class="vertical">
+      <label>Wachtwoord</label>
+      <input type="password" [(ngModel)]="password" placeholder="Voer uw wachtwoord in">
+      <small [style]="registerCalled ? {'color': 'red'} : {}" [hidden]="passwordSufficient()">
+        <mat-icon>error_outline</mat-icon>
+        Een wachtwoord moet 8-32 tekens lang zijn en tenminste één hoofdletter, één kleine letter, één speciaal teken en één cijfer bevatten.
+      </small>
+    </div>
+    <div class="vertical">
+      <label>Bevestig wachtwoord</label>
+      <input type="password" [(ngModel)]="passwordRepeat" placeholder="Bevestig uw wachtwoord">
+      <small [style]="registerCalled ? {'color': 'red'} : {}" [hidden]="!registerCalled || passwordRepeatSufficient()">
+        <mat-icon>error_outline</mat-icon>
+        De wachtwoorden moeten overeen komen.
+      </small>
+    </div>
+    <button (click)="register()">Registreer</button>
+  </div>
+</body>
