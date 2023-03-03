@@ -11,6 +11,13 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
+import {
+  NbAlertModule, NbButtonModule, NbIconModule,
+  NbLayoutModule,
+  NbThemeModule,
+  NbToastrModule
+} from "@nebular/theme";
+import {NbEvaIconsModule} from "@nebular/eva-icons";
 
 @NgModule({
   declarations: [
@@ -25,6 +32,13 @@ import { MatIconModule } from "@angular/material/icon";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NbThemeModule.forRoot({name: 'dark'}),
+    NbButtonModule,
+    NbIconModule,
+    NbEvaIconsModule,
+    NbLayoutModule,
+    NbToastrModule.forRoot(),
+    NbAlertModule,
     FormsModule,
     MatIconModule
   ],
