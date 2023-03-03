@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
 import {Account} from "../models/account.model";
+import {NbToastrService} from "@nebular/theme";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class UserService {
   private activeAccount: Account | undefined;
   private jwtToken: any;
 
-  constructor(private router: Router, private toastr: ToastrService) { }
+  constructor(private router: Router, private toastrService: NbToastrService) { }
 
   setActiveAccount(activeAccount: Account) {
     this.activeAccount = activeAccount;
@@ -26,7 +26,7 @@ export class UserService {
   logOut() {
     sessionStorage.removeItem('active-account');
     sessionStorage.removeItem('jwt-token');
-    this.toastr.success('Succesvol uitgelogd', 'Succes')
+    this.toastrService.success('Succesvol uitgelogd', 'Succes')
   }
 
   getActiveAccount() {
