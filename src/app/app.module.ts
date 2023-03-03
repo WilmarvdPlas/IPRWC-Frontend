@@ -12,8 +12,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import {
-  NbAlertModule, NbButtonModule, NbIconModule,
-  NbLayoutModule,
+  NbAccordionModule,
+  NbAlertModule, NbButtonGroupModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule,
+  NbLayoutModule, NbListModule,
   NbThemeModule,
   NbToastrModule
 } from "@nebular/theme";
@@ -40,7 +41,12 @@ import {NbEvaIconsModule} from "@nebular/eva-icons";
     NbToastrModule.forRoot(),
     NbAlertModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    NbButtonGroupModule,
+    NbCardModule,
+    NbAccordionModule,
+    NbInputModule,
+    NbListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
