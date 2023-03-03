@@ -6,14 +6,15 @@ h1, h2, h3, h4, h5, h6, p {
 .vertical {
   display: flex;
   flex-direction: column;
+  gap: 5px;
+}
+
+.horizontal {
+  align-items: center;
+  display: flex;
+  gap: 5px;
 }
 
 .gap {
-  gap: 0.5vw;
-}
-
-small {
-  gap: 5px;
-  align-items: center;
-  display: flex;
+  gap: 1vw;
 }
