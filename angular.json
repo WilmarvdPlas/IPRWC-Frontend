@@ -33,6 +33,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@nebular/theme/styles/prebuilt/dark.css",
               "node_modules/material-icons/iconfont/material-icons.css"
             ],
             "scripts": []
