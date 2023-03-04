@@ -19,6 +19,8 @@ import {
   NbToastrModule
 } from "@nebular/theme";
 import {NbEvaIconsModule} from "@nebular/eva-icons";
+import {UserService} from "./services/user.service";
+import {HttpService} from "./services/http.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import {NbEvaIconsModule} from "@nebular/eva-icons";
     NbInputModule,
     NbListModule
   ],
-  providers: [],
+  providers: [UserService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
