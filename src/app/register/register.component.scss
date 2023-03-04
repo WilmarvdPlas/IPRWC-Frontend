@@ -1,0 +1,9 @@
+.big-logo {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .logo-column {
+    display: none;
+  }
+}

@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {Router} from "@angular/router";
+import {HttpService} from "../services/http.service";
+import {Account} from "../models/account.model";
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
   selector: 'app-register',
@@ -14,11 +18,31 @@ export class RegisterComponent {
 
   registerCalled = false;
 
+  constructor(protected router: Router, private httpService: HttpService, private toastrService: NbToastrService) {}
+
   register() {
     this.registerCalled = true;
     if (this.passwordSufficient() && this.emailSufficient() && this.nameSufficient() && this.passwordRepeatSufficient()) {
 
+      let registeredAccount = new Account(undefined, this.email, this.password, this.name, false);
+
+      this.httpService.post('account/register', registeredAccount).subscribe({
+        next: () => { this.onHttpSuccess(); },
+        error: (error) => { this.onHttpError(error.status); }
+      })
     }
+  }
+
+  onHttpError(status: number) {
+    status == 409
+      ? this.toastrService.show('Dit e-mailadres is al in gebruik.', 'Registratie mislukt!', {status: 'danger'})
+      : this.toastrService.show('Er is iets mis gegaan.', 'Registratie mislukt!', {status: 'danger'});
+  }
+
+  onHttpSuccess() {
+    this.router.navigate(['/login']).then(() => {
+      this.toastrService.show('Uw account is aangemaakt.', 'Registratie succesvol!', {status: 'success'})
+    });
   }
 
   passwordSufficient() : boolean {

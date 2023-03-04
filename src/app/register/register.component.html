@@ -1,32 +1,60 @@
-<body class="vertical">
-  <h2>Account aanmaken</h2>
-  <div class="vertical gap">
-    <div class="vertical">
-      <label>Voor- en achternaam</label>
-      <input [(ngModel)]="name" placeholder="Voer uw naam in">
-      <small style="color: red" [hidden]="!registerCalled || nameSufficient()"><mat-icon>error_outline</mat-icon>Er moet een naam ingevuld worden.</small>
-    </div>
-    <div class="vertical">
-      <label>E-mailadres</label>
-      <input [(ngModel)]="email" placeholder="Voer uw e-mailadres in">
-      <small style="color: red" [hidden]="!registerCalled || emailSufficient()"><mat-icon>error_outline</mat-icon>Er moet een geldig e-mailadres ingevuld worden.</small>
-    </div>
-    <div class="vertical">
-      <label>Wachtwoord</label>
-      <input type="password" [(ngModel)]="password" placeholder="Voer uw wachtwoord in">
-      <small [style]="registerCalled ? {'color': 'red'} : {}" [hidden]="passwordSufficient()">
-        <mat-icon>error_outline</mat-icon>
-        Een wachtwoord moet 8-32 tekens lang zijn en tenminste één hoofdletter, één kleine letter, één speciaal teken en één cijfer bevatten.
-      </small>
-    </div>
-    <div class="vertical">
-      <label>Bevestig wachtwoord</label>
-      <input type="password" [(ngModel)]="passwordRepeat" placeholder="Bevestig uw wachtwoord">
-      <small [style]="registerCalled ? {'color': 'red'} : {}" [hidden]="!registerCalled || passwordRepeatSufficient()">
-        <mat-icon>error_outline</mat-icon>
-        De wachtwoorden moeten overeen komen.
-      </small>
-    </div>
-    <button (click)="register()">Registreer</button>
-  </div>
-</body>
+    <nb-layout>
+  <nb-layout-header>
+    <app-navbar></app-navbar>
+  </nb-layout-header>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-header>
+        <h1>ACCOUNT AANMAKEN</h1>
+        <p>Maak een account aan om onze catalogus aan games te bekijken.</p>
+      </nb-card-header>
+      <nb-card-body class="vertical gap">
+        <div class="vertical">
+          <label>Voor- en achternaam</label>
+          <input nbInput fullWidth [status]="(!registerCalled || nameSufficient()) ? 'basic' : 'danger'" [(ngModel)]="name" placeholder="Voer uw naam in">
+          <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || nameSufficient()">
+            <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
+            Er moet een naam ingevuld worden.</small>
+        </div>
+        <div class="vertical">
+          <label>E-mailadres</label>
+          <input nbInput fullWidth [status]="(!registerCalled || emailSufficient()) ? 'basic' : 'danger'" [(ngModel)]="email" placeholder="Voer uw e-mailadres in">
+          <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || emailSufficient()">
+            <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
+            Er moet een geldig e-mailadres ingevuld worden.
+          </small>
+        </div>
+        <div class="vertical">
+          <label>Wachtwoord</label>
+          <input nbInput fullWidth [status]="(!registerCalled || passwordSufficient()) ? 'basic' : 'danger'" type="password" [(ngModel)]="password" placeholder="Voer uw wachtwoord in">
+          <small class="horizontal" [style]="registerCalled ? {'color': '#ff3d71'} : {}" [hidden]="passwordSufficient()">
+            <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
+            Een wachtwoord moet 8-32 tekens lang zijn en tenminste één hoofdletter, één kleine letter, één speciaal teken en één cijfer bevatten.
+          </small>
+        </div>
+        <div class="vertical">
+        <label>Bevestig wachtwoord</label>
+          <input nbInput fullWidth [status]="(!registerCalled || passwordRepeatSufficient()) ? 'basic' : 'danger'" type="password" [(ngModel)]="passwordRepeat" placeholder="Bevestig uw wachtwoord">
+          <small class="horizontal" [style]="registerCalled ? {'color': '#ff3d71'} : {}" [hidden]="!registerCalled || passwordRepeatSufficient()">
+            <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
+            De wachtwoorden moeten overeen komen.
+          </small>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton fullWidth status=primary (click)="register()">Registreren</button>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        <p>Heeft u al een account?</p>
+      </nb-card-header>
+      <nb-card-body class="vertical">
+        <button nbButton (click)="this.router.navigate(['/login'])">Inloggen</button>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+  <nb-layout-column class="logo-column">
+    <img src="assets/images/Game%20Center%20Logo.png" class="big-logo">
+  </nb-layout-column>
+</nb-layout>
