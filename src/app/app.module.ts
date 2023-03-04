@@ -38,7 +38,7 @@ import {NbEvaIconsModule} from "@nebular/eva-icons";
     NbIconModule,
     NbEvaIconsModule,
     NbLayoutModule,
-    NbToastrModule.forRoot(),
+    NbToastrModule.forRoot({limit: 3}),
     NbAlertModule,
     FormsModule,
     MatIconModule,
