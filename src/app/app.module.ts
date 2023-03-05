@@ -21,6 +21,7 @@ import {
 import {NbEvaIconsModule} from "@nebular/eva-icons";
 import {UserService} from "./services/user.service";
 import {HttpService} from "./services/http.service";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {HttpService} from "./services/http.service";
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
