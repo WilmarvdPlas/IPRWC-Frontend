@@ -35,13 +35,13 @@ export class RegisterComponent {
 
   onHttpError(status: number) {
     status == 409
-      ? this.toastrService.show('Dit e-mailadres is al in gebruik.', 'Registratie mislukt!', {status: 'danger'})
-      : this.toastrService.show('Er is iets mis gegaan.', 'Registratie mislukt!', {status: 'danger'});
+      ? this.toastrService.show('Dit e-mailadres is al in gebruik.', 'Error', {status: 'danger'})
+      : this.toastrService.show('Er is iets mis gegaan.', 'Error', {status: 'danger'});
   }
 
   onHttpSuccess() {
     this.router.navigate(['/login']).then(() => {
-      this.toastrService.show('Uw account is aangemaakt.', 'Registratie succesvol!', {status: 'success'})
+      this.toastrService.show('Uw account is aangemaakt.', 'Succes', {status: 'success'})
     });
   }
 
@@ -51,7 +51,7 @@ export class RegisterComponent {
   }
 
   emailSufficient() : boolean {
-    const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
     return emailRegex.test(this.email)
   }
 
