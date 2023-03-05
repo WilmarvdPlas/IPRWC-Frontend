@@ -5,4 +5,11 @@ nb-layout-column {
   justify-content: center;
 }
 
+@media (max-width: 800px) {
+  .logo-column {
+    display: none;
+  }
+}
+
+
 

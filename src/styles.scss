@@ -27,12 +27,6 @@ p {
   gap: 1vw;
 }
 
-@media (max-width: 800px) {
-  .logo-column {
-    display: none;
-  }
-}
-
 @keyframes fallIn {
   from {
     bottom: 70vh;
