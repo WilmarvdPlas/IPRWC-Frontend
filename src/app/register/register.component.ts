@@ -11,9 +11,7 @@ import {NbToastrService} from "@nebular/theme";
 })
 export class RegisterComponent {
 
-  name: string = '';
-  email: string = '';
-  password: string = '';
+  account: Account = new Account(undefined, '', '', '', false);
   passwordRepeat: string = '';
 
   registerCalled = false;
@@ -23,10 +21,7 @@ export class RegisterComponent {
   register() {
     this.registerCalled = true;
     if (this.passwordSufficient() && this.emailSufficient() && this.nameSufficient() && this.passwordRepeatSufficient()) {
-
-      let registeredAccount = new Account(undefined, this.email, this.password, this.name, false);
-
-      this.httpService.post('account/register', registeredAccount).subscribe({
+      this.httpService.post('account/register', this.account).subscribe({
         next: () => { this.onHttpSuccess(); },
         error: (error) => { this.onHttpError(error.status); }
       })
@@ -47,20 +42,20 @@ export class RegisterComponent {
 
   passwordSufficient() : boolean {
     const passwordRegex = new RegExp("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$");
-    return passwordRegex.test(this.password);
+    return passwordRegex.test(this.account.password!);
   }
 
   emailSufficient() : boolean {
     const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
-    return emailRegex.test(this.email)
+    return emailRegex.test(this.account.email!)
   }
 
   nameSufficient() {
-    return this.name.length > 0;
+    return this.account.name!.length > 0;
   }
 
   passwordRepeatSufficient() {
-    return this.password == this.passwordRepeat;
+    return this.account.password == this.passwordRepeat;
   }
 
 }

@@ -9,14 +9,14 @@
       <nb-card-body class="vertical gap">
         <div class="vertical">
           <label>Voor- en achternaam</label>
-          <input nbInput fullWidth [status]="(!registerCalled || nameSufficient()) ? 'basic' : 'danger'" [(ngModel)]="name" placeholder="Voer uw naam in">
+          <input nbInput fullWidth [status]="(!registerCalled || nameSufficient()) ? 'basic' : 'danger'" [(ngModel)]="account.name" placeholder="Voer uw naam in">
           <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || nameSufficient()">
             <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
             Er moet een naam ingevuld worden.</small>
         </div>
         <div class="vertical">
           <label>E-mailadres</label>
-          <input nbInput fullWidth [status]="(!registerCalled || emailSufficient()) ? 'basic' : 'danger'" [(ngModel)]="email" placeholder="Voer uw e-mailadres in">
+          <input nbInput fullWidth [status]="(!registerCalled || emailSufficient()) ? 'basic' : 'danger'" [(ngModel)]="account.email" placeholder="Voer uw e-mailadres in">
           <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || emailSufficient()">
             <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
             Er moet een geldig e-mailadres ingevuld worden.
@@ -24,7 +24,7 @@
         </div>
         <div class="vertical">
           <label>Wachtwoord</label>
-          <input nbInput fullWidth [status]="(!registerCalled || passwordSufficient()) ? 'basic' : 'danger'" type="password" [(ngModel)]="password" placeholder="Voer uw wachtwoord in">
+          <input nbInput fullWidth [status]="(!registerCalled || passwordSufficient()) ? 'basic' : 'danger'" type="password" [(ngModel)]="account.password" placeholder="Voer uw wachtwoord in">
           <small class="horizontal" [style]="registerCalled ? {'color': '#ff3d71'} : {}" [hidden]="passwordSufficient()">
             <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
             Een wachtwoord moet 8-32 tekens lang zijn en tenminste één hoofdletter, één kleine letter, één speciaal teken en één cijfer bevatten.
