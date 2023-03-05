@@ -12,11 +12,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import {
-  NbAccordionModule,
-  NbAlertModule, NbButtonGroupModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule,
-  NbLayoutModule, NbListModule,
-  NbThemeModule,
-  NbToastrModule
+    NbAccordionModule,
+    NbAlertModule, NbButtonGroupModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule,
+    NbLayoutModule, NbListModule, NbTabsetModule,
+    NbThemeModule,
+    NbToastrModule
 } from "@nebular/theme";
 import {NbEvaIconsModule} from "@nebular/eva-icons";
 import {UserService} from "./services/user.service";
@@ -32,26 +32,27 @@ import { FooterComponent } from './footer/footer.component';
     PageNotFoundComponent,
     FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NbThemeModule.forRoot({name: 'dark'}),
-    NbButtonModule,
-    NbIconModule,
-    NbEvaIconsModule,
-    NbLayoutModule,
-    NbToastrModule.forRoot({limit: 3}),
-    NbAlertModule,
-    FormsModule,
-    MatIconModule,
-    NbButtonGroupModule,
-    NbCardModule,
-    NbAccordionModule,
-    NbInputModule,
-    NbListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NbThemeModule.forRoot({name: 'dark'}),
+        NbButtonModule,
+        NbIconModule,
+        NbEvaIconsModule,
+        NbLayoutModule,
+        NbToastrModule.forRoot({limit: 3}),
+        NbAlertModule,
+        FormsModule,
+        MatIconModule,
+        NbButtonGroupModule,
+        NbCardModule,
+        NbAccordionModule,
+        NbInputModule,
+        NbListModule,
+        NbTabsetModule
+    ],
   providers: [UserService, HttpService],
   bootstrap: [AppComponent]
 })
