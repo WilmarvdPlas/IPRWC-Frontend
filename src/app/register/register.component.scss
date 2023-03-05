@@ -1,31 +1,8 @@
-.big-logo {
-  position: relative;
-  width: 100%;
-  animation: 1s fallIn ease-out;
-}
-
 nb-layout-column {
-  overflow-x: hidden;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-nb-layout {
-  overflow-x: hidden;
-}
 
-@media (max-width: 800px) {
-  .logo-column {
-    display: none;
-  }
-}
-
-@keyframes fallIn {
-  from {
-    bottom: 70vh;
-  }
-  to {
-    bottom: 0;
-  }
-}
