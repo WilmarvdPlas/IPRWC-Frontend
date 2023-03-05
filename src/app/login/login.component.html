@@ -1,0 +1,43 @@
+<nb-layout>
+  <nb-layout-header fixed><app-navbar></app-navbar></nb-layout-header>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-header>
+        <h1>INLOGGEN</h1>
+      </nb-card-header>
+      <nb-card-body class="vertical gap">
+        <div class="vertical">
+          <label>E-mailadres</label>
+          <input nbInput fullWidth [status]="(!logInCalled || loginCredentials.email != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.email" placeholder="Voer uw e-mailadres in">
+          <small class="horizontal" style="color: #ff3d71" [hidden]="!logInCalled || loginCredentials.email != ''">
+            <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
+            Er is geen e-mailadres ingevuld.
+          </small>
+        </div>
+        <div class="vertical">
+          <label>Wachtwoord</label>
+          <input nbInput fullWidth type="password" [status]="(!logInCalled || loginCredentials.password != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.password" placeholder="Voer uw wachtwoord in">
+          <small class="horizontal" style="color: #ff3d71" [hidden]="!logInCalled || loginCredentials.password != ''">
+            <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
+            Er is geen wachtwoord ingevuld.
+          </small>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton fullWidth status=primary (click)="logIn()">Inloggen</button>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        <p>Heeft u nog geen account?</p>
+      </nb-card-header>
+      <nb-card-body class="vertical">
+        <button nbButton (click)="this.router.navigate(['/register'])">Account aanmaken</button>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+  <nb-layout-column class="logo-column">
+    <img src="assets/images/Game%20Center%20Logo.png" class="big-logo">
+  </nb-layout-column>
+  <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
+</nb-layout>
