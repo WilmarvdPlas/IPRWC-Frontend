@@ -8,7 +8,7 @@ import {NbToastrService} from "@nebular/theme";
 })
 export class UserService {
 
-  private activeAccount: Account | undefined;
+  private activeAccount?: Account;
   private jwtToken: any;
 
   constructor(private router: Router, private toastrService: NbToastrService) { }
@@ -31,15 +31,24 @@ export class UserService {
 
   getActiveAccount() {
     let activeAccount: any = sessionStorage.getItem('active-account');
-    if (activeAccount == undefined) {
-      this.router.navigate(['login']);
-      return;
-    }
     activeAccount = JSON.parse(activeAccount);
-
     this.activeAccount = activeAccount;
 
+    this.checkIllegalRoute(activeAccount)
+
     return this.activeAccount;
+  }
+
+  private checkIllegalRoute(activeAccount: any) {
+    let routes = [];
+
+    for (let route of this.router.config) {
+      routes.push("/" + route.path)
+    }
+
+    if (activeAccount == undefined && routes.includes(this.router.url) && !(['/login', '/register', '/**'].includes(this.router.url))) {
+      this.router.navigate(['login'])
+    }
   }
 
   getJwtToken() {
@@ -48,6 +57,5 @@ export class UserService {
     this.jwtToken = jwtToken;
 
     return this.jwtToken;
-
   }
 }
