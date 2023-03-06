@@ -2,7 +2,22 @@ img {
   height: 55px;
 }
 
-div {
+.navbar {
   padding-left: 1vw;
   padding-right: 1vw;
+}
+
+.tabs {
+  height: 100%;
+  margin-left: 1vw;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: white 4px solid;
+}
+
+a:hover {
+  cursor: pointer;
+  border-bottom: #ff4057 8px solid;
 }

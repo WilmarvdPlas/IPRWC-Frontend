@@ -1,3 +1,9 @@
-<div class="horizontal">
+<div class="horizontal gap navbar">
   <img src="../../assets/images/Game%20Center%20Logo.png">
+  <div class="tabs gap horizontal" [hidden]="this.hideHeaderContent()">
+    <a><h4><mat-icon>store</mat-icon>PRODUCTEN</h4></a>
+    <a><h4><mat-icon>shopping_cart</mat-icon>WINKELWAGEN</h4></a>
+    <a><h4><mat-icon>receipt</mat-icon>BESTELLINGEN</h4></a>
+    <a [hidden]="!this.userService.getActiveAccount()?.administrator"><h4><mat-icon>security</mat-icon>BEHEER</h4></a>
+  </div>
 </div>
