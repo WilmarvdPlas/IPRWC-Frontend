@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class NavbarComponent {
 
-  constructor(protected userService: UserService, private router: Router) {}
+  constructor(protected userService: UserService, protected router: Router) {}
 
   hideHeaderContent() {
     return this.userService.getActiveAccount() == undefined || ['/login', '/register'].includes(this.router.url);

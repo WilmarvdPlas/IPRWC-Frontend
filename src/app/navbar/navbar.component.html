@@ -1,9 +1,18 @@
 <div class="horizontal gap navbar">
   <img src="../../assets/images/Game%20Center%20Logo.png">
   <div class="tabs gap horizontal" [hidden]="this.hideHeaderContent()">
-    <a><h4><mat-icon>store</mat-icon>PRODUCTEN</h4></a>
-    <a><h4><mat-icon>shopping_cart</mat-icon>WINKELWAGEN</h4></a>
-    <a><h4><mat-icon>receipt</mat-icon>BESTELLINGEN</h4></a>
-    <a [hidden]="!this.userService.getActiveAccount()?.administrator"><h4><mat-icon>security</mat-icon>BEHEER</h4></a>
+    <a [routerLink]="['/products']"
+       [style]="this.router.url == '/products' ? {'border-color': '#ff4057'} : {}">
+      <h4><mat-icon>store</mat-icon>PRODUCTEN</h4></a>
+    <a [routerLink]="['/cart']"
+       [style]="this.router.url == '/cart' ? {'border-color': '#ff4057'} : {}">
+      <h4><mat-icon>shopping_cart</mat-icon>WINKELWAGEN</h4></a>
+    <a [routerLink]="['/orders']"
+       [style]="this.router.url == '/orders' ? {'border-color': '#ff4057'} : {}">
+      <h4><mat-icon>receipt</mat-icon>BESTELLINGEN</h4></a>
+    <a [routerLink]="['/administration']"
+       [hidden]="!this.userService.getActiveAccount()?.administrator"
+       [style]="this.router.url == '/administration' ? {'border-color': '#ff4057'} : {}">
+      <h4><mat-icon>security</mat-icon>BEHEER</h4></a>
   </div>
 </div>
