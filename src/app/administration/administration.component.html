@@ -1,0 +1,17 @@
+<nb-layout>
+  <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-header class="horizontal"><mat-icon>dashboard</mat-icon><h4>MENU</h4></nb-card-header>
+      <nb-card-body>
+        <nb-button-group>
+          <button pressed nbButtonToggle (click)="selectedMenu = 'productManagement'"><mat-icon>store</mat-icon>Productbeheer</button>
+          <button nbButtonToggle (click)="selectedMenu = 'accountManagement'"><mat-icon>person</mat-icon>Accountbeheer</button>
+          <button nbButtonToggle (click)="selectedMenu = 'orders'"><mat-icon>receipt</mat-icon>Bestellingen</button>
+        </nb-button-group>
+      </nb-card-body>
+    </nb-card>
+    <app-product-management [style]="selectedMenu != 'productManagement' ? {'display': 'none'} : {}"></app-product-management>
+  </nb-layout-column>
+  <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
+</nb-layout>
