@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Oswald !important;
+  font-family: Oswald, sans-serif !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-input {
+input, textarea {
   font-weight: normal !important;
 }
 
