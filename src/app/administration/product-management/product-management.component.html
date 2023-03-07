@@ -1,0 +1,20 @@
+<body>
+  <nb-card>
+    <nb-card-header class="horizontal"><mat-icon>add_box</mat-icon><h4>PRODUCT AANMAKEN</h4></nb-card-header>
+    <nb-card-body>
+      <app-product-edit></app-product-edit>
+    </nb-card-body>
+    <nb-card-footer class="gap horizontal">
+      <button nbButton fullWidth status="primary" (click)="createProduct()" [disabled]="!createProductComponent?.allFieldsFilled()">Aanmaken</button>
+      <button nbButton fullWidth (click)="cancelProduct()">Annuleren</button>
+    </nb-card-footer>
+  </nb-card>
+  <nb-card>
+    <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>PRODUCT AANPASSEN</h4></nb-card-header>
+    <nb-card-body></nb-card-body>
+    <nb-card-footer class="gap horizontal">
+      <button [disabled]="selectedProduct == undefined" nbButton fullWidth status="primary">Aanpassen</button>
+      <button [disabled]="selectedProduct == undefined" nbButton fullWidth status="danger">Verwijderen</button>
+    </nb-card-footer>
+  </nb-card>
+</body>

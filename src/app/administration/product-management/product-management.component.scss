@@ -1,0 +1,11 @@
+body {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.5fr 0.5fr;
+  gap: 2.25rem;
+  height: 100%;
+}
+
+nb-card-footer {
+  display: flex;
+}
