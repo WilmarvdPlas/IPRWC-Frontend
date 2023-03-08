@@ -47,7 +47,7 @@
               (click)="saveEditedProduct()"
               nbButton fullWidth status="primary">Opslaan</button>
       <button [style]="!editingProduct ? {'display': 'none'} : {}"
-              (click)="editingProduct = false"
+              (click)="editingProduct = false; editProductComponent.clear()"
               nbButton fullWidth>Annuleren</button>
     </nb-card-footer>
   </nb-card>
