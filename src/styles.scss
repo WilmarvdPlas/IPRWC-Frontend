@@ -31,6 +31,14 @@ p {
   gap: 1vw;
 }
 
+nb-card {
+  margin: 0 !important;
+}
+
+nb-layout-column {
+  padding: 2.25rem !important;
+}
+
 @keyframes fallIn {
   from {
     bottom: 70vh;
