@@ -12,7 +12,7 @@ import {NbToastrService} from "@nebular/theme";
 })
 export class LoginComponent {
 
-  loginCredentials: LoginCredentials = new LoginCredentials('', '');
+  loginCredentials: LoginCredentials = new LoginCredentials('wilmarvanderplas@gmail.com', 'Aaaaaaa1!');
   logInCalled: boolean = false;
 
   constructor(protected router: Router, private userService: UserService, private httpService: HttpService, private toastrService: NbToastrService) {
@@ -28,12 +28,7 @@ export class LoginComponent {
   postCredentials() {
     this.httpService.post("auth/login", this.loginCredentials).subscribe({
       next: (response) => {
-        this.userService.setActiveAccount(response.body.account);
-        this.userService.setJwtToken(response.body.token);
-
-        this.router.navigate(['/shop']).then(() => {
-          this.toastrService.success('U bent succesvol ingelogd.', 'Succes');
-        });
+        this.userService.logIn(response.body.account, response.body.token);
       },
       error: (error) => {
         error.status == 401

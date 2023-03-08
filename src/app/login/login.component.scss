@@ -3,6 +3,7 @@ nb-layout-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 2.25rem;
 }
 
 @media (max-width: 800px) {
