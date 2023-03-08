@@ -26,7 +26,23 @@ export class UserService {
   logOut() {
     sessionStorage.removeItem('active-account');
     sessionStorage.removeItem('jwt-token');
-    this.toastrService.success('Succesvol uitgelogd', 'Succes')
+
+    this.router.navigate(['/login']).then(() => {
+      setTimeout(() => {
+        this.toastrService.success('U bent succesvol uitgelogd.', 'Succes');
+      }, 1)
+    });
+  }
+
+  logIn(account: Account, token: string) {
+    this.setActiveAccount(account);
+    this.setJwtToken(token);
+
+    this.router.navigate(['/products']).then(() => {
+      setTimeout(() => {
+        this.toastrService.success('U bent succesvol ingelogd.', 'Succes');
+      }, 1)
+    });
   }
 
   getActiveAccount() {
