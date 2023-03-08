@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpService} from "../services/http.service";
 import {Account} from "../models/account.model";
@@ -16,7 +16,7 @@ export class RegisterComponent {
 
   registerCalled = false;
 
-  constructor(protected router: Router, private httpService: HttpService, private toastrService: NbToastrService) {}
+  constructor(public router: Router, private httpService: HttpService, private toastrService: NbToastrService) {}
 
   register() {
     this.registerCalled = true;

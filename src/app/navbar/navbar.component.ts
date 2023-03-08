@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  constructor(private userService: UserService, private router: Router, private menuService: NbMenuService) {}
+  constructor(public userService: UserService, public router: Router, private menuService: NbMenuService) {}
 
   profileSubscription?: Subscription;
   profileItems = [{ title: 'Profiel', data: "PROFILE" }, { title: 'Uitloggen', data: "LOGOUT" }];
@@ -26,14 +26,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-
-  getUserService() {
-    return this.userService;
-  }
-
-  getRouter() {
-    return this.router;
   }
 
   ngOnDestroy() {

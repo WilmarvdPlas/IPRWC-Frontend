@@ -2,20 +2,20 @@
   <img src="../../assets/images/Game%20Center%20Logo.png">
   <div class="tabs gap horizontal" [hidden]="this.hideHeaderContent()">
     <a [routerLink]="['/products']"
-       [style]="getRouter().url == '/products' ? {'border-color': '#ff4057'} : {}">
+       [style]="router.url == '/products' ? {'border-color': '#ff4057'} : {}">
       <h4><mat-icon>store</mat-icon>PRODUCTEN</h4></a>
     <a [routerLink]="['/cart']"
-       [style]="getRouter().url == '/cart' ? {'border-color': '#ff4057'} : {}">
+       [style]="router.url == '/cart' ? {'border-color': '#ff4057'} : {}">
       <h4><mat-icon>shopping_cart</mat-icon>WINKELWAGEN</h4></a>
     <a [routerLink]="['/orders']"
-       [style]="getRouter().url == '/orders' ? {'border-color': '#ff4057'} : {}">
+       [style]="router.url == '/orders' ? {'border-color': '#ff4057'} : {}">
       <h4><mat-icon>receipt</mat-icon>BESTELLINGEN</h4></a>
     <a [routerLink]="['/administration']"
-       [hidden]="!getUserService().getActiveAccount()?.administrator"
-       [style]="getRouter().url == '/administration' ? {'border-color': '#ff4057'} : {}">
+       [hidden]="!userService.getActiveAccount()?.administrator"
+       [style]="router.url == '/administration' ? {'border-color': '#ff4057'} : {}">
       <h4><mat-icon>security</mat-icon>BEHEER</h4></a>
   </div>
   <div [hidden]="this.hideHeaderContent()" style="margin-left: auto">
-    <button nbButton [nbContextMenu]="profileItems" class="horizontal"><mat-icon>person</mat-icon>{{getUserService().getActiveAccount()?.name}}</button>
+    <button nbButton [nbContextMenu]="profileItems" class="horizontal"><mat-icon>person</mat-icon>{{userService.getActiveAccount()?.name}}</button>
   </div>
 </div>

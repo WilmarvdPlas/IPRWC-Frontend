@@ -15,7 +15,7 @@ export class LoginComponent {
   loginCredentials: LoginCredentials = new LoginCredentials('wilmarvanderplas@gmail.com', 'Aaaaaaa1!');
   logInCalled: boolean = false;
 
-  constructor(protected router: Router, private userService: UserService, private httpService: HttpService, private toastrService: NbToastrService) {
+  constructor(public router: Router, private userService: UserService, private httpService: HttpService, private toastrService: NbToastrService) {
   }
 
   logIn() {
