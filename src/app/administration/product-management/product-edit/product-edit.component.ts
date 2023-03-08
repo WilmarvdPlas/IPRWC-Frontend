@@ -26,6 +26,7 @@ export class ProductEditComponent {
   clear() {
     this.product = new Product(undefined, '', '', undefined, '', 0, 0);
     this.addedStock = 0;
+    this.setProducts.emit();
   }
 
   allFieldsFilled() {
@@ -46,7 +47,10 @@ export class ProductEditComponent {
         this.setProducts.emit();
         this.clear();
       },
-      error: () => { this.toastrService.danger('Product kon niet aangemaakt worden.', 'Error'); }
+      error: () => {
+        this.toastrService.danger('Product kon niet aangemaakt worden.', 'Error');
+        this.setProducts.emit();
+      }
     })
   }
 
@@ -59,7 +63,10 @@ export class ProductEditComponent {
           this.toastrService.success('Voorraad is succesvol aangepast.', 'Succes');
           this.setProducts.emit();
         },
-        error: () => { this.toastrService.danger('Voorraad kon niet aangepast worden.', 'Error'); }
+        error: () => {
+          this.toastrService.danger('Voorraad kon niet aangepast worden.', 'Error');
+          this.setProducts.emit();
+        }
       })
     }
   }
