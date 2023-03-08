@@ -19,10 +19,12 @@
         <img [src]="product.imageLink" style="width: 15%">
         <div class="vertical" style="width: 60%; border-right: solid 1px; height: 100%">
           <h6>{{product.name}}</h6>
-          <h6>€{{product.priceEuro}}</h6>
           <p>{{product.description}}</p>
         </div>
         <div class="vertical" style="width: 25%">
+          <div class="horizontal">
+            <h6 style="width: 50%">Prijs:</h6><h6>€{{product.priceEuro}}</h6>
+          </div>
           <div class="horizontal">
             <h6 style="width: 50%">Voorraad:</h6><h6>{{product.stock}}</h6>
           </div>
