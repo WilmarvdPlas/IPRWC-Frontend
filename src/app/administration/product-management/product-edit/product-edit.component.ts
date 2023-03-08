@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpService} from "../../../services/http.service";
 import {Product} from "../../../models/product.model";
 import {NbToastrService} from "@nebular/theme";
@@ -10,24 +10,22 @@ import {NbToastrService} from "@nebular/theme";
 })
 export class ProductEditComponent {
 
-  product: Product = new Product(undefined, '', '', undefined, '');
+  @Output() setProducts = new EventEmitter();
+
+  product: Product = new Product(undefined, '', '', undefined, '', 0, 0);
+  addedStock = 0;
 
   constructor(private httpService: HttpService, private toastrService: NbToastrService) {}
 
   save() {
     if (this.allFieldsFilled()) {
-      this.httpService.post('product', this.product).subscribe({
-        next: () => {
-          this.clear();
-          this.toastrService.success('Product is succesvol aangemaakt.', 'Succes');
-        },
-        error: () => { this.toastrService.danger('Er is iets misgegaan.', 'Error'); }
-      })
+      this.postProduct()
     }
   }
 
   clear() {
-    this.product = new Product();
+    this.product = new Product(undefined, '', '', undefined, '', 0, 0);
+    this.addedStock = 0;
   }
 
   allFieldsFilled() {
@@ -36,7 +34,34 @@ export class ProductEditComponent {
       && this.product.description != ''
       && this.product.imageLink != ''
       && this.product.stock != undefined
-      && this.product.discountPercentage != undefined;
+      && this.product.discountPercentage != undefined
+      && this.addedStock != undefined;
+  }
+
+  postProduct() {
+    this.httpService.post('product', this.product).subscribe({
+      next: (response) => {
+        this.toastrService.success('Product is succesvol opgeslagen.', 'Succes');
+        this.postStock(response.body, this.addedStock)
+        this.setProducts.emit();
+        this.clear();
+      },
+      error: () => { this.toastrService.danger('Product kon niet aangemaakt worden.', 'Error'); }
+    })
+  }
+
+  postStock(id: string, addedStock: number) {
+    console.log('post stock')
+    if (addedStock > 0) {
+      console.log('stock > 0')
+      this.httpService.put('product/' + id, addedStock).subscribe({
+        next: () => {
+          this.toastrService.success('Voorraad is succesvol aangepast.', 'Succes');
+          this.setProducts.emit();
+        },
+        error: () => { this.toastrService.danger('Voorraad kon niet aangepast worden.', 'Error'); }
+      })
+    }
   }
 
 }

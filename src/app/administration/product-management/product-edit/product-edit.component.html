@@ -21,15 +21,21 @@
     <input nbInput fullWidth [(ngModel)]="product.imageLink" placeholder="https://www.google.com/image">
   </div>
   <div class="horizontal gap">
-    <div class="vertical">
-      <label>Voorraad</label>
-      <input nbInput fullWidth [(ngModel)]="product.stock" type="number" placeholder="0">
+    <div class="horizontal">
+      <div class="vertical">
+        <label>Voorraad</label>
+        <input nbInput fullWidth disabled="true" [(ngModel)]="product.stock" type="number">
+      </div>
+      <div class="vertical">
+        <label>Toevoegen</label>
+        <input nbInput fullWidth [(ngModel)]="addedStock" type="number">
+      </div>
     </div>
     <div class="vertical">
       <label>Kortingspercentage</label>
       <nb-form-field>
         <p nbSuffix>%</p>
-        <input nbInput fullWidth type="number" [(ngModel)]="product.discountPercentage" placeholder="0">
+        <input nbInput fullWidth type="number" [(ngModel)]="product.discountPercentage">
       </nb-form-field>
     </div>
   </div>
