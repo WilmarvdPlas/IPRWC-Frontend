@@ -2,7 +2,7 @@
   <nb-card>
     <nb-card-header class="horizontal"><mat-icon>add_box</mat-icon><h4>PRODUCT AANMAKEN</h4></nb-card-header>
     <nb-card-body>
-      <app-product-edit></app-product-edit>
+      <app-product-edit (setProducts)="setProducts()"></app-product-edit>
     </nb-card-body>
     <nb-card-footer class="gap horizontal">
       <button nbButton fullWidth status="primary" (click)="createProduct()" [disabled]="!createProductComponent?.allFieldsFilled()">Aanmaken</button>
@@ -11,10 +11,44 @@
   </nb-card>
   <nb-card>
     <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>PRODUCT AANPASSEN</h4></nb-card-header>
-    <nb-card-body></nb-card-body>
+    <nb-list [style]="editingProduct ? {'display': 'none'} : {}">
+      <nb-list-item *ngFor="let product of products" class="horizontal gap"
+                    (click)="this.selectedProduct == product ? selectedProduct = undefined : selectedProduct = product"
+                    (dblclick)="editProduct(product)"
+                    [style]="selectedProduct == product ? {'background-color': 'rgba(0, 0, 0, 0.2)'} : {}">
+        <img [src]="product.imageLink" style="width: 15%">
+        <div class="vertical" style="width: 60%; border-right: solid 1px; height: 100%">
+          <h6>{{product.name}}</h6>
+          <h6>€{{product.priceEuro}}</h6>
+          <p>{{product.description}}</p>
+        </div>
+        <div class="vertical" style="width: 25%">
+          <div class="horizontal">
+            <h6 style="width: 50%">Voorraad:</h6><h6>{{product.stock}}</h6>
+          </div>
+          <div class="horizontal">
+            <h6 style="width: 50%">Korting:</h6><h6>{{product.discountPercentage}}%</h6>
+          </div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+    <nb-card-body [style]="!editingProduct ? {'display': 'none'} : {}"><app-product-edit (setProducts)="setProducts()"></app-product-edit></nb-card-body>
     <nb-card-footer class="gap horizontal">
-      <button [disabled]="selectedProduct == undefined" nbButton fullWidth status="primary">Aanpassen</button>
-      <button [disabled]="selectedProduct == undefined" nbButton fullWidth status="danger">Verwijderen</button>
+      <button [style]="editingProduct ? {'display': 'none'} : {}"
+              [disabled]="selectedProduct == undefined"
+              (click)="editProduct(selectedProduct!)"
+              nbButton fullWidth status="primary">Aanpassen</button>
+      <button [style]="editingProduct ? {'display': 'none'} : {}"
+              [disabled]="selectedProduct == undefined"
+              (click)="deleteProduct()"
+              nbButton fullWidth status="danger">Verwijderen</button>
+      <button [style]="!editingProduct ? {'display': 'none'} : {}"
+              [disabled]="!editProductComponent?.allFieldsFilled()"
+              (click)="saveEditedProduct()"
+              nbButton fullWidth status="primary">Opslaan</button>
+      <button [style]="!editingProduct ? {'display': 'none'} : {}"
+              (click)="editingProduct = false"
+              nbButton fullWidth>Annuleren</button>
     </nb-card-footer>
   </nb-card>
 </body>
