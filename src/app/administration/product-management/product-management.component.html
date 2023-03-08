@@ -23,7 +23,7 @@
         </div>
         <div class="vertical" style="width: 25%">
           <div class="horizontal">
-            <h6 style="width: 50%">Prijs:</h6><h6>€{{product.priceEuro}}</h6>
+            <h6 style="width: 50%">Prijs:</h6><h6>€{{product.priceEuro?.toFixed(2)}}</h6>
           </div>
           <div class="horizontal">
             <h6 style="width: 50%">Voorraad:</h6><h6>{{product.stock}}</h6>
