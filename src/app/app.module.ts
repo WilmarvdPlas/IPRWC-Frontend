@@ -36,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { ProductManagementComponent } from './administration/product-management/product-management.component';
 import { ProductEditComponent } from './administration/product-management/product-edit/product-edit.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ProductEditComponent } from './administration/product-management/produc
     FooterComponent,
     AdministrationComponent,
     ProductManagementComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ProductsComponent,
   ],
     imports: [
         BrowserModule,
