@@ -39,6 +39,15 @@ nb-layout-column {
   padding: 2.25rem !important;
 }
 
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 6; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 @keyframes fallIn {
   from {
     bottom: 70vh;
