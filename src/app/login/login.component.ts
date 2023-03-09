@@ -12,7 +12,7 @@ import {NbToastrService} from "@nebular/theme";
 })
 export class LoginComponent {
 
-  loginCredentials: LoginCredentials = new LoginCredentials('wilmarvanderplas@gmail.com', 'Aaaaaaa1!');
+  loginCredentials: LoginCredentials = new LoginCredentials('', '');
   logInCalled: boolean = false;
 
   constructor(public router: Router, private userService: UserService, private httpService: HttpService, private toastrService: NbToastrService) {
