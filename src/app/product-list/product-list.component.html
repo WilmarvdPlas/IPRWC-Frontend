@@ -10,7 +10,14 @@
         <img [src]="product.imageLink">
         <div class="vertical" style="width: 100%">
           <h6>{{product.name}}</h6>
-          <h6>€{{product.priceEuro?.toFixed(2)}}</h6>
+          <div class="horizontal">
+            <h6 [style]="product.discountPercentage! > 0 && type == 'SHOP' ?
+              {'text-decoration': 'line-through', 'text-decoration-thickness': '3px', 'text-decoration-color': '#ff4057'} : {}">
+              €{{product.priceEuro?.toFixed(2)}}</h6>
+            <h5 class="discount" [hidden]="product.discountPercentage! == 0 || type != 'SHOP'">
+              €{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h5>
+            <h5 [hidden]="product.discountPercentage! == 0 || type != 'SHOP'">-{{product.discountPercentage}}%!</h5>
+          </div>
           <hr style="width: 100%">
           <p class="ellipsis">{{product.description}}</p>
         </div>
