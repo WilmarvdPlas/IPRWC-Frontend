@@ -1,0 +1,15 @@
+<nb-layout>
+  <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
+  <nb-layout-column>
+    <nb-card class="filters-card responsive-card">
+      <nb-card-header class="horizontal"><mat-icon>filter_list</mat-icon><h4>FILTERS</h4></nb-card-header>
+    </nb-card>
+    <nb-card class="products-card responsive-card">
+      <nb-card-header class="horizontal"><mat-icon>gamepad</mat-icon><h4>PRODUCTEN</h4></nb-card-header>
+      <nb-card-body class="product-list-container">
+        <app-product-list [products]="products" [type]="'SHOP'"></app-product-list>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+  <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
+</nb-layout>

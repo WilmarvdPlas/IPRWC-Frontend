@@ -1,0 +1,22 @@
+nb-layout-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.25rem;
+}
+
+nb-card-body {
+  padding: 0;
+}
+
+.filters-card {
+  width: calc(20% - 1.125rem);
+}
+
+.products-card {
+  width: calc(80% - 1.125rem);
+}
+
+nb-card {
+  height: 78.4vh;
+}
+
