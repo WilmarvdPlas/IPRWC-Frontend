@@ -1,5 +1,5 @@
 <body>
-  <nb-card>
+  <nb-card class="management-card">
     <nb-card-header class="horizontal"><mat-icon>add_box</mat-icon><h4>PRODUCT AANMAKEN</h4></nb-card-header>
     <nb-card-body>
       <app-product-edit (setProducts)="setProducts()"></app-product-edit>
@@ -9,31 +9,11 @@
       <button nbButton fullWidth (click)="cancelProduct()">Annuleren</button>
     </nb-card-footer>
   </nb-card>
-  <nb-card>
+  <nb-card class="management-card">
     <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>PRODUCT AANPASSEN</h4></nb-card-header>
-    <nb-list [style]="editingProduct ? {'display': 'none'} : {}">
-      <nb-list-item *ngFor="let product of products" class="horizontal gap"
-                    (click)="this.selectedProduct == product ? selectedProduct = undefined : selectedProduct = product"
-                    (dblclick)="editProduct(product)"
-                    [style]="selectedProduct == product ? {'background-color': 'rgba(0, 0, 0, 0.2)'} : {}">
-        <img [src]="product.imageLink" style="width: 15%">
-        <div class="vertical" style="width: 60%; border-right: solid 1px; height: 100%">
-          <h6>{{product.name}}</h6>
-          <p>{{product.description}}</p>
-        </div>
-        <div class="vertical" style="width: 25%">
-          <div class="horizontal">
-            <h6 style="width: 50%">Prijs:</h6><h6>€{{product.priceEuro?.toFixed(2)}}</h6>
-          </div>
-          <div class="horizontal">
-            <h6 style="width: 50%">Voorraad:</h6><h6>{{product.stock}}</h6>
-          </div>
-          <div class="horizontal">
-            <h6 style="width: 50%">Korting:</h6><h6>{{product.discountPercentage}}%</h6>
-          </div>
-        </div>
-      </nb-list-item>
-    </nb-list>
+    <nb-card-body class="product-list-container" [hidden]="editingProduct">
+      <app-product-list [products]="products" [type]="'MANAGEMENT'" (updateSelectedProduct)="this.selectedProduct = $event" (editProduct)="editProduct($event)"></app-product-list>
+    </nb-card-body>
     <nb-card-body [style]="!editingProduct ? {'display': 'none'} : {}"><app-product-edit (setProducts)="setProducts()"></app-product-edit></nb-card-body>
     <nb-card-footer class="gap horizontal">
       <button [style]="editingProduct ? {'display': 'none'} : {}"

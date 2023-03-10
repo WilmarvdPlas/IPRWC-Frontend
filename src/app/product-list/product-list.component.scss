@@ -1,0 +1,58 @@
+img {
+  object-fit: contain;
+  height: 100%;
+  max-width: 30%;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: row;
+  height: 25vh;
+}
+
+.main-section {
+  display: flex;
+  box-sizing: border-box;
+  height: 100%;
+  width: calc(70% - 2.5px);
+  padding: 1rem;
+  align-items: flex-start;
+}
+
+.sub-section {
+  width: calc(30% - 2.5px);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-left: 0.0625rem solid #101426;
+  padding: 1rem;
+}
+
+.products-grid nb-card {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.products-grid-container {
+  max-height: 100%;
+  overflow-y: scroll;
+  padding: 1rem;
+  height: 100%;
+}
+
+.products-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.flex-wrap {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selectable-product {
+  cursor: pointer;
+}
+
+.selectable-product:hover {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
