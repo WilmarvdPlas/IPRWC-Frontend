@@ -16,7 +16,10 @@
         </div>
       </div>
       <div class="sub-section">
-        <div [hidden]="type != 'SHOP'"></div>
+        <div [hidden]="type != 'SHOP'" class="vertical">
+          <button status="success" nbButton fullWidth (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon>In winkelwagen</button>
+          <button nbButton fullWidth><mat-icon>search</mat-icon>Bekijken</button>
+        </div>
         <div class="vertical" [hidden]="type != 'MANAGEMENT'">
           <div class="horizontal flex-wrap">
             <h6>Voorraad:</h6><h6>{{product.stock}}</h6>
