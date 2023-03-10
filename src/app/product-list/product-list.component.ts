@@ -30,7 +30,7 @@ export class ProductListComponent {
   }
 
   addToCart(product: Product) {
-    let cartProduct = new CartProduct(undefined, product, this.userService.getActiveAccount() );
+    let cartProduct = new CartProduct(undefined, 1, product, this.userService.getActiveAccount() );
     this.httpService.post('cart_product', cartProduct).subscribe({
       next: () => { this.toastrService.success('"' + product.name + '" toegevoegd aan winkelwagen.', 'Succes'); },
       error: () => { this.toastrService.danger('Product kon niet toegevoegd worden aan winkelwagen.', 'Error') }
