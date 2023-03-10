@@ -1,5 +1,5 @@
 <body>
-  <nb-card class="management-card">
+  <nb-card>
     <nb-card-header class="horizontal"><mat-icon>add_box</mat-icon><h4>PRODUCT AANMAKEN</h4></nb-card-header>
     <nb-card-body>
       <app-product-edit (setProducts)="setProducts()"></app-product-edit>
@@ -9,7 +9,7 @@
       <button nbButton fullWidth (click)="cancelProduct()">Annuleren</button>
     </nb-card-footer>
   </nb-card>
-  <nb-card class="management-card">
+  <nb-card>
     <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>PRODUCT AANPASSEN</h4></nb-card-header>
     <nb-card-body class="product-list-container" [hidden]="editingProduct">
       <app-product-list [products]="products" [type]="'MANAGEMENT'" (updateSelectedProduct)="this.selectedProduct = $event" (editProduct)="editProduct($event)"></app-product-list>
