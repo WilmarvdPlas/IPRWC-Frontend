@@ -37,6 +37,7 @@ import { AdministrationComponent } from './administration/administration.compone
 import { ProductManagementComponent } from './administration/product-management/product-management.component';
 import { ProductEditComponent } from './administration/product-management/product-edit/product-edit.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ProductsComponent } from './products/products.component';
     ProductManagementComponent,
     ProductEditComponent,
     ProductsComponent,
+    ProductListComponent,
   ],
     imports: [
         BrowserModule,
