@@ -1,0 +1,20 @@
+.right-section, .left-section {
+  height: 78.4vh;
+}
+
+.right-section {
+  width: calc(80% - 1.125rem);
+}
+
+.left-section {
+  width: calc(20% - 1.125rem);
+  gap: 2.25rem;
+}
+
+.left-section nb-card {
+  height: 50%;
+}
+
+nb-layout-column {
+  gap: 2.25rem;
+}
