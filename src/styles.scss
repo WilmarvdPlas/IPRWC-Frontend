@@ -40,6 +40,12 @@ nb-layout-column {
   padding: 2.25rem !important;
 }
 
+nb-select{
+  .select-button {
+    min-width: 0 !important;
+  }
+}
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;

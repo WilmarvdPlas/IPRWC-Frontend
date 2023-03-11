@@ -25,9 +25,9 @@
       <div class="sub-section">
         <div [hidden]="type != 'CART'" class="vertical">
           <button status="danger" nbButton fullWidth (click)="removeFromCart(product)"><mat-icon>delete</mat-icon>Uit winkelwagen</button>
-          <div>
+          <div class="vertical">
             <label>Hoeveelheid</label>
-            <nb-select [(ngModel)]="cartProductsCountArray![products?.indexOf(product)!]" (ngModelChange)="updateCount(product)">
+            <nb-select fullWidth [(ngModel)]="cartProductsCountArray![products?.indexOf(product)!]" (ngModelChange)="updateCount(product)">
               <nb-option *ngFor="let number of getRangeOneHundred()" [value]="number">{{number}}</nb-option>
             </nb-select>
           </div>
