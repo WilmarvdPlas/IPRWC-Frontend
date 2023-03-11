@@ -12,22 +12,22 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import {
-  NbAccordionModule,
-  NbAlertModule,
-  NbButtonGroupModule,
-  NbButtonModule,
-  NbCardModule,
-  NbContextMenuModule,
-  NbFormFieldModule,
-  NbIconModule,
-  NbInputModule,
-  NbLayoutModule,
-  NbListModule, NbMenuModule,
-  NbSidebarModule,
-  NbTableModule,
-  NbTabsetModule,
-  NbThemeModule,
-  NbToastrModule
+    NbAccordionModule,
+    NbAlertModule,
+    NbButtonGroupModule,
+    NbButtonModule,
+    NbCardModule,
+    NbContextMenuModule,
+    NbFormFieldModule,
+    NbIconModule,
+    NbInputModule,
+    NbLayoutModule,
+    NbListModule, NbMenuModule, NbSelectModule,
+    NbSidebarModule,
+    NbTableModule,
+    NbTabsetModule,
+    NbThemeModule,
+    NbToastrModule
 } from "@nebular/theme";
 import {NbEvaIconsModule} from "@nebular/eva-icons";
 import {UserService} from "./services/user.service";
@@ -79,7 +79,8 @@ import { CartComponent } from './cart/cart.component';
         NbTableModule,
         NbFormFieldModule,
         NbContextMenuModule,
-        NbMenuModule.forRoot()
+        NbMenuModule.forRoot(),
+        NbSelectModule
     ],
   providers: [UserService, HttpService],
   bootstrap: [AppComponent]
