@@ -22,15 +22,16 @@
           <p class="ellipsis">{{product.description}}</p>
         </div>
       </div>
-      <div class="sub-section">
+      <div class="sub-section vertical">
+        <button nbButton fullWidth><mat-icon>search</mat-icon>Naar product</button>
         <div [hidden]="type != 'CART'" class="vertical">
           <button status="danger" nbButton fullWidth (click)="removeFromCart(product)"><mat-icon>delete</mat-icon>Uit winkelwagen</button>
-          <div class="vertical">
-            <label>Hoeveelheid</label>
+          <nb-form-field>
+            <p nbPrefix>x</p>
             <nb-select fullWidth [(ngModel)]="cartProductsCountArray![products?.indexOf(product)!]" (ngModelChange)="updateCount(product)">
               <nb-option *ngFor="let number of getRangeOneHundred()" [value]="number">{{number}}</nb-option>
             </nb-select>
-          </div>
+          </nb-form-field>
           <div>
             <label>Totaalprijs</label>
             <h6>€{{((product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)) * cartProductsCountArray![products?.indexOf(product)!]).toFixed(2)}}</h6>
@@ -38,7 +39,6 @@
         </div>
         <div [hidden]="type != 'SHOP'" class="vertical">
           <button status="success" nbButton fullWidth (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon>In winkelwagen</button>
-          <button nbButton fullWidth><mat-icon>search</mat-icon>Bekijken</button>
         </div>
         <div class="vertical" [hidden]="type != 'MANAGEMENT'">
           <div class="horizontal flex-wrap">
