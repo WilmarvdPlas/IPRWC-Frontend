@@ -11,18 +11,31 @@
         <div class="vertical" style="width: 100%">
           <h6>{{product.name}}</h6>
           <div class="horizontal">
-            <h6 [style]="product.discountPercentage! > 0 && type == 'SHOP' ?
+            <h6 [style]="product.discountPercentage! > 0 && type != 'MANAGEMENT' ?
               {'text-decoration': 'line-through', 'text-decoration-thickness': '3px', 'text-decoration-color': '#ff4057'} : {}">
               €{{product.priceEuro?.toFixed(2)}}</h6>
-            <h5 class="discount" [hidden]="product.discountPercentage! == 0 || type != 'SHOP'">
+            <h5 class="discount" [hidden]="product.discountPercentage! == 0 || type == 'MANAGEMENT'">
               €{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h5>
-            <h5 [hidden]="product.discountPercentage! == 0 || type != 'SHOP'">-{{product.discountPercentage}}%!</h5>
+            <h5 [hidden]="product.discountPercentage! == 0 || type == 'MANAGEMENT'">-{{product.discountPercentage}}%!</h5>
           </div>
           <hr style="width: 100%">
           <p class="ellipsis">{{product.description}}</p>
         </div>
       </div>
       <div class="sub-section">
+        <div [hidden]="type != 'CART'" class="vertical">
+          <button status="danger" nbButton fullWidth (click)="removeFromCart(product)"><mat-icon>delete</mat-icon>Uit winkelwagen</button>
+          <div>
+            <label>Hoeveelheid</label>
+            <nb-select [(ngModel)]="cartProductsCountArray![products?.indexOf(product)!]" (ngModelChange)="updateCount(product)">
+              <nb-option *ngFor="let number of getRangeOneHundred()" [value]="number">{{number}}</nb-option>
+            </nb-select>
+          </div>
+          <div>
+            <label>Totaalprijs</label>
+            <h6>€{{((product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)) * cartProductsCountArray![products?.indexOf(product)!]).toFixed(2)}}</h6>
+          </div>
+        </div>
         <div [hidden]="type != 'SHOP'" class="vertical">
           <button status="success" nbButton fullWidth (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon>In winkelwagen</button>
           <button nbButton fullWidth><mat-icon>search</mat-icon>Bekijken</button>

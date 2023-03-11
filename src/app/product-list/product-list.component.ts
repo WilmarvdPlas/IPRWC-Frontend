@@ -15,6 +15,8 @@ export class ProductListComponent {
   selectedProduct?: Product;
 
   @Input() products?: Product[];
+  @Input() cartProductsCountArray?: number[] = [];
+
   @Input() type?: string;
 
   @Output() updateSelectedProduct = new EventEmitter<Product>();
@@ -30,10 +32,29 @@ export class ProductListComponent {
   }
 
   addToCart(product: Product) {
-    let cartProduct = new CartProduct(undefined, 1, product, this.userService.getActiveAccount() );
+    let cartProduct = new CartProduct(undefined, 1, product, this.userService.getActiveAccount());
     this.httpService.post('cart_product', cartProduct).subscribe({
       next: () => { this.toastrService.success('"' + product.name + '" toegevoegd aan winkelwagen.', 'Succes'); },
-      error: () => { this.toastrService.danger('Product kon niet toegevoegd worden aan winkelwagen.', 'Error') }
+      error: (error) => {
+        error.status == 405
+          ? this.toastrService.danger('Er kunnen niet meer dan 100 exemplaren van dit product in uw winkelwagen.', 'Error')
+          : this.toastrService.danger('Product kon niet toegevoegd worden aan winkelwagen.', 'Error');
+      }
+    })
+  }
+
+  removeFromCart(product: Product) {
+
+  }
+
+  getRangeOneHundred() {
+    return Array.from(Array(100).keys()).map(x => x + 1);
+  }
+
+  updateCount(product: Product) {
+    this.httpService.put('cart_product/product=' + product.id + "/update_count", this.cartProductsCountArray![this.products?.indexOf(product)!]).subscribe({
+      next: (response) => { console.log(response); },
+      error: (error) => { console.log(error); }
     })
   }
 
