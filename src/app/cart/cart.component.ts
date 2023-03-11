@@ -18,15 +18,14 @@ export class CartComponent implements OnInit {
   constructor(private httpService: HttpService, private userService: UserService, private toastrService: NbToastrService) {}
 
   ngOnInit() {
-    this.products = [];
-    this.cartProductsCountArray = [];
-
     this.setProducts();
   }
 
   setProducts() {
     this.httpService.get('cart_product/account=' + this.userService.getActiveAccount()?.id).subscribe({
       next: (response) => {
+        this.products = [];
+        this.cartProductsCountArray = [];
         this.copyToProductsArray(response.body);
       },
       error: () => { this.toastrService.danger('Producten in winkelwagen konden niet opgehaald worden.', 'Error'); }

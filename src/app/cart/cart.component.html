@@ -11,7 +11,7 @@
     </div>
     <nb-card class="right-section">
       <nb-card-header class="horizontal"><mat-icon>shopping_cart</mat-icon><h4>MIJN WINKELWAGEN</h4></nb-card-header>
-      <nb-card-body><app-product-list [products]="products" [cartProductsCountArray]="cartProductsCountArray" [type]="'CART'"></app-product-list></nb-card-body>
+      <nb-card-body><app-product-list [products]="products" [cartProductsCountArray]="cartProductsCountArray" [type]="'CART'" (setProducts)="setProducts()"></app-product-list></nb-card-body>
       <nb-card-footer></nb-card-footer>
     </nb-card>
   </nb-layout-column>

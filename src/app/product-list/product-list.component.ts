@@ -16,9 +16,9 @@ export class ProductListComponent {
 
   @Input() products?: Product[];
   @Input() cartProductsCountArray?: number[] = [];
-
   @Input() type?: string;
 
+  @Output() setProducts = new EventEmitter();
   @Output() updateSelectedProduct = new EventEmitter<Product>();
   @Output() editProduct = new EventEmitter<Product>();
 
@@ -44,7 +44,13 @@ export class ProductListComponent {
   }
 
   removeFromCart(product: Product) {
-
+    this.httpService.delete('cart_product/product=' + product.id).subscribe({
+      next: () => {
+        this.toastrService.success('Product uit winkelwagen verwijderd.', 'Success');
+        this.setProducts.emit();
+      },
+      error: () => { this.toastrService.danger('Product kon niet uit winkelwagen gehaald worden', 'Error'); }
+    })
   }
 
   getRangeOneHundred() {
