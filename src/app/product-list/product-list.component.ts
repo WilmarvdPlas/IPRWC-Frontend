@@ -59,7 +59,7 @@ export class ProductListComponent {
 
   updateCount(product: Product) {
     this.httpService.put('cart_product/product=' + product.id + "/update_count", this.cartProductsCountArray![this.products?.indexOf(product)!]).subscribe({
-      next: (response) => { console.log(response); },
+      next: () => { this.setProducts.emit(); },
       error: (error) => { console.log(error); }
     })
   }

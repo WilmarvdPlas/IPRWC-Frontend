@@ -15,6 +15,9 @@ export class CartComponent implements OnInit {
   products: Product[] = []
   cartProductsCountArray: number[] = [];
 
+  fullPriceProducts: number = 0;
+  productCount: number = 0;
+
   constructor(private httpService: HttpService, private userService: UserService, private toastrService: NbToastrService) {}
 
   ngOnInit() {
@@ -24,9 +27,12 @@ export class CartComponent implements OnInit {
   setProducts() {
     this.httpService.get('cart_product/account=' + this.userService.getActiveAccount()?.id).subscribe({
       next: (response) => {
+        response.body.sort((a: { product: Product }, b: { product: Product; }) => (a.product.name! > b.product.name!) ? 1 : -1);
         this.products = [];
         this.cartProductsCountArray = [];
         this.copyToProductsArray(response.body);
+        this.setFullPriceProducts(response.body);
+        this.setProductCount(response.body);
       },
       error: () => { this.toastrService.danger('Producten in winkelwagen konden niet opgehaald worden.', 'Error'); }
     })
@@ -37,6 +43,20 @@ export class CartComponent implements OnInit {
       this.products.push(cartProduct.product!);
       this.cartProductsCountArray.push(cartProduct.count!);
     });
+  }
+
+  setProductCount(cartProducts: CartProduct[]) {
+    this.productCount = 0;
+    for (let cartProduct of cartProducts) {
+      this.productCount += cartProduct.count!;
+    }
+  }
+
+  setFullPriceProducts(cartProducts: CartProduct[]) {
+    this.fullPriceProducts = 0;
+    for (let cartProduct of cartProducts) {
+      this.fullPriceProducts += (cartProduct.product?.priceEuro! - ((cartProduct.product?.discountPercentage! / 100) * cartProduct.product?.priceEuro!)) * cartProduct.count!
+    }
   }
 
 
