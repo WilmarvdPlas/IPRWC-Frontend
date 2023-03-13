@@ -79,7 +79,7 @@ export class CartComponent implements OnInit {
       let response = await lastValueFrom(this.httpService.get('product/' + cartProduct.product?.id))
       let product: Product = response.body;
       if (product.stock! < cartProduct.count!) {
-        this.toastrService.danger('Helaas, wij hebben slechts ' + product.stock + ' exemplaren van "' + product.name + '" op voorraad.', 'Niet genoeg voorraad')
+        this.toastrService.danger('Helaas, wij hebben niet genoeg exemplaren van "' + product.name + '" op voorraad.', 'Niet genoeg voorraad')
         return false;
       }
     }
