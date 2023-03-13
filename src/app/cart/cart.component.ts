@@ -79,7 +79,7 @@ export class CartComponent implements OnInit {
       let response = await lastValueFrom(this.httpService.get('product/' + cartProduct.product?.id))
       let product: Product = response.body;
       if (product.stock! < cartProduct.count!) {
-        this.toastrService.danger('Helaas, wij hebben maar ' + product.stock + ' exemplaren van "' + product.name + '" op voorraad.', 'Niet genoeg voorraad')
+        this.toastrService.danger('Helaas, wij hebben slechts ' + product.stock + ' exemplaren van "' + product.name + '" op voorraad.', 'Niet genoeg voorraad')
         return false;
       }
     }
@@ -90,7 +90,7 @@ export class CartComponent implements OnInit {
     let transaction = new Transaction(undefined, this.userService.getActiveAccount())
     this.httpService.post('transaction', transaction).subscribe({
       next: (response) => {
-        this.postTransactionProducts(response.body);
+        this.postTransactionProducts(response.body)
         this.toastrService.success('Bestelling is succesvol geplaatst.', 'Succes');
       }
     })
@@ -109,10 +109,28 @@ export class CartComponent implements OnInit {
         false);
 
       this.httpService.post('transaction_product', transactionProduct).subscribe({
-        next: (response) => { console.log(response); },
-        error: (error) => { console.log(error) }
+        next: () => {
+          this.lowerStock(cartProduct);
+          this.deleteCartProduct(cartProduct).then(() => {
+            this.setProducts();
+          });
+        },
+        error: (error) => {
+          console.log(error)
+        }
       })
     }
+  }
+
+  async deleteCartProduct(cartProduct: CartProduct) {
+    await lastValueFrom(this.httpService.delete('cart_product/product=' + cartProduct.product?.id))
+  }
+
+  lowerStock(cartProduct: CartProduct) {
+    this.httpService.put('product/' + cartProduct.product?.id + "/edit_stock", -cartProduct.count!).subscribe({
+      next: (response) => { console.log(response); },
+      error: (error) => { console.log(error); }
+    })
   }
 
 
