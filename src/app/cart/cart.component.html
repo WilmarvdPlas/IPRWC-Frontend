@@ -21,7 +21,7 @@
             <label class="width-50 align-end">€{{(fullPriceProducts + 3.99).toFixed(2)}}</label>
           </div>
         </nb-card-body>
-        <nb-card-footer><button status="success" nbButton fullWidth [disabled]="products.length == 0">Afrekenen</button></nb-card-footer>
+        <nb-card-footer><button status="success" nbButton fullWidth [disabled]="products.length == 0" (click)="toPayment()">Afrekenen</button></nb-card-footer>
       </nb-card>
       <nb-card class="discount-code-card">
         <nb-card-header class="horizontal"><mat-icon>card_giftcard</mat-icon><h4>KORTINGSCODE</h4></nb-card-header>

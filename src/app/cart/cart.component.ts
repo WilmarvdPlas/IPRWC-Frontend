@@ -4,6 +4,7 @@ import {HttpService} from "../services/http.service";
 import {UserService} from "../services/user.service";
 import {NbToastrService} from "@nebular/theme";
 import {CartProduct} from "../models/cart-product.model";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,7 @@ import {CartProduct} from "../models/cart-product.model";
 })
 export class CartComponent implements OnInit {
 
+  cartProducts: CartProduct[] = [];
   products: Product[] = []
   cartProductsCountArray: number[] = [];
 
@@ -28,8 +30,12 @@ export class CartComponent implements OnInit {
     this.httpService.get('cart_product/account=' + this.userService.getActiveAccount()?.id).subscribe({
       next: (response) => {
         response.body.sort((a: { product: Product }, b: { product: Product; }) => (a.product.name! > b.product.name!) ? 1 : -1);
+        this.cartProducts = [];
         this.products = [];
         this.cartProductsCountArray = [];
+
+        this.cartProducts = response.body;
+
         this.copyToProductsArray(response.body);
         this.setFullPriceProducts(response.body);
         this.setProductCount(response.body);
@@ -59,6 +65,28 @@ export class CartComponent implements OnInit {
     }
   }
 
+  async toPayment() {
+    if(await this.sufficientStock()) {
+      this.createOrder()
+    }
+  }
+
+  async sufficientStock() {
+    for (let cartProduct of this.cartProducts) {
+
+      let response = await lastValueFrom(this.httpService.get('product/' + cartProduct.product?.id))
+      let product: Product = response.body;
+      if (product.stock! < cartProduct.count!) {
+        this.toastrService.danger('Helaas, wij hebben maar ' + product.stock + ' exemplaren van "' + product.name + '" op voorraad.', 'Niet genoeg voorraad')
+        return false;
+      }
+    }
+    return true;
+  }
+
+  createOrder() {
+
+  }
 
 
 }
