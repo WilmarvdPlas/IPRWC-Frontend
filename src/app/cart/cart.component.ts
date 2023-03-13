@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   products: Product[] = []
   cartProductsCountArray: number[] = [];
 
+  postageCosts: number = 0;
   fullPriceProducts: number = 0;
   productCount: number = 0;
 
@@ -38,6 +39,7 @@ export class CartComponent implements OnInit {
 
         this.cartProducts = response.body;
 
+        this.postageCosts = this.cartProducts.length > 0 ? 3.99 : 0;
         this.copyToProductsArray(response.body);
         this.setFullPriceProducts(response.body);
         this.setProductCount(response.body);
