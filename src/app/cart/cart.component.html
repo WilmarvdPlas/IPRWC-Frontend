@@ -1,32 +1,27 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
   <nb-layout-column class="horizontal">
-    <div class="left-section vertical">
-      <nb-card class="order-card">
-        <nb-card-header class="horizontal"><mat-icon>payment</mat-icon><h4>AFREKENEN</h4></nb-card-header>
-        <nb-card-body class="vertical">
-          <div class="horizontal">
-            <label class="width-50">Artikelen ({{productCount}})</label>
-            <label class="width-50 align-end">€{{fullPriceProducts.toFixed(2)}}</label>
-          </div>
-          <div class="horizontal">
-            <label class="width-50">Verzendkosten</label>
-            <label class="width-50 align-end">€{{(postageCosts).toFixed(2)}}</label>
-          </div>
-          <div>
-            <hr>
-          </div>
-          <div class="horizontal">
-            <label class="width-50">Totaalprijs</label>
-            <label class="width-50 align-end">€{{(fullPriceProducts + postageCosts).toFixed(2)}}</label>
-          </div>
-        </nb-card-body>
-        <nb-card-footer><button status="success" nbButton fullWidth [disabled]="products.length == 0" (click)="toPayment()">Afrekenen</button></nb-card-footer>
-      </nb-card>
-      <nb-card class="discount-code-card">
-        <nb-card-header class="horizontal"><mat-icon>card_giftcard</mat-icon><h4>KORTINGSCODE</h4></nb-card-header>
-      </nb-card>
-    </div>
+    <nb-card class="left-section order-card">
+      <nb-card-header class="horizontal"><mat-icon>payment</mat-icon><h4>AFREKENEN</h4></nb-card-header>
+      <nb-card-body class="vertical">
+        <div class="horizontal">
+          <label class="width-50">Artikelen ({{productCount}})</label>
+          <label class="width-50 align-end">€{{fullPriceProducts.toFixed(2)}}</label>
+        </div>
+        <div class="horizontal">
+          <label class="width-50">Verzendkosten</label>
+          <label class="width-50 align-end">€{{(postageCosts).toFixed(2)}}</label>
+        </div>
+        <div>
+          <hr>
+        </div>
+        <div class="horizontal">
+          <label class="width-50">Totaalprijs</label>
+          <label class="width-50 align-end">€{{(fullPriceProducts + postageCosts).toFixed(2)}}</label>
+        </div>
+      </nb-card-body>
+      <nb-card-footer><button status="success" nbButton fullWidth [disabled]="products.length == 0" (click)="toPayment()">Afrekenen</button></nb-card-footer>
+    </nb-card>
     <nb-card class="right-section">
       <nb-card-header class="horizontal"><mat-icon>shopping_cart</mat-icon><h4>MIJN WINKELWAGEN</h4></nb-card-header>
       <nb-card-body><app-product-list [products]="products" [cartProductsCountArray]="cartProductsCountArray" [type]="'CART'" (setProducts)="setProducts()"></app-product-list></nb-card-body>
