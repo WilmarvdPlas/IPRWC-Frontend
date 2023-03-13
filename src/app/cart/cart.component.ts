@@ -5,6 +5,8 @@ import {UserService} from "../services/user.service";
 import {NbToastrService} from "@nebular/theme";
 import {CartProduct} from "../models/cart-product.model";
 import {lastValueFrom} from "rxjs";
+import {Transaction} from "../models/transaction.model";
+import {TransactionProduct} from "../models/transaction-product.model";
 
 @Component({
   selector: 'app-cart',
@@ -67,7 +69,7 @@ export class CartComponent implements OnInit {
 
   async toPayment() {
     if(await this.sufficientStock()) {
-      this.createOrder()
+      this.postTransaction()
     }
   }
 
@@ -84,8 +86,33 @@ export class CartComponent implements OnInit {
     return true;
   }
 
-  createOrder() {
+  postTransaction() {
+    let transaction = new Transaction(undefined, this.userService.getActiveAccount())
+    this.httpService.post('transaction', transaction).subscribe({
+      next: (response) => {
+        this.postTransactionProducts(response.body);
+        this.toastrService.success('Bestelling is succesvol geplaatst.', 'Succes');
+      }
+    })
+  }
 
+  postTransactionProducts(transactionId: string) {
+    let transaction = new TransactionProduct(transactionId);
+
+    for (let cartProduct of this.cartProducts) {
+      let transactionProduct = new TransactionProduct(
+        undefined,
+        transaction,
+        cartProduct.product,
+        cartProduct.count,
+        (cartProduct.product?.priceEuro! - ((cartProduct.product?.discountPercentage! / 100) * cartProduct.product?.priceEuro!)) * cartProduct.count!,
+        false);
+
+      this.httpService.post('transaction_product', transactionProduct).subscribe({
+        next: (response) => { console.log(response); },
+        error: (error) => { console.log(error) }
+      })
+    }
   }
 
 
