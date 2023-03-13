@@ -58,7 +58,7 @@ export class ProductEditComponent {
     console.log('post stock')
     if (addedStock > 0) {
       console.log('stock > 0')
-      this.httpService.put('product/' + id, addedStock).subscribe({
+      this.httpService.put('product/' + id + "/edit_stock", addedStock).subscribe({
         next: () => {
           this.toastrService.success('Voorraad is succesvol aangepast.', 'Succes');
           this.setProducts.emit();
