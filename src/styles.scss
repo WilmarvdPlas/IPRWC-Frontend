@@ -55,6 +55,15 @@ nb-select{
   -webkit-box-orient: vertical;
 }
 
+
+.width-50 {
+  width: 50%;
+}
+
+.align-end {
+  text-align: end;
+}
+
 @keyframes fallIn {
   from {
     bottom: 70vh;
