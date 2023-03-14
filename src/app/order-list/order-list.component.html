@@ -1,1 +1,14 @@
-<p>order-list works!</p>
+<div class="accordion-container">
+  <nb-accordion>
+    <nb-accordion-item *ngFor="let transaction of transactions">
+      <nb-accordion-item-header class="vertical">
+        <h6>{{transaction.dateCreated}}</h6>
+        <small>{{transaction.id}}</small>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</div>
+

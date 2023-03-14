@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Transaction} from "../models/transaction.model";
 
 @Component({
   selector: 'app-order-list',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent {
+
+  @Input() transactions?: Transaction[];
 
 }
