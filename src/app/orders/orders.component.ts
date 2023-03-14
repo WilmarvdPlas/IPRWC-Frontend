@@ -22,7 +22,10 @@ export class OrdersComponent implements OnInit {
 
   setTransactions() {
     this.httpService.get('transaction/account=' + this.userService.getActiveAccount()?.id).subscribe({
-      next: (response) => { this.transactions = response.body; },
+      next: (response) => {
+        response.body.sort((a: { date: Date }, b: { date: Date; }) => (a.date! > b.date!) ? 1 : -1);
+        this.transactions = response.body;
+      },
       error: () => { this.toastrService.danger('Bestellingen konden niet opgehaald worden.', 'Error'); }
     })
   }
