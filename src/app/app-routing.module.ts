@@ -6,6 +6,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AdministrationComponent} from "./administration/administration.component";
 import {ProductsComponent} from "./products/products.component";
 import {CartComponent} from "./cart/cart.component";
+import {OrdersComponent} from "./orders/orders.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'administration', component: AdministrationComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'orders', component: OrdersComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
