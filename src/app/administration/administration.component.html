@@ -12,6 +12,11 @@
       </nb-card-body>
     </nb-card>
     <app-product-management class="right-section" [style]="selectedMenu != 'productManagement' ? {'display': 'none'} : {}"></app-product-management>
+    <nb-card class="right-section orders-card card-full-height" [style]="selectedMenu != 'orders' ? {'display': 'none'} : {}">
+      <nb-card-header class="horizontal"><mat-icon>receipt</mat-icon><h4>BESTELLINGEN</h4></nb-card-header>
+      <nb-card-body><app-order-list [transactions]="transactions" type="administration"></app-order-list></nb-card-body>
+      <nb-card-footer></nb-card-footer>
+    </nb-card>
   </nb-layout-column>
   <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
 </nb-layout>

@@ -12,6 +12,8 @@ import {NbToastrService} from "@nebular/theme";
 export class OrderListComponent implements OnChanges {
 
   @Input() transactions?: Transaction[];
+  @Input() type?: string;
+
   transactionProductsList = new Map<Transaction, TransactionProduct[]>()
 
   constructor(private httpService: HttpService, private toastrService: NbToastrService) {}
