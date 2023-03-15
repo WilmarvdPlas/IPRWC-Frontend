@@ -10,7 +10,11 @@ nb-layout-column {
   gap: 2.25rem;
 }
 
-nb-card {
-  height: 78.4vh;
+.left-section {
+  width: 250px;
+}
+
+.right-section {
+  flex-grow: 1;
 }
 
