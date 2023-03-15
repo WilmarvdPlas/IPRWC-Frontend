@@ -11,7 +11,7 @@ import {NbToastrService} from "@nebular/theme";
 })
 export class OrdersComponent implements OnInit {
 
-  transactions?: Transaction[];
+  transactions?: Transaction[] = [];
 
   constructor(private httpService: HttpService, private userService: UserService, private toastrService: NbToastrService) {
   }
