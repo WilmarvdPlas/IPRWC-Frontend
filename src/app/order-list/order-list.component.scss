@@ -19,12 +19,20 @@ nb-list {
   border: none;
 }
 
+nb-accordion {
+  border: none !important;
+}
+
 nb-list-item:first-child, nb-accordion:first-child {
-  border-top: none !important;
+  border-top: none;
 }
 
 nb-list-item:last-child, nb-accordion:last-child {
-  border-bottom: none !important;
+  border-bottom: none;
+}
+
+nb-accordion-item:last-child nb-list-item {
+  border-bottom: 1px solid #151a30;
 }
 
 img {
