@@ -46,6 +46,10 @@ nb-select{
   }
 }
 
+nb-accordion-item-body .item-body {
+  padding: 0 !important;
+}
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -55,13 +59,33 @@ nb-select{
   -webkit-box-orient: vertical;
 }
 
-
 .width-50 {
   width: 50%;
 }
 
 .align-end {
   text-align: end;
+}
+
+.no-gap {
+  gap: 0;
+}
+
+button {
+  display: flex;
+  flex-wrap: wrap;
+  word-break: break-word !important;
+  white-space: break-spaces !important;
+}
+
+.divider {
+  border-left: 2px white solid;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.card-full-height {
+  height: 78.4vh;
 }
 
 @keyframes fallIn {
