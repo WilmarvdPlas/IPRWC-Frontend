@@ -1,10 +1,10 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
   <nb-layout-column>
-    <nb-card class="filters-card responsive-card">
+    <nb-card class="filters-card responsive-card card-full-height">
       <nb-card-header class="horizontal"><mat-icon>filter_list</mat-icon><h4>FILTERS</h4></nb-card-header>
     </nb-card>
-    <nb-card class="products-card responsive-card">
+    <nb-card class="products-card responsive-card card-full-height">
       <nb-card-header class="horizontal"><mat-icon>gamepad</mat-icon><h4>ARTIKELEN - {{filteredProducts?.length}} RESULTATEN</h4></nb-card-header>
       <nb-card-body>
         <app-product-list [products]="filteredProducts" [type]="'SHOP'"></app-product-list>
