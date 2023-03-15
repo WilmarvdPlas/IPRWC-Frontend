@@ -1,12 +1,28 @@
 <div class="accordion-container">
   <nb-accordion>
     <nb-accordion-item *ngFor="let transaction of transactions">
-      <nb-accordion-item-header class="vertical">
-        <h6>{{transaction.dateCreated}}</h6>
-        <small>{{transaction.id}}</small>
+      <nb-accordion-item-header class="horizontal">
+        <div>
+          <h6>{{transaction.dateCreated}}</h6>
+          <p>{{getProductCount(transaction) + (getProductCount(transaction) > 1 ? ' Producten' : ' Product')}}</p>
+          <p>€{{(getTotalPayment(transaction)).toFixed(2)}}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="vertical">
+          <p>{{transaction.id}}</p>
+        </div>
       </nb-accordion-item-header>
       <nb-accordion-item-body>
-
+        <nb-list>
+          <nb-list-item *ngFor="let transactionProduct of transactionProductsList.get(transaction)" class="horizontal">
+            <img [src]="transactionProduct.product?.imageLink">
+            <div class="vertical no-gap">
+              <h6>{{transactionProduct.product?.name}}</h6>
+              <label>x{{transactionProduct.count}}</label>
+              <label>€{{(transactionProduct.paymentEuro!).toFixed(2)}}</label>
+            </div>
+          </nb-list-item>
+        </nb-list>
       </nb-accordion-item-body>
     </nb-accordion-item>
   </nb-accordion>
