@@ -1,11 +1,26 @@
 <body>
   <app-account-create type="ADMINISTRATION" class="card-full-height"></app-account-create>
-  <nb-card class="card-full-height">
+  <nb-card class="card-full-height accounts-card">
     <nb-card-header class="horizontal"><mat-icon class="accounts-icon">supervisor_account</mat-icon><h4>ACCOUNTS BEHEREN</h4></nb-card-header>
-    <nb-card-body></nb-card-body>
+    <div class="card-body-container">
+      <nb-card-body class="account-management-card-body vertical">
+        <nb-card class="account-card"
+                 *ngFor="let account of accounts"
+                 (click)="selectedAccount = account"
+                 [style]="account == selectedAccount ? {'background-color': 'rgba(0, 0, 0, 0.4)'} : {}">
+          <nb-card-body class="account-card-body horizontal">
+            <div class="account-card-icon-container"><mat-icon class="account-card-icon">{{account.administrator ? 'admin_panel_settings' : 'person'}}}</mat-icon></div>
+            <div class="account-data-container vertical no-gap">
+              <h6>{{account.email}}</h6>
+              <p>{{account.name}}</p>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-body>
+    </div>
     <nb-card-footer class="horizontal gap">
-      <button nbButton fullWidth status="primary">Beheerder toewijzen</button>
-      <button nbButton fullWidth status="danger">Verwijderen</button>
+      <button [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="primary">Beheerder toewijzen</button>
+      <button [disabled]="selectedAccount == undefined" nbButton fullWidth status="danger">Verwijderen</button>
     </nb-card-footer>
   </nb-card>
 </body>

@@ -3,11 +3,61 @@ body {
   gap: 2.25rem;
 }
 
-nb-card, app-account-create {
+.accounts-card, app-account-create {
   width: calc(50% - 1.125rem);
+}
+
+.account-card {
+  display: flex;
+  align-items: stretch;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 8vh;
+}
+
+.account-card:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.account-card-icon-container {
+  border-right: 0.0625rem solid #101426;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  height: 100%;
+  width: 10%;
+}
+
+.account-management-card-body {
+  padding: 0;
+}
+
+.card-body-container {
+  max-height: 100%;
+  overflow-y: scroll;
+  padding: 1rem;
+  height: 100%;
+}
+
+.account-data-container {
+  padding: 1rem;
+}
+
+.account-card-icon {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  width: 30px;
 }
 
 .accounts-icon {
   font-size: 28px;
   width: 28px;
 }
+
+.account-card-body {
+  padding: 0;
+}
+
