@@ -28,18 +28,28 @@ export class OrderListComponent implements OnChanges {
   }
 
   getTotalPayment(transaction: Transaction) {
+    let transactionProducts = this.transactionProductsList.get(transaction)!;
     let totalPayment = 3.99;
-    for (let transactionProduct of this.transactionProductsList.get(transaction)!) {
-      totalPayment += transactionProduct.paymentEuro!;
+
+    if (Array.isArray(transactionProducts)) {
+      for (let transactionProduct of transactionProducts) {
+        totalPayment += transactionProduct.paymentEuro!;
+      }
     }
+
     return totalPayment;
   }
 
   getProductCount(transaction: Transaction) {
+    let transactionProducts = this.transactionProductsList.get(transaction)!;
     let productCount = 0;
-    for (let transactionProduct of this.transactionProductsList.get(transaction)!) {
-      productCount += transactionProduct.count!;
+
+    if (Array.isArray(transactionProducts)) {
+      for (let transactionProduct of transactionProducts) {
+        productCount += transactionProduct.count!;
+      }
     }
+
     return productCount;
   }
 
