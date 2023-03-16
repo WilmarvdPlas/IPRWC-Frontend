@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Account} from "../models/account.model";
 import {Router} from "@angular/router";
 import {HttpService} from "../services/http.service";
@@ -12,6 +12,8 @@ import {NbToastrService} from "@nebular/theme";
 export class AccountCreateComponent {
 
   @Input() type?: string;
+
+  @Output() setAccounts = new EventEmitter();
 
   account: Account = new Account(undefined, '', '', '', false);
   passwordRepeat: string = '';
@@ -45,6 +47,7 @@ export class AccountCreateComponent {
         this.registerCalled = false;
         this.account = new Account(undefined, '', '', '', false);
         this.passwordRepeat = '';
+        this.setAccounts.emit();
       },
       error: (error) => { this.onHttpError(error.status); }
     })

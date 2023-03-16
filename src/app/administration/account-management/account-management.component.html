@@ -1,15 +1,15 @@
 <body>
-  <app-account-create type="ADMINISTRATION" class="card-full-height"></app-account-create>
+  <app-account-create type="ADMINISTRATION" class="card-full-height" (setAccounts)="setAccounts()"></app-account-create>
   <nb-card class="card-full-height accounts-card">
     <nb-card-header class="horizontal"><mat-icon class="accounts-icon">supervisor_account</mat-icon><h4>ACCOUNTS BEHEREN</h4></nb-card-header>
     <div class="card-body-container">
       <nb-card-body class="account-management-card-body vertical">
         <nb-card class="account-card"
                  *ngFor="let account of accounts"
-                 (click)="selectedAccount = account"
+                 (click)="account == selectedAccount ? selectedAccount = undefined : selectedAccount = account"
                  [style]="account == selectedAccount ? {'background-color': 'rgba(0, 0, 0, 0.4)'} : {}">
           <nb-card-body class="account-card-body horizontal">
-            <div class="account-card-icon-container"><mat-icon class="account-card-icon">{{account.administrator ? 'admin_panel_settings' : 'person'}}}</mat-icon></div>
+            <div class="account-card-icon-container"><mat-icon class="account-card-icon">{{account.administrator ? 'admin_panel_settings' : 'person'}}</mat-icon></div>
             <div class="account-data-container vertical no-gap">
               <h6>{{account.email}}</h6>
               <p>{{account.name}}</p>
