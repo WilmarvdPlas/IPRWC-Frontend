@@ -1,4 +1,11 @@
 <body>
   <app-account-create type="ADMINISTRATION" class="card-full-height"></app-account-create>
-  <nb-card class="card-full-height"></nb-card>
+  <nb-card class="card-full-height">
+    <nb-card-header class="horizontal"><mat-icon class="accounts-icon">supervisor_account</mat-icon><h4>ACCOUNTS BEHEREN</h4></nb-card-header>
+    <nb-card-body></nb-card-body>
+    <nb-card-footer class="horizontal gap">
+      <button nbButton fullWidth status="primary">Beheerder toewijzen</button>
+      <button nbButton fullWidth status="danger">Verwijderen</button>
+    </nb-card-footer>
+  </nb-card>
 </body>
