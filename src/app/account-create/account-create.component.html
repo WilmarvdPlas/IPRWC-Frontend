@@ -1,7 +1,7 @@
 <nb-card>
   <nb-card-header>
     <div class="horizontal"><mat-icon style="font-size: 26px">person_add</mat-icon><h4>ACCOUNT AANMAKEN</h4></div>
-    <p>Maak een account aan om onze catalogus aan games te bekijken.</p>
+    <p [hidden]="type != 'REGISTER'">Maak een account aan om onze catalogus aan games te bekijken.</p>
   </nb-card-header>
   <nb-card-body class="vertical gap">
     <div class="vertical">
@@ -37,6 +37,6 @@
     </div>
   </nb-card-body>
   <nb-card-footer>
-    <button nbButton fullWidth status=primary (click)="register()">Registreren</button>
+    <button nbButton fullWidth status=primary (click)="register()">Account aanmaken</button>
   </nb-card-footer>
 </nb-card>
