@@ -33,11 +33,11 @@ export class AccountManagementDialogComponent {
     this.httpService.put('account/' + this.account?.id + '/administrator', undefined).subscribe({
       next: () => {
         this.dialogRef.close();
-        this.toastrService.success('Account succesvol als beheerder toegewezen.', 'Succes');
+        this.toastrService.success('Account has been granted administrative rights.', 'Success');
       },
       error: () => {
         this.dialogRef.close();
-        this.toastrService.danger('Account kon niet als beheerder toegewezen worden.', 'Error');
+        this.toastrService.danger('Account could not be granted administrative rights.', 'Error');
       }
     })
   }
@@ -46,11 +46,11 @@ export class AccountManagementDialogComponent {
     this.httpService.delete('account/' + this.account?.id).subscribe({
       next: () => {
         this.dialogRef.close();
-        this.toastrService.success('Account is succesvol verwijderd.', 'Succes');
+        this.toastrService.success('Account has been deleted.', 'Success');
       },
       error: () => {
         this.dialogRef.close();
-        this.toastrService.danger('Account kon niet verwijderd worden.', 'Error');
+        this.toastrService.danger('Account could not be deleted.', 'Error');
       }
     })
   }

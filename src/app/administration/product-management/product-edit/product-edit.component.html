@@ -1,11 +1,11 @@
 <div class="vertical gap">
   <div class="horizontal gap">
     <div class="vertical">
-      <label>Productnaam</label>
-      <input nbInput fullWidth [(ngModel)]="product.name" placeholder="Nieuw Product">
+      <label>Name</label>
+      <input nbInput fullWidth [(ngModel)]="product.name" placeholder="New Product">
     </div>
     <div class="vertical">
-      <label>Productprijs</label>
+      <label>Price</label>
       <nb-form-field>
         <p nbPrefix>€</p>
         <input nbInput fullWidth type="number" [(ngModel)]="product.priceEuro" placeholder="0.00">
@@ -13,26 +13,26 @@
     </div>
   </div>
   <div class="vertical">
-    <label>Productomschrijving</label>
-    <textarea nbInput fullWidth [(ngModel)]="product.description" placeholder="Algemene omschrijving van het product"></textarea>
+    <label>Description</label>
+    <textarea nbInput fullWidth [(ngModel)]="product.description" placeholder="General description of product"></textarea>
   </div>
   <div class="vertical">
-    <label>URL Afbeelding</label>
+    <label>Image URL</label>
     <input nbInput fullWidth [(ngModel)]="product.imageLink" placeholder="https://www.google.com/image">
   </div>
   <div class="horizontal gap">
     <div class="horizontal">
       <div class="vertical">
-        <label>Voorraad</label>
+        <label>Stock</label>
         <input nbInput fullWidth disabled="true" [(ngModel)]="product.stock" type="number">
       </div>
       <div class="vertical">
-        <label>Toevoegen</label>
+        <label>Add stock</label>
         <input nbInput fullWidth [(ngModel)]="addedStock" type="number">
       </div>
     </div>
     <div class="vertical">
-      <label>Kortingspercentage</label>
+      <label>Discount</label>
       <nb-form-field>
         <p nbSuffix>%</p>
         <input nbInput fullWidth type="number" [(ngModel)]="product.discountPercentage">

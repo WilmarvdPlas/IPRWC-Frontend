@@ -1,7 +1,7 @@
 <body>
   <app-account-create type="ADMINISTRATION" class="card-full-height" (setAccounts)="setAccounts()"></app-account-create>
   <nb-card class="card-full-height accounts-card">
-    <nb-card-header class="horizontal"><mat-icon class="accounts-icon">supervisor_account</mat-icon><h4>ACCOUNTS BEHEREN</h4></nb-card-header>
+    <nb-card-header class="horizontal"><mat-icon class="accounts-icon">supervisor_account</mat-icon><h4>MANAGE ACCOUNTS</h4></nb-card-header>
     <div class="card-body-container">
       <nb-card-body class="account-management-card-body vertical">
         <nb-card class="account-card"
@@ -19,8 +19,8 @@
       </nb-card-body>
     </div>
     <nb-card-footer class="horizontal gap">
-      <button (click)="openAdministratorDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="primary">Beheerder toewijzen</button>
-      <button (click)="openDeleteDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="danger">Verwijderen</button>
+      <button (click)="openAdministratorDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="primary">Grant administrator</button>
+      <button (click)="openDeleteDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="danger">Delete account</button>
     </nb-card-footer>
   </nb-card>
 </body>

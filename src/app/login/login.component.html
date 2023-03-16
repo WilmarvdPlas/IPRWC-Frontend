@@ -3,36 +3,36 @@
   <nb-layout-column>
     <nb-card>
       <nb-card-header class="horizontal">
-        <mat-icon>login</mat-icon><h4>INLOGGEN</h4>
+        <mat-icon>login</mat-icon><h4>LOG IN</h4>
       </nb-card-header>
       <nb-card-body class="vertical gap">
         <div class="vertical">
-          <label>E-mailadres</label>
-          <input nbInput fullWidth [status]="(!logInCalled || loginCredentials.email != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.email" placeholder="Voer uw e-mailadres in">
+          <label>E-mail address</label>
+          <input nbInput fullWidth [status]="(!logInCalled || loginCredentials.email != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.email" placeholder="Enter e-mail address">
           <small class="horizontal" style="color: #ff3d71" [hidden]="!logInCalled || loginCredentials.email != ''">
             <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
-            Er is geen e-mailadres ingevuld.
+            E-mail address field is empty.
           </small>
         </div>
         <div class="vertical">
-          <label>Wachtwoord</label>
-          <input nbInput fullWidth type="password" [status]="(!logInCalled || loginCredentials.password != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.password" placeholder="Voer uw wachtwoord in">
+          <label>Password</label>
+          <input nbInput fullWidth type="password" [status]="(!logInCalled || loginCredentials.password != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.password" placeholder="Enter password">
           <small class="horizontal" style="color: #ff3d71" [hidden]="!logInCalled || loginCredentials.password != ''">
             <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
-            Er is geen wachtwoord ingevuld.
+            Password field is empty.
           </small>
         </div>
       </nb-card-body>
       <nb-card-footer>
-        <button nbButton fullWidth status=primary (click)="logIn()">Inloggen</button>
+        <button nbButton fullWidth status=primary (click)="logIn()">Log in</button>
       </nb-card-footer>
     </nb-card>
     <nb-card>
       <nb-card-header>
-        <p>Heeft u nog geen account?</p>
+        <p>Don't own an account yet?</p>
       </nb-card-header>
       <nb-card-body class="vertical">
-        <button nbButton (click)="this.router.navigate(['/register'])">Account aanmaken</button>
+        <button nbButton (click)="this.router.navigate(['/register'])">To register</button>
       </nb-card-body>
     </nb-card>
   </nb-layout-column>

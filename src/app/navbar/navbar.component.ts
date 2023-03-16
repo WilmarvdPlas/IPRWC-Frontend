@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(public userService: UserService, public router: Router, private menuService: NbMenuService) {}
 
   profileSubscription?: Subscription;
-  profileItems = [{ title: 'Profiel', data: "PROFILE" }, { title: 'Uitloggen', data: "LOGOUT" }];
+  profileItems = [{ title: 'Profile', data: "PROFILE" }, { title: 'Log out', data: "LOGOUT" }];
 
   ngOnInit() {
     this.profileSubscription = this.menuService.onItemClick().subscribe({

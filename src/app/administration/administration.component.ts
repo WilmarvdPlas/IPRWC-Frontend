@@ -15,7 +15,7 @@ export class AdministrationComponent implements OnInit {
 
   transactions: Transaction[] = []
 
-  constructor(private httpService: HttpService, private toastrService: NbToastrService, private userService: UserService) {}
+  constructor(private httpService: HttpService, private toastrService: NbToastrService) {}
 
   updateSelectedMenu(value: any): void {
     this.selectedMenu = value;
@@ -31,7 +31,7 @@ export class AdministrationComponent implements OnInit {
         response.body.sort((a: { date: Date }, b: { date: Date; }) => (a.date! > b.date!) ? 1 : -1);
         this.transactions = response.body;
       },
-      error: () => { this.toastrService.danger('Bestellingen konden niet opgehaald worden.', 'Error'); }
+      error: () => { this.toastrService.danger('Orders could not be fetched.', 'Error'); }
     })
   }
 

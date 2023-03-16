@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
   setProducts() {
     this.httpService.get('product').subscribe({
       next: (response) => { this.products = response.body; this.filteredProducts = this.products; },
-      error: () => { this.toastrService.danger('Producten konden niet opgehaald worden.', 'Error'); }
+      error: () => { this.toastrService.danger('Items could not be fetched.', 'Error'); }
     })
   }
 }

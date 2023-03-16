@@ -29,7 +29,7 @@ export class UserService {
 
     this.router.navigate(['/login']).then(() => {
       setTimeout(() => {
-        this.toastrService.success('U bent succesvol uitgelogd.', 'Succes');
+        this.toastrService.success('You have been successfully logged out', 'Success');
       }, 1)
     });
   }
@@ -40,7 +40,7 @@ export class UserService {
 
     this.router.navigate(['/products']).then(() => {
       setTimeout(() => {
-        this.toastrService.success('U bent succesvol ingelogd.', 'Succes');
+        this.toastrService.success('You have been successfully logged in', 'Success');
       }, 1)
     });
   }

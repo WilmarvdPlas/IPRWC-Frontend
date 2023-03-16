@@ -1,16 +1,16 @@
 <body>
   <nb-card class="card-full-height">
-    <nb-card-header class="horizontal"><mat-icon>add_box</mat-icon><h4>PRODUCT AANMAKEN</h4></nb-card-header>
+    <nb-card-header class="horizontal"><mat-icon>add_box</mat-icon><h4>CREATE PRODUCT</h4></nb-card-header>
     <nb-card-body>
       <app-product-edit (setProducts)="setProducts()"></app-product-edit>
     </nb-card-body>
     <nb-card-footer class="gap horizontal">
-      <button nbButton fullWidth status="primary" (click)="createProduct()" [disabled]="!createProductComponent?.allFieldsFilled()">Aanmaken</button>
-      <button nbButton fullWidth (click)="cancelProduct()">Annuleren</button>
+      <button nbButton fullWidth status="primary" (click)="createProduct()" [disabled]="!createProductComponent?.allFieldsFilled()">Create product</button>
+      <button nbButton fullWidth (click)="cancelProduct()">Cancel</button>
     </nb-card-footer>
   </nb-card>
   <nb-card class="card-full-height">
-    <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>PRODUCT AANPASSEN</h4></nb-card-header>
+    <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>EDIT PRODUCT</h4></nb-card-header>
     <nb-card-body class="product-list-container" [hidden]="editingProduct">
       <app-product-list [products]="products" [type]="'MANAGEMENT'" (updateSelectedProduct)="this.selectedProduct = $event" (editProduct)="editProduct($event)"></app-product-list>
     </nb-card-body>
@@ -19,18 +19,18 @@
       <button [style]="editingProduct ? {'display': 'none'} : {}"
               [disabled]="selectedProduct == undefined"
               (click)="editProduct(selectedProduct!)"
-              nbButton fullWidth status="primary">Aanpassen</button>
+              nbButton fullWidth status="primary">Edit product</button>
       <button [style]="editingProduct ? {'display': 'none'} : {}"
               [disabled]="selectedProduct == undefined"
               (click)="deleteProduct()"
-              nbButton fullWidth status="danger">Verwijderen</button>
+              nbButton fullWidth status="danger">Delete product</button>
       <button [style]="!editingProduct ? {'display': 'none'} : {}"
               [disabled]="!editProductComponent?.allFieldsFilled()"
               (click)="saveEditedProduct()"
-              nbButton fullWidth status="primary">Opslaan</button>
+              nbButton fullWidth status="primary">Save</button>
       <button [style]="!editingProduct ? {'display': 'none'} : {}"
               (click)="editingProduct = false; editProductComponent.clear()"
-              nbButton fullWidth>Annuleren</button>
+              nbButton fullWidth>Cancel</button>
     </nb-card-footer>
   </nb-card>
 </body>

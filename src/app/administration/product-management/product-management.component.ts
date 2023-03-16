@@ -53,7 +53,7 @@ export class ProductManagementComponent implements AfterViewChecked, OnInit {
   setProducts() {
     this.httpService.get('product').subscribe({
       next: (response) => { this.products = response.body },
-      error: () => { this.toastrService.danger('Producten konden niet opgehaald worden.', 'Error'); }
+      error: () => { this.toastrService.danger('Items could not be fetched.', 'Error'); }
     })
   }
 
@@ -61,10 +61,10 @@ export class ProductManagementComponent implements AfterViewChecked, OnInit {
     this.selectedProduct!.archived = true;
     this.httpService.post('product', this.selectedProduct).subscribe({
       next: () => {
-        this.toastrService.success('Product succesvol verwijderd.', 'Succes');
+        this.toastrService.success('Product has been deleted.', 'Success');
         this.setProducts();
       },
-      error: () => { this.toastrService.danger('Product kon niet verwijderd worden.', 'Succes'); }
+      error: () => { this.toastrService.danger('Product could not be deleted.', 'Error'); }
     })
   }
 

@@ -23,9 +23,9 @@
         </div>
       </div>
       <div class="sub-section vertical">
-        <button nbButton fullWidth><mat-icon>search</mat-icon>Naar product</button>
+        <button nbButton fullWidth><mat-icon>search</mat-icon>To product</button>
         <div [hidden]="type != 'CART'" class="vertical cart-options">
-          <button status="danger" nbButton fullWidth (click)="removeFromCart(product)"><mat-icon>delete</mat-icon>Uit winkelwagen</button>
+          <button status="danger" nbButton fullWidth (click)="removeFromCart(product)"><mat-icon>delete</mat-icon>Remove</button>
           <nb-form-field>
             <p nbPrefix>x</p>
             <nb-select fullWidth [(ngModel)]="cartProductsCountArray![products?.indexOf(product)!]" (ngModelChange)="updateCount(product)">
@@ -33,20 +33,20 @@
             </nb-select>
           </nb-form-field>
           <div class="fullPrice horizontal">
-            <label class="width-50">Totaalprijs</label>
+            <label class="width-50">Subtotal</label>
             <label class="width-50 align-end">€{{((product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)) * cartProductsCountArray![products?.indexOf(product)!]).toFixed(2)}}</label>
           </div>
         </div>
         <div [hidden]="type != 'SHOP'" class="vertical">
-          <button status="success" nbButton fullWidth (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon>In winkelwagen</button>
+          <button status="success" nbButton fullWidth (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon>Add to cart</button>
         </div>
         <div class="vertical" [hidden]="type != 'MANAGEMENT'">
           <div class="horizontal">
-            <label class="width-50">Voorraad</label>
+            <label class="width-50">Stock</label>
             <label class="width-50 align-end">{{product.stock}}</label>
           </div>
           <div class="horizontal">
-            <label class="width-50">Korting</label>
+            <label class="width-50">Discount</label>
             <label class="width-50 align-end">{{product.discountPercentage}}%</label>
           </div>
         </div>

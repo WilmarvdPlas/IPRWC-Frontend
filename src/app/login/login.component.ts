@@ -32,8 +32,8 @@ export class LoginComponent {
       },
       error: (error) => {
         error.status == 401
-          ? this.toastrService.danger('Deze combinatie van e-mailadres en wachtwoord bestaat niet.', 'Error')
-          : this.toastrService.danger('Er is iets misgegaan.', 'Error');
+          ? this.toastrService.danger('This combination of e-mail address and password does not exist.', 'Error')
+          : this.toastrService.danger('Something went wrong.', 'Error');
       }
     });
   }

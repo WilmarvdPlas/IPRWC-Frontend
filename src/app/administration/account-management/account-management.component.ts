@@ -23,7 +23,7 @@ export class AccountManagementComponent implements OnInit {
   setAccounts() {
     this.httpService.get('account').subscribe({
       next: (response) => { this.accounts = response.body; },
-      error: () => { this.toastrService.danger('Accounts konden niet opgehaald worden.', 'Error');}
+      error: () => { this.toastrService.danger('Accounts could not be fetched.', 'Error');}
     })
   }
 
@@ -31,9 +31,9 @@ export class AccountManagementComponent implements OnInit {
     this.dialogService.open(AccountManagementDialogComponent,
       {context: {
           account: this.selectedAccount,
-          actionText: 'U staat op het punt om aan het volgende account beheerder rechten te verlenen:',
-          consequenceText: 'Als u aan dit account beheeder rechten verleent krijgt dit account toegang tot het beheren van producten, accounts en bestellingen. ' +
-            'Deze rechten kunnen via de in-app interface niet ontnomen worden.',
+          actionText: 'You are about to grant administrative rights to the following account:',
+          consequenceText: 'If you grant administrative rights to this account, it will gain access to product-, account- and order management. ' +
+            'These rights can not be retracted using the in-app interface.',
           type: 'ADMINISTRATOR'
       }})
       .onClose.subscribe(() => {
@@ -45,8 +45,8 @@ export class AccountManagementComponent implements OnInit {
     this.dialogService.open(AccountManagementDialogComponent,
       {context: {
           account: this.selectedAccount,
-          actionText: 'U staat op het punt om het volgende account te verwijderen:',
-          consequenceText: 'Als u dit account verwijderd, zal dit account permanent uit het systeem verdwijnen. Er zal geen mogelijkheid bestaan om dit account terug te halen.',
+          actionText: 'You are about to delete the following account:',
+          consequenceText: 'If you delete this account, it will permanently disappear from the system. There will be no possibility of recovering this account.',
           type: 'DELETE'
         }})
       .onClose.subscribe(() => {

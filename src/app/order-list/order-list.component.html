@@ -4,7 +4,7 @@
       <nb-accordion-item-header class="horizontal">
         <div>
           <h6>{{transaction.dateCreated}}</h6>
-          <p>{{getProductCount(transaction) + (getProductCount(transaction) > 1 ? ' Producten' : ' Product')}}</p>
+          <p>{{getProductCount(transaction) + (getProductCount(transaction) > 1 ? ' Items' : ' Item')}}</p>
           <p>€{{(getTotalPayment(transaction)).toFixed(2)}}</p>
         </div>
         <div class="divider"></div>

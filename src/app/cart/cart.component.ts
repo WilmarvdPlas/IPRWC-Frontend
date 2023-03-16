@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
         this.setFullPriceProducts(response.body);
         this.setProductCount(response.body);
       },
-      error: () => { this.toastrService.danger('Producten in winkelwagen konden niet opgehaald worden.', 'Error'); }
+      error: () => { this.toastrService.danger('Items in cart could not be fetched.', 'Error'); }
     })
   }
 
@@ -81,7 +81,7 @@ export class CartComponent implements OnInit {
       let response = await lastValueFrom(this.httpService.get('product/' + cartProduct.product?.id))
       let product: Product = response.body;
       if (product.stock! < cartProduct.count!) {
-        this.toastrService.danger('Helaas, wij hebben niet genoeg exemplaren van "' + product.name + '" op voorraad.', 'Niet genoeg voorraad')
+        this.toastrService.danger('Unfortunately, we do not have enough copies of "' + product.name + '" in stock.', 'Insufficient stock')
         return false;
       }
     }
@@ -93,7 +93,7 @@ export class CartComponent implements OnInit {
     this.httpService.post('transaction', transaction).subscribe({
       next: (response) => {
         this.postTransactionProducts(response.body)
-        this.toastrService.success('Bestelling is succesvol geplaatst.', 'Succes');
+        this.toastrService.success('Order has been placed.', 'Success');
       }
     })
   }

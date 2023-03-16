@@ -42,29 +42,27 @@ export class ProductEditComponent {
   postProduct() {
     this.httpService.post('product', this.product).subscribe({
       next: (response) => {
-        this.toastrService.success('Product is succesvol opgeslagen.', 'Succes');
+        this.toastrService.success('Product has been saved.', 'Success');
         this.postStock(response.body, this.addedStock)
         this.setProducts.emit();
         this.clear();
       },
       error: () => {
-        this.toastrService.danger('Product kon niet aangemaakt worden.', 'Error');
+        this.toastrService.danger('Product could not be saved.', 'Error');
         this.setProducts.emit();
       }
     })
   }
 
   postStock(id: string, addedStock: number) {
-    console.log('post stock')
     if (addedStock > 0) {
-      console.log('stock > 0')
       this.httpService.put('product/' + id + "/edit_stock", addedStock).subscribe({
         next: () => {
-          this.toastrService.success('Voorraad is succesvol aangepast.', 'Succes');
+          this.toastrService.success('Stock has been changed.', 'Success');
           this.setProducts.emit();
         },
         error: () => {
-          this.toastrService.danger('Voorraad kon niet aangepast worden.', 'Error');
+          this.toastrService.danger('Stock could not be changed.', 'Error');
           this.setProducts.emit();
         }
       })

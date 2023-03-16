@@ -43,7 +43,7 @@ export class AccountCreateComponent {
   postAccountAdministrator() {
     this.httpService.post('account', this.account).subscribe({
       next: () => {
-        this.toastrService.show('Account succesvol is aangemaakt.', 'Succes', {status: 'success'});
+        this.toastrService.success('Account has been created.', 'Success');
         this.registerCalled = false;
         this.account = new Account(undefined, '', '', '', false);
         this.passwordRepeat = '';
@@ -55,13 +55,13 @@ export class AccountCreateComponent {
 
   onHttpError(status: number) {
     status == 409
-      ? this.toastrService.show('Dit e-mailadres is al in gebruik.', 'Error', {status: 'danger'})
-      : this.toastrService.show('Er is iets mis gegaan.', 'Error', {status: 'danger'});
+      ? this.toastrService.danger('This e-mail address is already in use.', 'Error')
+      : this.toastrService.danger('Something went wrong.', 'Error');
   }
 
   onHttpSuccess() {
     this.router.navigate(['/login']).then(() => {
-      this.toastrService.show('Account succesvol is aangemaakt.', 'Succes', {status: 'success'})
+      this.toastrService.success('Account has been created.', 'Success')
     });
   }
 

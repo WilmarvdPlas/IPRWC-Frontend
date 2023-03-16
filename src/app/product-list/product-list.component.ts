@@ -34,11 +34,11 @@ export class ProductListComponent {
   addToCart(product: Product) {
     let cartProduct = new CartProduct(undefined, 1, product, this.userService.getActiveAccount());
     this.httpService.post('cart_product', cartProduct).subscribe({
-      next: () => { this.toastrService.success('"' + product.name + '" toegevoegd aan winkelwagen.', 'Succes'); },
+      next: () => { this.toastrService.success('"' + product.name + '" added to cart.', 'Success'); },
       error: (error) => {
         error.status == 405
-          ? this.toastrService.danger('Er kunnen niet meer dan 100 exemplaren van dit product in uw winkelwagen.', 'Error')
-          : this.toastrService.danger('Product kon niet toegevoegd worden aan winkelwagen.', 'Error');
+          ? this.toastrService.danger("You can't add more than 100 copies of this item to your cart." , 'Error')
+          : this.toastrService.danger('Item could not be added to cart.', 'Error');
       }
     })
   }
@@ -46,10 +46,10 @@ export class ProductListComponent {
   removeFromCart(product: Product) {
     this.httpService.delete('cart_product/product=' + product.id).subscribe({
       next: () => {
-        this.toastrService.success('Product uit winkelwagen verwijderd.', 'Success');
+        this.toastrService.success( '"' + product.name + '" removed from cart.', 'Success');
         this.setProducts.emit();
       },
-      error: () => { this.toastrService.danger('Product kon niet uit winkelwagen gehaald worden', 'Error'); }
+      error: () => { this.toastrService.danger('"' + product.name + '" could not be removed to cart.', 'Error'); }
     })
   }
 
