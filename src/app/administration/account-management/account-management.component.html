@@ -19,8 +19,8 @@
       </nb-card-body>
     </div>
     <nb-card-footer class="horizontal gap">
-      <button [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="primary">Beheerder toewijzen</button>
-      <button [disabled]="selectedAccount == undefined" nbButton fullWidth status="danger">Verwijderen</button>
+      <button (click)="openAdministratorDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="primary">Beheerder toewijzen</button>
+      <button (click)="openDeleteDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="danger">Verwijderen</button>
     </nb-card-footer>
   </nb-card>
 </body>
