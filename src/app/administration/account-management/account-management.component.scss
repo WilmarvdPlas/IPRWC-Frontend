@@ -1,0 +1,8 @@
+body {
+  display: flex;
+  gap: 2.25rem;
+}
+
+nb-card {
+  width: calc(50% - 1.125rem);
+}
