@@ -35,6 +35,9 @@
         De wachtwoorden moeten overeen komen.
       </small>
     </div>
+    <div [hidden]="type != 'ADMINISTRATION'" class="horizontal">
+      <nb-toggle [(ngModel)]="account.administrator" labelPosition="start" class="horizontal">Administrator</nb-toggle>
+    </div>
   </nb-card-body>
   <nb-card-footer>
     <button nbButton fullWidth status=primary (click)="register()">Account aanmaken</button>
