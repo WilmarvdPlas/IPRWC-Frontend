@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 !important;
 }
 
-input, textarea, nb-select .select-button, nb-option {
+input, textarea, nb-select .select-button, nb-option, nb-toggle .text {
   font-weight: normal !important;
 }
 
@@ -49,6 +49,11 @@ nb-select{
 nb-accordion-item-body .item-body {
   padding: 0 !important;
 }
+
+nb-toggle .text {
+  font-size: 16px !important;
+}
+
 
 .ellipsis {
   overflow: hidden;
