@@ -39,7 +39,15 @@ export class AccountCreateComponent {
   }
 
   postAccountAdministrator() {
-
+    this.httpService.post('account', this.account).subscribe({
+      next: () => {
+        this.toastrService.show('Account succesvol is aangemaakt.', 'Succes', {status: 'success'});
+        this.registerCalled = false;
+        this.account = new Account(undefined, '', '', '', false);
+        this.passwordRepeat = '';
+      },
+      error: (error) => { this.onHttpError(error.status); }
+    })
   }
 
   onHttpError(status: number) {
