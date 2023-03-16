@@ -4,7 +4,7 @@
              class="product-card horizontal"
              (click)="setSelectedProduct(product)"
              (dblclick)="editProduct.emit(product)"
-             [style]="product == selectedProduct ? {'background-color': 'rgba(0, 0, 0, 0.4)'} : {}"
+             [style]="product == selectedProduct ? {'background-color': 'rgba(0, 0, 0, 0.4)', 'border-color': 'white'} : {}"
              [class]=" (type == 'MANAGEMENT') ? 'selectable-product' : ''">
       <div class="main-section horizontal gap">
         <img [src]="product.imageLink">

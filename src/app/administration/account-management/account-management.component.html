@@ -7,9 +7,12 @@
         <nb-card class="account-card"
                  *ngFor="let account of accounts"
                  (click)="account == selectedAccount ? selectedAccount = undefined : selectedAccount = account"
-                 [style]="account == selectedAccount ? {'background-color': 'rgba(0, 0, 0, 0.4)'} : {}">
+                 [style]="account == selectedAccount ? {'background-color': 'rgba(0, 0, 0, 0.4)', 'border-color': 'white'} : {}">
           <nb-card-body class="account-card-body horizontal">
-            <div class="account-card-icon-container"><mat-icon class="account-card-icon">{{account.administrator ? 'admin_panel_settings' : 'person'}}</mat-icon></div>
+            <div class="account-card-icon-container vertical no-gap">
+              <mat-icon class="account-card-icon">{{account.administrator ? 'admin_panel_settings' : 'person'}}</mat-icon>
+              <small>{{account.administrator ? 'Admin' : 'User'}}</small>
+            </div>
             <div class="account-data-container vertical no-gap">
               <h6>{{account.email}}</h6>
               <p>{{account.name}}</p>
