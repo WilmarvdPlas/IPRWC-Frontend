@@ -48,7 +48,7 @@ export class AccountManagementDialogComponent {
         this.dialogRef.close();
         this.toastrService.success('Account is succesvol verwijderd.', 'Succes');
       },
-      error: (error) => {
+      error: () => {
         this.dialogRef.close();
         this.toastrService.danger('Account kon niet verwijderd worden.', 'Error');
       }
