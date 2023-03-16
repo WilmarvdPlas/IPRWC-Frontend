@@ -17,7 +17,7 @@ import {
   NbButtonGroupModule,
   NbButtonModule,
   NbCardModule,
-  NbContextMenuModule,
+  NbContextMenuModule, NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
@@ -43,6 +43,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { AccountManagementComponent } from './administration/account-management/account-management.component';
 import { AccountCreateComponent } from './account-create/account-create.component';
+import { AccountManagementDialogComponent } from './administration/account-management/account-management-dialog/account-management-dialog.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AccountCreateComponent } from './account-create/account-create.componen
     OrderListComponent,
     AccountManagementComponent,
     AccountCreateComponent,
+    AccountManagementDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ import { AccountCreateComponent } from './account-create/account-create.componen
     NbContextMenuModule,
     NbMenuModule.forRoot(),
     NbSelectModule,
-    NbToggleModule
+    NbToggleModule,
+    NbDialogModule.forRoot()
   ],
   providers: [UserService, HttpService],
   bootstrap: [AppComponent]
