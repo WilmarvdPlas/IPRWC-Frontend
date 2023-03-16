@@ -41,6 +41,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { AccountManagementComponent } from './administration/account-management/account-management.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { OrderListComponent } from './order-list/order-list.component';
     CartComponent,
     OrdersComponent,
     OrderListComponent,
+    AccountManagementComponent,
   ],
     imports: [
         BrowserModule,
