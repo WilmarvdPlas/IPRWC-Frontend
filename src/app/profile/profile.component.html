@@ -1,5 +1,46 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
-  <nb-layout-column></nb-layout-column>
+  <nb-layout-column>
+    <div class="horizontal large-gap full-height card-container width-75">
+      <nb-card class="full-height stretch">
+        <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>EDIT PROFILE</h4></nb-card-header>
+        <nb-card-body>
+          <div class="vertical gap">
+            <div class="vertical">
+              <label>First- and last name</label>
+              <input nbInput fullWidth placeholder="Your name" [(ngModel)]="account.name">
+              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.nameSufficient(account.name!)">
+                <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
+                Name can't be empty.
+              </small>
+            </div>
+            <div class="vertical">
+              <label>E-mail address</label>
+              <input nbInput fullWidth placeholder="Your e-mail address" [(ngModel)]="account.email">
+              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.emailSufficient(account.email!)">
+                <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
+                E-mail address must be valid.
+              </small>
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer class="horizontal gap">
+          <button nbButton fullWidth status="primary" (click)="saveAccount()">Save</button>
+          <button nbButton fullWidth (click)="setAccount()">Cancel</button>
+        </nb-card-footer>
+      </nb-card>
+      <div class="vertical full-height large-gap stretch">
+        <nb-card class="stretch">
+          <nb-card-header class="horizontal"><mat-icon>lock</mat-icon><h4>RESET PASSWORD</h4></nb-card-header>
+        </nb-card>
+        <nb-card>
+          <nb-card-header class="horizontal"><mat-icon>delete</mat-icon><h4>DELETE ACCOUNT</h4></nb-card-header>
+          <nb-card-body>
+            <button nbButton fullWidth status="danger">Delete account</button>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </nb-layout-column>
   <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
 </nb-layout>
