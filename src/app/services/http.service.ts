@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { jsonIgnoreReplacer } from "json-ignore";
 import { UserService } from "./user.service";
 import { environment } from "../../environments/environment";
 
@@ -18,7 +17,7 @@ export class HttpService {
   }
 
   post(destination: string, body: any) {
-    body = (JSON.stringify(body, jsonIgnoreReplacer));
+    body = JSON.stringify(body);
 
     return this.http.post<any>(this.apiPath + destination, body, this.getRequestOptions());
   }
@@ -28,7 +27,7 @@ export class HttpService {
   }
 
   put(destination: string, body: any) {
-    body = (JSON.stringify(body, jsonIgnoreReplacer));
+    body = JSON.stringify(body);
 
     return this.http.put(this.apiPath + destination, body, this.getRequestOptions())
   }
