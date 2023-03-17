@@ -42,12 +42,11 @@ export class AccountManagementComponent implements OnInit {
   }
 
   openDeleteDialog() {
-    this.dialogService.open(AccountManagementDialogComponent,
-      {context: {
+    this.dialogService.open(AccountManagementDialogComponent, {context: {
           account: this.selectedAccount,
           actionText: 'You are about to delete the following account:',
           consequenceText: 'If you delete this account, it will permanently disappear from the system. There will be no possibility of recovering this account.',
-          type: 'DELETE'
+          type: 'DELETE_ADMINISTRATION'
         }})
       .onClose.subscribe(() => {
       this.setAccounts();
