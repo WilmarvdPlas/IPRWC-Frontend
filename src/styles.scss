@@ -70,7 +70,11 @@ nb-toggle .text {
 }
 
 .width-50 {
-  width: 50%;
+  min-width: 50%;
+}
+
+.width-75 {
+  min-width: 75%;
 }
 
 .align-end {
@@ -99,7 +103,7 @@ button {
 }
 
 .width-100 {
-  width: 100%;
+  min-width: 100%;
 }
 
 @keyframes fallIn {
