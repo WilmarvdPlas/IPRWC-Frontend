@@ -13,6 +13,10 @@ nb-layout-column {
   min-width: 275px;
 }
 
+nb-button-group button {
+  border-radius: 0.25rem !important;
+}
+
 .right-section {
   flex-grow: 1;
 }
