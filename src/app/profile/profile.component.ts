@@ -3,7 +3,11 @@ import {Account} from "../models/account.model";
 import {UserService} from "../services/user.service";
 import {AccountRequirementsService} from "../services/account-requirements.service";
 import {HttpService} from "../services/http.service";
-import {NbToastrService} from "@nebular/theme";
+import {NbDialogService, NbToastrService} from "@nebular/theme";
+import {
+  AccountManagementDialogComponent
+} from "../administration/account-management/account-management-dialog/account-management-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +19,11 @@ export class ProfileComponent implements OnInit {
   account: Account = new Account();
   passwordRepeat = '';
 
-  constructor(private userService: UserService, public accountRequirementsService: AccountRequirementsService, private httpService: HttpService, private toastrService: NbToastrService) {
+  constructor(private userService: UserService,
+              public accountRequirementsService: AccountRequirementsService,
+              private httpService: HttpService,
+              private toastrService: NbToastrService,
+              private dialogService: NbDialogService) {
   }
 
   ngOnInit() {
@@ -41,6 +49,16 @@ export class ProfileComponent implements OnInit {
 
   passwordRepeatSufficient() {
     return this.account.password == this.passwordRepeat;
+  }
+
+  openDeleteDialog() {
+    this.dialogService.open(AccountManagementDialogComponent, {context: {
+        account: this.account,
+        actionText: 'You are about to delete the following account:',
+        consequenceText: 'If you delete this account, it will permanently disappear from the system. There will be no possibility of recovering this account.',
+        type: 'DELETE_PROFILE'
+      }
+    })
   }
 
 }
