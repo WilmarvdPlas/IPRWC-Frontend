@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NbDialogRef, NbToastrService} from "@nebular/theme";
 import {Account} from "../../../models/account.model";
 import {HttpService} from "../../../services/http.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-account-management-dialog',
@@ -15,7 +16,10 @@ export class AccountManagementDialogComponent {
   type?: string;
   account?: Account;
 
-  constructor(private dialogRef: NbDialogRef<AccountManagementDialogComponent>, private httpService: HttpService, private toastrService: NbToastrService) {}
+  constructor(private dialogRef: NbDialogRef<AccountManagementDialogComponent>,
+              private httpService: HttpService,
+              private toastrService: NbToastrService,
+              private userService: UserService) {}
 
   close() {
     this.dialogRef.close();
@@ -24,7 +28,7 @@ export class AccountManagementDialogComponent {
   confirm() {
     if (this.type == 'ADMINISTRATOR') {
       this.confirmAdministrator();
-    } else if (this.type == 'DELETE') {
+    } else if (this.type == 'DELETE_ADMINISTRATION' || this.type == 'DELETE_PROFILE') {
       this.confirmDelete();
     }
   }
@@ -46,14 +50,22 @@ export class AccountManagementDialogComponent {
     this.httpService.delete('account/' + this.account?.id).subscribe({
       next: () => {
         this.dialogRef.close();
-        this.toastrService.success('Account has been deleted.', 'Success');
+        if (this.type == 'DELETE_PROFILE') {
+          this.profileOnDelete()
+        }
+        setTimeout(() => {
+          this.toastrService.success('Account has been deleted.', 'Success');
+        }, 1);
+
       },
-      error: (error) => {
+      error: () => {
         this.dialogRef.close();
-        console.log(error)
         this.toastrService.danger('Account could not be deleted.', 'Error');
       }
     })
   }
 
+  profileOnDelete() {
+    this.userService.logOut();
+  }
 }
