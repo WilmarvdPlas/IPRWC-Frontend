@@ -16,6 +16,7 @@ export class ProductListComponent {
 
   @Input() products?: Product[];
   @Input() cartProductsCountArray?: number[] = [];
+  @Input() cartProducts?: CartProduct[] = [];
   @Input() type?: string;
 
   @Output() setProducts = new EventEmitter();
@@ -36,20 +37,20 @@ export class ProductListComponent {
     this.httpService.post('cart_product', cartProduct).subscribe({
       next: () => { this.toastrService.success('"' + product.name + '" added to cart.', 'Success'); },
       error: (error) => {
-        error.status == 405
+        error.status == 406
           ? this.toastrService.danger("You can't add more than 100 copies of this item to your cart." , 'Error')
           : this.toastrService.danger('Item could not be added to cart.', 'Error');
       }
     })
   }
 
-  removeFromCart(product: Product) {
-    this.httpService.delete('cart_product/product=' + product.id).subscribe({
+  removeFromCart(cartProduct: CartProduct) {
+    this.httpService.delete('cart_product/' + cartProduct.id).subscribe({
       next: () => {
-        this.toastrService.success( '"' + product.name + '" removed from cart.', 'Success');
+        this.toastrService.success( '"' + cartProduct.product?.name + '" removed from cart.', 'Success');
         this.setProducts.emit();
       },
-      error: () => { this.toastrService.danger('"' + product.name + '" could not be removed to cart.', 'Error'); }
+      error: () => { this.toastrService.danger('"' + cartProduct.product?.name + '" could not be removed to cart.', 'Error'); }
     })
   }
 
@@ -57,8 +58,8 @@ export class ProductListComponent {
     return Array.from(Array(100).keys()).map(x => x + 1);
   }
 
-  updateCount(product: Product) {
-    this.httpService.put('cart_product/product=' + product.id + "/update_count", this.cartProductsCountArray![this.products?.indexOf(product)!]).subscribe({
+  updateCount(cartProduct: CartProduct) {
+    this.httpService.put('cart_product/' + cartProduct.id + "/update_count", this.cartProductsCountArray![this.products?.indexOf(cartProduct.product!)!]).subscribe({
       next: () => { this.setProducts.emit(); },
       error: (error) => { console.log(error); }
     })

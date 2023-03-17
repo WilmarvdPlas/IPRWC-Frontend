@@ -125,7 +125,7 @@ export class CartComponent implements OnInit {
   }
 
   async deleteCartProduct(cartProduct: CartProduct) {
-    await lastValueFrom(this.httpService.delete('cart_product/product=' + cartProduct.product?.id))
+    await lastValueFrom(this.httpService.delete('cart_product/' + cartProduct.id))
   }
 
   lowerStock(cartProduct: CartProduct) {

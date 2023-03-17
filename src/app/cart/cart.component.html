@@ -24,7 +24,7 @@
     </nb-card>
     <nb-card class="right-section full-height">
       <nb-card-header class="horizontal"><mat-icon>shopping_cart</mat-icon><h4>MY SHOPPING CART ({{cartProducts.length}})</h4></nb-card-header>
-      <nb-card-body><app-product-list [products]="products" [cartProductsCountArray]="cartProductsCountArray" [type]="'CART'" (setProducts)="setProducts()"></app-product-list></nb-card-body>
+      <nb-card-body><app-product-list [products]="products" [cartProducts]="cartProducts" [cartProductsCountArray]="cartProductsCountArray" [type]="'CART'" (setProducts)="setProducts()"></app-product-list></nb-card-body>
       <nb-card-footer></nb-card-footer>
     </nb-card>
   </nb-layout-column>
