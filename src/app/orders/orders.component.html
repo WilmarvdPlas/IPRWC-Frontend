@@ -1,7 +1,7 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
   <nb-layout-column>
-    <nb-card class="card-full-height">
+    <nb-card class="full-height">
       <nb-card-header class="horizontal"><mat-icon>receipt</mat-icon><h4>MY ORDERS ({{transactions?.length}})</h4></nb-card-header>
       <nb-card-body>
         <app-order-list [transactions]="transactions"></app-order-list>

@@ -1,7 +1,7 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
   <nb-layout-column class="horizontal">
-    <nb-card class="left-section order-card card-full-height">
+    <nb-card class="left-section order-card full-height">
       <nb-card-header class="horizontal"><mat-icon>payment</mat-icon><h4>CHECKOUT</h4></nb-card-header>
       <nb-card-body class="vertical">
         <div class="horizontal">
@@ -22,7 +22,7 @@
       </nb-card-body>
       <nb-card-footer><button status="success" nbButton fullWidth [disabled]="products.length == 0" (click)="toPayment()">Proceed to checkout</button></nb-card-footer>
     </nb-card>
-    <nb-card class="right-section card-full-height">
+    <nb-card class="right-section full-height">
       <nb-card-header class="horizontal"><mat-icon>shopping_cart</mat-icon><h4>MY SHOPPING CART ({{cartProducts.length}})</h4></nb-card-header>
       <nb-card-body><app-product-list [products]="products" [cartProductsCountArray]="cartProductsCountArray" [type]="'CART'" (setProducts)="setProducts()"></app-product-list></nb-card-body>
       <nb-card-footer></nb-card-footer>

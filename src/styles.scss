@@ -38,6 +38,7 @@ nb-card {
 
 nb-layout-column {
   padding: 2.25rem !important;
+  height: calc(100vh - 137px) !important;
 }
 
 nb-select{
@@ -89,8 +90,8 @@ button {
   margin-right: 10px;
 }
 
-.card-full-height {
-  height: 78.4vh;
+.full-height {
+  height: 100%;
 }
 
 @keyframes fallIn {
