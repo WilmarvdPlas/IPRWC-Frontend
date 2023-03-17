@@ -29,7 +29,7 @@ export class HttpService {
   put(destination: string, body: any) {
     body = JSON.stringify(body);
 
-    return this.http.put(this.apiPath + destination, body, this.getRequestOptions())
+    return this.http.put<any>(this.apiPath + destination, body, this.getRequestOptions())
   }
 
   private getRequestOptions() {
