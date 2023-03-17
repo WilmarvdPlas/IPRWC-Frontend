@@ -31,6 +31,10 @@ p {
   gap: 1vw;
 }
 
+.large-gap {
+  gap: 2.25rem;
+}
+
 nb-card {
   margin: 0 !important;
   overflow: hidden;
@@ -92,6 +96,10 @@ button {
 
 .full-height {
   height: 100%;
+}
+
+.width-100 {
+  width: 100%;
 }
 
 @keyframes fallIn {
