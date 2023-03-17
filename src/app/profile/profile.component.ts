@@ -4,7 +4,6 @@ import {UserService} from "../services/user.service";
 import {AccountRequirementsService} from "../services/account-requirements.service";
 import {HttpService} from "../services/http.service";
 import {NbToastrService} from "@nebular/theme";
-import {LoginCredentials} from "../models/login-credentials.model";
 
 @Component({
   selector: 'app-profile',
