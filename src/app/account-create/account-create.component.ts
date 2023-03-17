@@ -3,6 +3,7 @@ import {Account} from "../models/account.model";
 import {Router} from "@angular/router";
 import {HttpService} from "../services/http.service";
 import {NbToastrService} from "@nebular/theme";
+import {AccountRequirementsService} from "../services/account-requirements.service";
 
 @Component({
   selector: 'app-account-create',
@@ -20,11 +21,11 @@ export class AccountCreateComponent {
 
   registerCalled = false;
 
-  constructor(public router: Router, private httpService: HttpService, private toastrService: NbToastrService) {}
+  constructor(public router: Router, private httpService: HttpService, private toastrService: NbToastrService, public accountRequirementsService: AccountRequirementsService) {}
 
   register() {
     this.registerCalled = true;
-    if (this.passwordSufficient() && this.emailSufficient() && this.nameSufficient() && this.passwordRepeatSufficient()) {
+    if (this.accountRequirementsService.accountRequirementsMet(this.account) && this.passwordRepeatSufficient()) {
       if (this.type == "REGISTER") {
         this.postAccountUser()
       } else if (this.type == "ADMINISTRATION") {
@@ -63,20 +64,6 @@ export class AccountCreateComponent {
     this.router.navigate(['/login']).then(() => {
       this.toastrService.success('Account has been created.', 'Success')
     });
-  }
-
-  passwordSufficient() : boolean {
-    const passwordRegex = new RegExp("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$");
-    return passwordRegex.test(this.account.password!);
-  }
-
-  emailSufficient() : boolean {
-    const emailRegex = new RegExp(/^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/);
-    return emailRegex.test(this.account.email!)
-  }
-
-  nameSufficient() {
-    return this.account.name!.length > 0;
   }
 
   passwordRepeatSufficient() {

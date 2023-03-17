@@ -6,23 +6,23 @@
   <nb-card-body class="vertical gap">
     <div class="vertical">
       <label>First- and last name</label>
-      <input nbInput fullWidth [status]="(!registerCalled || nameSufficient()) ? 'basic' : 'danger'" [(ngModel)]="account.name" placeholder="Enter name">
-      <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || nameSufficient()">
+      <input nbInput fullWidth [status]="(!registerCalled || accountRequirementsService.nameSufficient(account?.name)) ? 'basic' : 'danger'" [(ngModel)]="account.name" placeholder="Enter name">
+      <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || accountRequirementsService.nameSufficient(account?.name)">
         <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
         A name must be entered.</small>
     </div>
     <div class="vertical">
       <label>E-mail address</label>
-      <input nbInput fullWidth [status]="(!registerCalled || emailSufficient()) ? 'basic' : 'danger'" [(ngModel)]="account.email" placeholder="Enter e-mail address">
-      <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || emailSufficient()">
+      <input nbInput fullWidth [status]="(!registerCalled || accountRequirementsService.emailSufficient(account?.email)) ? 'basic' : 'danger'" [(ngModel)]="account.email" placeholder="Enter e-mail address">
+      <small class="horizontal" style="color: #ff3d71" [hidden]="!registerCalled || accountRequirementsService.emailSufficient(account?.email)">
         <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
         A valid e-mail address must be entered.
       </small>
     </div>
     <div class="vertical">
       <label>Password</label>
-      <input nbInput fullWidth [status]="(!registerCalled || passwordSufficient()) ? 'basic' : 'danger'" type="password" [(ngModel)]="account.password" placeholder="Enter password">
-      <small class="horizontal" [style]="registerCalled ? {'color': '#ff3d71'} : {}" [hidden]="passwordSufficient()">
+      <input nbInput fullWidth [status]="(!registerCalled || accountRequirementsService.passwordSufficient(account?.password)) ? 'basic' : 'danger'" type="password" [(ngModel)]="account.password" placeholder="Enter password">
+      <small class="horizontal" [style]="registerCalled ? {'color': '#ff3d71'} : {}" [hidden]="accountRequirementsService.passwordSufficient(account?.password)">
         <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
         A password must be 8-32 characters long and must contain at least one lower-case letter, one upper-case letter, one special character and one number.
       </small>

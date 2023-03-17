@@ -45,6 +45,7 @@ import { AccountManagementComponent } from './administration/account-management/
 import { AccountCreateComponent } from './account-create/account-create.component';
 import { AccountManagementDialogComponent } from './administration/account-management/account-management-dialog/account-management-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
+import {AccountRequirementsService} from "./services/account-requirements.service";
 
 @NgModule({
   declarations: [
@@ -96,7 +97,7 @@ import { ProfileComponent } from './profile/profile.component';
     NbToggleModule,
     NbDialogModule.forRoot()
   ],
-  providers: [UserService, HttpService],
+  providers: [UserService, HttpService, AccountRequirementsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
