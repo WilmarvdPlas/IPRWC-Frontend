@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         if (value.item.data == "LOGOUT") {
           this.userService.logOut();
         } else if (value.item.data == "PROFILE") {
-
+          this.router.navigate(['/profile']);
         }
       }
     });
