@@ -1,18 +1,18 @@
-  <nb-card>
-    <nb-card-header><h4>Are you sure?</h4></nb-card-header>
-    <nb-card-body class="vertical gap">
-      <p>{{actionText}}</p>
-      <div class="account-info">
-        <p>{{account?.email}}</p>
-        <p>{{account?.name}}</p>
-      </div>
-      <p>{{consequenceText}}</p>
-    </nb-card-body>
-    <nb-card-footer class="horizontal gap">
-      <button nbButton fullWidth status="danger" (click)="confirm()">Yes, I am sure</button>
-      <button nbButton fullWidth (click)="close()">Cancel</button>
-    </nb-card-footer>
-  </nb-card>
+<nb-card>
+  <nb-card-header><h4>Are you sure?</h4></nb-card-header>
+  <nb-card-body class="vertical gap">
+    <p>{{actionText}}</p>
+    <div class="account-info">
+      <p>{{account?.email}}</p>
+      <p>{{account?.name}}</p>
+    </div>
+    <p>{{consequenceText}}</p>
+  </nb-card-body>
+  <nb-card-footer class="horizontal gap">
+    <button nbButton fullWidth status="danger" (click)="confirm()">Yes, I am sure</button>
+    <button nbButton fullWidth (click)="close()">Cancel</button>
+  </nb-card-footer>
+</nb-card>
 
 
 
