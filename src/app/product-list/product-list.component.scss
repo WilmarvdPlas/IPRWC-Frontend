@@ -7,7 +7,7 @@ img {
 .product-card {
   display: flex;
   flex-direction: row;
-  height: 25vh;
+  min-height: 25vh;
 }
 
 .main-section {
