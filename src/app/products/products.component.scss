@@ -4,7 +4,7 @@ nb-layout-column {
   gap: 2.25rem;
 }
 
-nb-card-body {
+.products-card nb-card-body {
   padding: 0;
 }
 
@@ -19,4 +19,9 @@ nb-card-body {
 .light-weight {
   font-family: revert !important;
   font-weight: lighter;
+}
+
+nb-form-field button {
+  padding: 0 !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
