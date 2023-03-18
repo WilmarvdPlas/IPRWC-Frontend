@@ -39,11 +39,11 @@ export class ProfileComponent implements OnInit {
     if (this.accountRequirementsService.nameSufficient(this.account.name!) && this.accountRequirementsService.emailSufficient(this.account.email!)) {
       this.httpService.put('account/' + this.account.id, this.account).subscribe({
         next: (response) => {
-          this.toastrService.success('Account has been edited.', 'Success');
+          this.toastrService.success('Changes to account have been saved.', 'Success');
           this.userService.setJwtToken(response.body.token)
           this.userService.setActiveAccount(this.account)
         },
-        error: (error) => { this.toastrService.danger('Account could not be edited.', 'Error'); console.log(error) }
+        error: () => { this.toastrService.danger('Changes to account could not be saved.', 'Error'); }
       })
     }
   }
