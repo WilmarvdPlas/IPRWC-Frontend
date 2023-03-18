@@ -32,6 +32,36 @@
       <div class="vertical full-height large-gap stretch">
         <nb-card class="stretch">
           <nb-card-header class="horizontal"><mat-icon>lock</mat-icon><h4>RESET PASSWORD</h4></nb-card-header>
+          <nb-card-body class="vertical gap">
+            <div class="vertical">
+              <label>Current password</label>
+              <input nbInput fullWidth [(ngModel)]="oldPassword" type="password">
+              <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" [hidden]="oldPasswordSufficient() || !changePasswordCalled">
+                <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
+                Password can't be empty.
+              </small>
+            </div>
+            <div class="vertical">
+              <label>New password</label>
+              <input nbInput fullWidth [(ngModel)]="newPassword" type="password">
+              <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" [hidden]="accountRequirementsService.passwordSufficient(newPassword)">
+                <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
+                A password must be 8-32 characters long and must contain at least one lower-case letter, one upper-case letter, one special character and one number.
+              </small>
+            </div>
+            <div class="vertical">
+              <label>Confirm new password</label>
+              <input nbInput fullWidth [(ngModel)]="newPasswordRepeat" type="password">
+              <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" [hidden]="!changePasswordCalled || passwordRepeatSufficient()">
+                <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
+                Both passwords must be identical.
+              </small>
+            </div>
+          </nb-card-body>
+          <nb-card-footer class="horizontal gap">
+            <button nbButton fullWidth (click)="changePassword()" status="primary">Change password</button>
+            <button nbButton fullWidth (click)="setPasswordFieldsEmpty()">Cancel</button>
+          </nb-card-footer>
         </nb-card>
         <nb-card>
           <nb-card-header class="horizontal"><mat-icon>delete</mat-icon><h4>DELETE ACCOUNT</h4></nb-card-header>

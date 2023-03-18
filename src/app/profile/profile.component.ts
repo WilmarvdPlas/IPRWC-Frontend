@@ -7,7 +7,6 @@ import {NbDialogService, NbToastrService} from "@nebular/theme";
 import {
   AccountManagementDialogComponent
 } from "../administration/account-management/account-management-dialog/account-management-dialog.component";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +16,13 @@ import {Router} from "@angular/router";
 export class ProfileComponent implements OnInit {
 
   account: Account = new Account();
-  passwordRepeat = '';
+
+  oldPassword = '';
+  newPassword = ''
+  newPasswordRepeat = '';
+
+  changePasswordCalled = false;
+
 
   constructor(private userService: UserService,
               public accountRequirementsService: AccountRequirementsService,
@@ -48,7 +53,11 @@ export class ProfileComponent implements OnInit {
   }
 
   passwordRepeatSufficient() {
-    return this.account.password == this.passwordRepeat;
+    return this.newPassword == this.newPasswordRepeat;
+  }
+
+  oldPasswordSufficient() {
+    return this.oldPassword != '';
   }
 
   openDeleteDialog() {
@@ -59,6 +68,33 @@ export class ProfileComponent implements OnInit {
         type: 'DELETE_PROFILE'
       }
     })
+  }
+
+  changePassword() {
+    this.changePasswordCalled = true;
+
+    if (this.passwordRepeatSufficient() && this.accountRequirementsService.passwordSufficient(this.newPassword) && this.oldPasswordSufficient()) {
+      this.httpService.put('account/' + this.account.id + '/change_password', {oldPassword: this.oldPassword, newPassword: this.newPassword}).subscribe({
+        next: () => {
+          this.toastrService.success('Password has been changed.', 'Success');
+          this.setPasswordFieldsEmpty();
+        },
+        error: (error) => {
+          console.log(error)
+          error.status == 401
+            ? this.toastrService.danger('Credentials are incorrect.','Error')
+            : this.toastrService.danger('Something went wrong.', 'Error')
+        }
+      })
+    }
+  }
+
+  setPasswordFieldsEmpty() {
+    this.changePasswordCalled = false;
+
+    this.oldPassword = '';
+    this.newPassword = '';
+    this.newPasswordRepeat = '';
   }
 
 }
