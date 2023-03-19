@@ -11,8 +11,8 @@
         </nb-button-group>
       </nb-card-body>
     </nb-card>
-    <app-product-management class="right-section" [style]="selectedMenu != 'productManagement' ? {'display': 'none'} : {}"></app-product-management>
-    <app-account-management class="right-section" [style]="selectedMenu != 'accountManagement' ? {'display': 'none'} : {}"></app-account-management>
+    <app-product-management class="right-section full-height" [style]="selectedMenu != 'productManagement' ? {'display': 'none'} : {}"></app-product-management>
+    <app-account-management class="right-section full-height" [style]="selectedMenu != 'accountManagement' ? {'display': 'none'} : {}"></app-account-management>
     <nb-card class="right-section orders-card full-height" [style]="selectedMenu != 'orders' ? {'display': 'none'} : {}">
       <nb-card-header class="horizontal"><mat-icon>receipt</mat-icon><h4>ORDERS</h4></nb-card-header>
       <nb-card-body><app-order-list [transactions]="transactions" type="administration"></app-order-list></nb-card-body>

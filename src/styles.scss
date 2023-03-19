@@ -43,6 +43,10 @@ nb-card {
 nb-layout-column {
   padding: 2.25rem !important;
   height: calc(100vh - 137px) !important;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 nb-select{
