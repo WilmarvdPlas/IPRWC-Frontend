@@ -14,7 +14,7 @@
             <h6 [style]="product.discountPercentage! > 0 && type != 'MANAGEMENT' ?
               {'text-decoration': 'line-through', 'text-decoration-thickness': '3px', 'text-decoration-color': '#ff4057'} : {}">
               €{{product.priceEuro?.toFixed(2)}}</h6>
-            <h5 class="discount" [hidden]="product.discountPercentage! == 0 || type == 'MANAGEMENT'">
+            <h5 class="discount-color" [hidden]="product.discountPercentage! == 0 || type == 'MANAGEMENT'">
               €{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h5>
             <h5 [hidden]="product.discountPercentage! == 0 || type == 'MANAGEMENT'">-{{product.discountPercentage}}%!</h5>
           </div>
