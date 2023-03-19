@@ -26,7 +26,7 @@ export class LoginComponent {
   }
 
   postCredentials() {
-    this.httpService.post("auth/login", this.loginCredentials).subscribe({
+    this.httpService.post("auth/authenticate", this.loginCredentials).subscribe({
       next: (response) => {
         this.userService.logIn(response.body.account, response.body.token);
       },
