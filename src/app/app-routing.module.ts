@@ -16,8 +16,6 @@ export function uuidMatcher(urlSegments: UrlSegment[]): UrlMatchResult | null {
 
   let regex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
-  console.log(regex.test(id))
-
   return regex.test(id) && path == 'product'  && urlSegments.length == 2 ? {
     consumed: urlSegments,
     posParams: { id: new UrlSegment(id, {})}
