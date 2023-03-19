@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="sub-section vertical">
-        <button nbButton fullWidth><mat-icon>search</mat-icon>To product</button>
+        <button nbButton fullWidth [routerLink]="'/product/' + product.id"><mat-icon>search</mat-icon>To product</button>
         <div [hidden]="type != 'CART'" class="vertical cart-options">
           <button status="danger" nbButton fullWidth (click)="removeFromCart(cartProducts![products?.indexOf(product)!])"><mat-icon>delete</mat-icon>Remove</button>
           <nb-form-field>
