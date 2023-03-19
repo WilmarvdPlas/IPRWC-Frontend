@@ -37,12 +37,12 @@ import { AdministrationComponent } from './administration/administration.compone
 import { ProductManagementComponent } from './administration/product-management/product-management.component';
 import { ProductEditComponent } from './administration/product-management/product-edit/product-edit.component';
 import { ProductsComponent } from './products/products.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
-import { OrderListComponent } from './order-list/order-list.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
 import { AccountManagementComponent } from './administration/account-management/account-management.component';
-import { AccountCreateComponent } from './account-create/account-create.component';
+import { AccountCreateComponent } from './administration/account-management/account-create/account-create.component';
 import { AccountManagementDialogComponent } from './administration/account-management/account-management-dialog/account-management-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AccountRequirementsService} from "./services/account-requirements.service";

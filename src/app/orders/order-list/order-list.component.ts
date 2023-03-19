@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {Transaction} from "../models/transaction.model";
-import {HttpService} from "../services/http.service";
-import {TransactionProduct} from "../models/transaction-product.model";
+import {Transaction} from "../../models/transaction.model";
+import {HttpService} from "../../services/http.service";
+import {TransactionProduct} from "../../models/transaction-product.model";
 import {NbToastrService} from "@nebular/theme";
 
 @Component({

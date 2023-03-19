@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Account} from "../models/account.model";
+import {Account} from "../../../models/account.model";
 import {Router} from "@angular/router";
-import {HttpService} from "../services/http.service";
+import {HttpService} from "../../../services/http.service";
 import {NbToastrService} from "@nebular/theme";
-import {AccountRequirementsService} from "../services/account-requirements.service";
+import {AccountRequirementsService} from "../../../services/account-requirements.service";
 
 @Component({
   selector: 'app-account-create',

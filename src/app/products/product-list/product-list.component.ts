@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Product} from "../models/product.model";
-import {HttpService} from "../services/http.service";
-import {CartProduct} from "../models/cart-product.model";
-import {UserService} from "../services/user.service";
+import {Product} from "../../models/product.model";
+import {HttpService} from "../../services/http.service";
+import {CartProduct} from "../../models/cart-product.model";
+import {UserService} from "../../services/user.service";
 import {NbToastrService} from "@nebular/theme";
 
 @Component({
