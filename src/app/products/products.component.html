@@ -15,7 +15,10 @@
       </nb-card-body>
     </nb-card>
     <nb-card class="products-card responsive-card full-height">
-      <nb-card-header class="horizontal"><mat-icon>gamepad</mat-icon><h4>ITEMS - {{filteredProducts?.length}} RESULTS</h4></nb-card-header>
+      <nb-card-header class="horizontal">
+        <mat-icon>gamepad</mat-icon>
+        <h4>ITEMS - {{filteredProducts?.length}} RESULTS {{resultsString != '' ? 'FOR "' + resultsString + '"' : ''}}</h4>
+      </nb-card-header>
       <nb-card-body>
         <app-product-list [products]="filteredProducts" [type]="'SHOP'"></app-product-list>
       </nb-card-body>

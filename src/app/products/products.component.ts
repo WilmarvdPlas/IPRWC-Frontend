@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
 
   maximumPrice = 100;
   searchString = '';
+  resultsString = this.searchString;
 
   constructor(private httpService: HttpService, private toastrService: NbToastrService) {}
 
@@ -49,6 +50,7 @@ export class ProductsComponent implements OnInit {
     {
       return product.name?.toLowerCase().includes(this.searchString.toLowerCase()) || product.description?.toLowerCase().includes(this.searchString.toLowerCase())
     })
+    this.resultsString = this.searchString
     this.setFilteredProducts();
   }
 
