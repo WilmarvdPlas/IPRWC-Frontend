@@ -1,5 +1,37 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
-  <nb-layout-column></nb-layout-column>
+  <nb-layout-column [hidden]="product == undefined">
+    <nb-card class="full-height">
+      <nb-card-header class="horizontal"><mat-icon>gamepad</mat-icon><h4>{{product?.name}}</h4></nb-card-header>
+      <nb-card-body class="horizontal gap">
+        <img [src]="product?.imageLink">
+        <div class="vertical flex-grow">
+          <div class="horizontal width-100">
+            <h4 [style]="product?.discountPercentage! > 0 ?
+              {'text-decoration': 'line-through', 'text-decoration-thickness': '6px', 'text-decoration-color': '#ff4057'} : {}">
+              €{{product?.priceEuro?.toFixed(2)}}</h4>
+            <h3 class="discount-color" [hidden]="product?.discountPercentage! == 0">
+              €{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h3>
+            <h3 [hidden]="product?.discountPercentage! == 0">-{{product?.discountPercentage}}%!</h3>
+          </div>
+          <hr class="width-100">
+          <p>{{product?.description}}</p>
+        </div>
+      </nb-card-body>
+      <nb-card-footer class="horizontal gap">
+        <button nbButton fullWidth status="success" (click)="addProductToCart()">Add to cart</button>
+        <button nbButton fullWidth routerLink="/products">Back to products</button>
+      </nb-card-footer>
+    </nb-card>
+  </nb-layout-column>
+  <nb-layout-column class="not-found-column" [hidden]="product != undefined">
+    <div class="vertical gap">
+      <div>
+        <h1>Product not found...</h1>
+        <p>It appears as though the item you are looking for does not exist.</p>
+      </div>
+      <button nbButton fullWidth [routerLink]="'/products'">Back to products</button>
+    </div>
+  </nb-layout-column>
   <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
 </nb-layout>

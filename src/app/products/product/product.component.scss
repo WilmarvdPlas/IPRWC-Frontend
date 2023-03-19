@@ -1,0 +1,25 @@
+.not-found-column {
+  align-items: start;
+}
+
+img {
+  object-fit: contain;
+  max-width: 50%;
+  max-height: 100%;
+}
+
+nb-card {
+  width: 900px;
+}
+
+nb-card-body {
+  align-items: start;
+  flex-grow: 1;
+  justify-items: stretch;
+  justify-content: stretch;
+  align-content: stretch;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
