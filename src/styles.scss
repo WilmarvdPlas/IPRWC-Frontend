@@ -41,8 +41,11 @@ nb-card {
 }
 
 nb-layout-column {
+  --footer-height: 61px;
+  --header-height: 76px;
+
   padding: 2.25rem !important;
-  height: calc(100vh - 137px) !important;
+  height: calc(100vh - (var(--footer-height) + var(--header-height))) !important;
   width: 100%;
   display: flex;
   align-items: center;
