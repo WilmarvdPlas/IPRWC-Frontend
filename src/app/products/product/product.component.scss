@@ -1,4 +1,5 @@
 .not-found-column {
+  flex-direction: row;
   align-items: start;
 }
 
@@ -9,17 +10,42 @@ img {
 }
 
 nb-card {
-  width: 900px;
+  max-width: 900px;
+  max-height: 100%;
+}
+
+.product-info-section {
+  flex-grow: 1;
 }
 
 nb-card-body {
   align-items: start;
   flex-grow: 1;
-  justify-items: stretch;
-  justify-content: stretch;
-  align-content: stretch;
 }
 
-.flex-grow {
-  flex-grow: 1;
+@media (max-width: 1400px) {
+  nb-card {
+    max-width: 900px !important;
+    height: 100%;
+  }
 }
+
+@media (max-width: 800px) {
+  nb-card-body {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  nb-card-body img {
+    max-width: 100%;
+  }
+
+  nb-card-body .vertical {
+    width: 100%;
+  }
+
+  img {
+    max-height: 70%;
+  }
+}
+

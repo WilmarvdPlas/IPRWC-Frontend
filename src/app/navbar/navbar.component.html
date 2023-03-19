@@ -1,21 +1,24 @@
-<div class="horizontal gap navbar">
+<body class="horizontal gap navbar">
   <img src="../../assets/images/Game%20Center%20Logo.png">
   <div class="tabs gap horizontal" [hidden]="this.hideHeaderContent()">
     <a [routerLink]="['/products']"
        [style]="router.url == '/products' ? {'border-color': '#ff4057'} : {}">
-      <h4><mat-icon>store</mat-icon>ITEMS</h4></a>
+      <h4><mat-icon>store</mat-icon><span class="link-text">ITEMS</span></h4></a>
     <a [routerLink]="['/cart']"
        [style]="router.url == '/cart' ? {'border-color': '#ff4057'} : {}">
-      <h4><mat-icon>shopping_cart</mat-icon>CART</h4></a>
+      <h4><mat-icon>shopping_cart</mat-icon><span class="link-text">CART</span></h4></a>
     <a [routerLink]="['/orders']"
        [style]="router.url == '/orders' ? {'border-color': '#ff4057'} : {}">
-      <h4><mat-icon>receipt</mat-icon>ORDERS</h4></a>
+      <h4><mat-icon>receipt</mat-icon><span class="link-text">ORDERS</span></h4></a>
     <a [routerLink]="['/administration']"
        [hidden]="!userService.getActiveAccount()?.administrator"
        [style]="router.url == '/administration' ? {'border-color': '#ff4057'} : {}">
-      <h4><mat-icon>security</mat-icon>MANAGEMENT</h4></a>
+      <h4><mat-icon>security</mat-icon><span class="link-text">MANAGEMENT</span></h4></a>
   </div>
   <div [hidden]="this.hideHeaderContent()" style="margin-left: auto">
-    <button nbButton [nbContextMenu]="profileItems" class="horizontal"><mat-icon>person</mat-icon>{{userService.getActiveAccount()?.name}}</button>
+    <button nbButton [nbContextMenu]="profileItems" class="horizontal">
+      <mat-icon class="account-icon">person</mat-icon>
+      <span class="account-name">{{userService.getActiveAccount()?.name}}</span>
+    </button>
   </div>
-</div>
+</body>

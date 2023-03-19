@@ -1,6 +1,6 @@
 body {
   display: flex;
-  gap: 2.25rem;
+  gap: var(--large-gap);
   height: 100%;
 }
 
@@ -61,5 +61,21 @@ body {
 
 .account-card-body {
   padding: 0;
+}
+
+@media (max-width: 1400px) {
+  .accounts-card, app-account-create {
+    height: 62vh;
+  }
+}
+
+@media (max-width: 1050px) {
+  body {
+    flex-direction: column !important;
+  }
+
+  app-account-create {
+    height: unset;
+  }
 }
 

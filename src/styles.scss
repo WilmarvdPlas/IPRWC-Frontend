@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 
+:root {
+  --large-gap: 2.25rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Oswald, sans-serif !important;
   margin: 0 !important;
@@ -32,7 +36,7 @@ p {
 }
 
 .large-gap {
-  gap: 2.25rem;
+  gap: var(--large-gap);
 }
 
 nb-card {
@@ -44,7 +48,7 @@ nb-layout-column {
   --footer-height: 61px;
   --header-height: 76px;
 
-  padding: 2.25rem !important;
+  padding: var(--large-gap) !important;
   height: calc(100vh - (var(--footer-height) + var(--header-height))) !important;
   width: 100%;
   display: flex;
@@ -105,8 +109,13 @@ button {
   margin-right: 10px;
 }
 
-.full-height {
+.card {
   height: 100%;
+}
+
+.full-height {
+  height: 100% !important;
+  max-height: 100%;
 }
 
 .width-100 {
@@ -130,4 +139,53 @@ button {
   position: relative;
   width: 100%;
   animation: 1s fallIn ease-out;
+}
+
+@media (max-width: 1400px) {
+  .responsive-height-column {
+    height: unset !important;
+    flex-direction: column;
+    justify-content: start;
+  }
+
+  .card {
+    height: unset;
+    width: 100% !important;
+  }
+
+  .menu-card-header {
+    display: none;
+  }
+
+  nb-button-group {
+    flex-direction: row !important;
+    flex-grow: 1;
+    gap: 1rem !important;
+  }
+
+  nb-button-group button {
+    flex-grow: 1;
+  }
+
+  .products-scroll-card {
+    max-height: 80vh !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo-column {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  nb-button-group {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  :root {
+    --large-gap: 1rem;
+  }
+
 }

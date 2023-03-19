@@ -1,1 +1,10 @@
+@media (max-width: 800px) {
+  body {
+    flex-direction: column;
+    gap: 0;
+  }
 
+  .separator {
+    display: none;
+  }
+}

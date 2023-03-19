@@ -1,7 +1,7 @@
 body {
   height: 100%;
   display: flex;
-  gap: 2.25rem;
+  gap: var(--large-gap);
 }
 
 .product-list-container {
@@ -11,3 +11,26 @@ body {
 nb-card {
   width: calc(50% - 1.125rem);
 }
+
+@media (max-width: 1400px) {
+  nb-card {
+    height: 62vh;
+  }
+}
+
+@media (max-width: 1050px) {
+  body {
+    flex-direction: column !important;
+  }
+
+  .create-product-card {
+    height: unset;
+  }
+
+  .edit-product-card {
+    height: 80vh;
+  }
+}
+
+
+

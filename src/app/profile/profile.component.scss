@@ -3,3 +3,14 @@
   flex-grow: 1;
   align-items: stretch;
 }
+
+@media (max-width: 900px) {
+  .card-container {
+    flex-direction: column;
+  }
+
+  nb-card {
+    height: unset !important;
+  }
+
+}

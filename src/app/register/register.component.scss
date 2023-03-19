@@ -2,14 +2,8 @@ nb-layout-column {
   overflow-y: hidden;
   flex-direction: column;
   align-items: stretch;
-  gap: 2.25rem;
+  justify-content: center;
+  gap: var(--large-gap);
 }
-
-@media (max-width: 800px) {
-  .logo-column {
-    display: none;
-  }
-}
-
 
 

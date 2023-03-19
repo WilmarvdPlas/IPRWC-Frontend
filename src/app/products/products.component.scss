@@ -1,7 +1,7 @@
 nb-layout-column {
   display: flex;
   flex-wrap: wrap;
-  gap: 2.25rem;
+  gap: var(--large-gap);
 }
 
 .products-card nb-card-body {

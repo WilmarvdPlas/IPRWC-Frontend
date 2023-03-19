@@ -1,8 +1,8 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
-  <nb-layout-column>
-    <nb-card class="left-section full-height">
-      <nb-card-header class="horizontal"><mat-icon>dashboard</mat-icon><h4>MENU</h4></nb-card-header>
+  <nb-layout-column class="responsive-height-column">
+    <nb-card class="left-section card">
+      <nb-card-header class="horizontal menu-card-header"><mat-icon>dashboard</mat-icon><h4>MENU</h4></nb-card-header>
       <nb-card-body>
         <nb-button-group>
           <button class="horizontal" pressed nbButtonToggle (click)="selectedMenu = 'productManagement'"><mat-icon>store</mat-icon>Manage products</button>
@@ -11,9 +11,9 @@
         </nb-button-group>
       </nb-card-body>
     </nb-card>
-    <app-product-management class="right-section full-height" [style]="selectedMenu != 'productManagement' ? {'display': 'none'} : {}"></app-product-management>
-    <app-account-management class="right-section full-height" [style]="selectedMenu != 'accountManagement' ? {'display': 'none'} : {}"></app-account-management>
-    <nb-card class="right-section orders-card full-height" [style]="selectedMenu != 'orders' ? {'display': 'none'} : {}">
+    <app-product-management class="right-section card" [style]="selectedMenu != 'productManagement' ? {'display': 'none'} : {}"></app-product-management>
+    <app-account-management class="right-section card" [style]="selectedMenu != 'accountManagement' ? {'display': 'none'} : {}"></app-account-management>
+    <nb-card class="right-section orders-card card" [style]="selectedMenu != 'orders' ? {'display': 'none'} : {}">
       <nb-card-header class="horizontal"><mat-icon>receipt</mat-icon><h4>ORDERS</h4></nb-card-header>
       <nb-card-body><app-order-list [transactions]="transactions" type="administration"></app-order-list></nb-card-body>
       <nb-card-footer></nb-card-footer>

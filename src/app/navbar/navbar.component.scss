@@ -22,3 +22,20 @@ a:hover {
   cursor: pointer;
   border-bottom: #ff4057 8px solid;
 }
+
+@media (max-width: 1100px) {
+  .link-text {
+    display: none;
+  }
+
+  .account-name {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  img {
+    width: 40%;
+    height: unset;
+  }
+}

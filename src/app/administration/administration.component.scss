@@ -6,7 +6,7 @@ nb-button-group {
 
 nb-layout-column {
   display: flex;
-  gap: 2.25rem;
+  gap: var(--large-gap);
 }
 
 .left-section {
@@ -23,5 +23,11 @@ nb-button-group button {
 
 .orders-card nb-card-body {
   padding: 0;
+}
+
+@media (max-width: 1400px) {
+  .orders-card {
+    height: 62vh;
+  }
 }
 
