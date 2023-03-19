@@ -46,6 +46,7 @@ import { AccountCreateComponent } from './administration/account-management/acco
 import { AccountManagementDialogComponent } from './administration/account-management/account-management-dialog/account-management-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AccountRequirementsService} from "./services/account-requirements.service";
+import { ProductComponent } from './products/product/product.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import {AccountRequirementsService} from "./services/account-requirements.servic
     AccountCreateComponent,
     AccountManagementDialogComponent,
     ProfileComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

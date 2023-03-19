@@ -8,6 +8,7 @@ import {ProductsComponent} from "./products/products.component";
 import {CartComponent} from "./cart/cart.component";
 import {OrdersComponent} from "./orders/orders.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {ProductComponent} from "./products/product/product.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrdersComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'product/:id', component: ProductComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
