@@ -18,9 +18,17 @@ export class ProductEditComponent {
   constructor(private httpService: HttpService, private toastrService: NbToastrService) {}
 
   save() {
-    if (this.allFieldsFilled()) {
+    if (this.postAllowed()) {
       this.postProduct()
     }
+  }
+
+  postAllowed() {
+    return this.allFieldsFilled() && this.validDiscount();
+  }
+
+  validDiscount() {
+    return this.product.discountPercentage == undefined ? false : this.product.discountPercentage >= 0 && this.product.discountPercentage <= 100
   }
 
   clear() {

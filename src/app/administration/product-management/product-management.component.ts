@@ -31,6 +31,14 @@ export class ProductManagementComponent implements AfterViewChecked, OnInit {
     this.editProductComponent = this.productEditComponents?.toArray()[1];
   }
 
+  createPostAllowed() {
+    return this.createProductComponent == null ? false : this.createProductComponent.postAllowed();
+  }
+
+  editPostAllowed() {
+    return this.editProductComponent == null ? false : this.editProductComponent.postAllowed();
+  }
+
   createProduct() {
     this.createProductComponent.save();
   }

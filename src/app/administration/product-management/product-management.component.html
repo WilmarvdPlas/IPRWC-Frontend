@@ -5,7 +5,7 @@
       <app-product-edit (setProducts)="setProducts()"></app-product-edit>
     </nb-card-body>
     <nb-card-footer class="gap horizontal">
-      <button nbButton fullWidth status="primary" class="full-height" (click)="createProduct()" [disabled]="!createProductComponent?.allFieldsFilled()">Create product</button>
+      <button nbButton fullWidth status="primary" class="full-height" (click)="createProduct()" [disabled]="!createPostAllowed()">Create product</button>
       <button nbButton fullWidth class="full-height" (click)="cancelProduct()">Cancel</button>
     </nb-card-footer>
   </nb-card>
@@ -28,7 +28,7 @@
               nbButton fullWidth status="danger">Delete product</button>
       <button [style]="!editingProduct ? {'display': 'none'} : {}"
               class="full-height"
-              [disabled]="!editProductComponent?.allFieldsFilled()"
+              [disabled]="!editPostAllowed()"
               (click)="saveEditedProduct()"
               nbButton fullWidth status="primary">Save</button>
       <button [style]="!editingProduct ? {'display': 'none'} : {}"
