@@ -7,6 +7,7 @@ import {NbDialogService, NbToastrService} from "@nebular/theme";
 import {
   AccountManagementDialogComponent
 } from "../administration/account-management/account-management-dialog/account-management-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +29,8 @@ export class ProfileComponent implements OnInit {
               public accountRequirementsService: AccountRequirementsService,
               private httpService: HttpService,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService) {
+              private dialogService: NbDialogService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -49,7 +51,7 @@ export class ProfileComponent implements OnInit {
   }
 
   setAccount() {
-    this.account = this.userService.getActiveAccount()!;
+    this.userService.accountIsActive() ? this.account = this.userService.getActiveAccount() : this.router.navigate(['login']);
   }
 
   passwordRepeatSufficient() {
