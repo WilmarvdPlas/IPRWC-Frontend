@@ -33,6 +33,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   hideHeaderContent() {
-    return this.userService.getActiveAccount() == undefined || ['/login', '/register'].includes(this.router.url);
+    return this.userService.accountIsActive() || ['/login', '/register'].includes(this.router.url);
   }
 }
