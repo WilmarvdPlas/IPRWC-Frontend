@@ -79,7 +79,7 @@ export class UserService {
       routes.push("/" + route.path)
     }
 
-    if (this.accountIsActive() && routes.includes(this.router.url) && !(['/login', '/register', '/**'].includes(this.router.url))) {
+    if (!this.accountIsActive() && routes.includes(this.router.url) && !(['/login', '/register', '/**'].includes(this.router.url))) {
       this.router.navigate(['login'])
     }
   }
