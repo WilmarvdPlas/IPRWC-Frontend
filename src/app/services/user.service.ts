@@ -24,8 +24,7 @@ export class UserService {
   }
 
   logOut() {
-    sessionStorage.removeItem('active-account');
-    sessionStorage.removeItem('jwt-token');
+    this.removeSessionStorage();
 
     this.router.navigate(['/login']).then(() => {
       setTimeout(() => {
@@ -42,6 +41,14 @@ export class UserService {
       setTimeout(() => {
         this.toastrService.success('You have been successfully logged in', 'Success');
       }, 1)
+    });
+  }
+
+  onUnauthorised() {
+    this.removeSessionStorage();
+
+    this.router.navigate(['/login']).then(() => {
+      this.toastrService.danger('Session is invalid and might have expired.', 'Error', {limit: 1, duration: 0});
     });
   }
 
@@ -73,5 +80,10 @@ export class UserService {
     this.jwtToken = jwtToken;
 
     return this.jwtToken;
+  }
+
+  private removeSessionStorage() {
+    sessionStorage.removeItem('active-account');
+    sessionStorage.removeItem('jwt-token');
   }
 }

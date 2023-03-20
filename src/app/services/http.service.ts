@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from "./user.service";
 import { environment } from "../../environments/environment";
+import {lastValueFrom, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,47 @@ export class HttpService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   get(destination: string) {
-    return this.http.get<any>(this.apiPath + destination, this.getRequestOptions())
+    const request = this.http.get<any>(this.apiPath + destination, this.getRequestOptions());
+
+    this.authorisedFilter(request);
+
+    return request;
   }
 
   post(destination: string, body: any) {
     body = JSON.stringify(body);
+    const request = this.http.post<any>(this.apiPath + destination, body, this.getRequestOptions())
 
-    return this.http.post<any>(this.apiPath + destination, body, this.getRequestOptions());
+    this.authorisedFilter(request);
+
+    return request;
   }
 
   delete(destination: string) {
-    return this.http.delete(this.apiPath + destination, this.getRequestOptions())
+    const request = this.http.delete(this.apiPath + destination, this.getRequestOptions())
+
+    this.authorisedFilter(request);
+
+    return request;
   }
 
   put(destination: string, body: any) {
     body = JSON.stringify(body);
+    const request = this.http.put<any>(this.apiPath + destination, body, this.getRequestOptions())
 
-    return this.http.put<any>(this.apiPath + destination, body, this.getRequestOptions())
+    this.authorisedFilter(request);
+
+    return request;
+  }
+
+  authorisedFilter(request: Observable<any>) {
+    request.subscribe({
+      error: (error) => {
+        if (error.status == 403) {
+          this.userService.onUnauthorised();
+        }
+      }
+    })
   }
 
   private getRequestOptions() {
