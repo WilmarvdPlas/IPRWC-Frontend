@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../models/transaction.model";
 import {HttpService} from "../services/http.service";
 import {NbToastrService} from "@nebular/theme";
-import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-administration',
@@ -31,7 +30,9 @@ export class AdministrationComponent implements OnInit {
         response.body.sort((a: { date: Date }, b: { date: Date; }) => (a.date! > b.date!) ? 1 : -1);
         this.transactions = response.body;
       },
-      error: () => { this.toastrService.danger('Orders could not be fetched.', 'Error'); }
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Orders could not be fetched.', 'Error'); }
     })
   }
 

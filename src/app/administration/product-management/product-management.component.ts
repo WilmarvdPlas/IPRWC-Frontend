@@ -61,7 +61,10 @@ export class ProductManagementComponent implements AfterViewChecked, OnInit {
   setProducts() {
     this.httpService.get('product').subscribe({
       next: (response) => { this.products = response.body },
-      error: () => { this.toastrService.danger('Items could not be fetched.', 'Error'); }
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Items could not be fetched.', 'Error');
+      }
     })
   }
 
@@ -72,7 +75,10 @@ export class ProductManagementComponent implements AfterViewChecked, OnInit {
         this.toastrService.success('Product has been deleted.', 'Success');
         this.setProducts();
       },
-      error: () => { this.toastrService.danger('Product could not be deleted.', 'Error'); }
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Product could not be deleted.', 'Error');
+      }
     })
   }
 

@@ -45,7 +45,9 @@ export class ProfileComponent implements OnInit {
           this.userService.setJwtToken(response.body.token)
           this.userService.setActiveAccount(this.account)
         },
-        error: () => { this.toastrService.danger('Changes to account could not be saved.', 'Error'); }
+        error: (error) => {
+          this.httpService.authorisedFilter(error.status)
+          this.toastrService.danger('Changes to account could not be saved.', 'Error'); }
       })
     }
   }

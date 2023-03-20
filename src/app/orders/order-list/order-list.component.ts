@@ -22,7 +22,10 @@ export class OrderListComponent implements OnChanges {
     for (let transaction of this.transactions!) {
       this.httpService.get('transaction_product/transaction=' + transaction.id).subscribe({
         next: (response) => { this.transactionProductsList.set(transaction, response.body); },
-        error: () => { this.toastrService.danger('Items of order ' + transaction.id + ' could not be fetched.', 'Error'); }
+        error: (error) => {
+          this.httpService.authorisedFilter(error.status);
+          this.toastrService.danger('Items of order ' + transaction.id + ' could not be fetched.', 'Error');
+        }
       })
     }
   }

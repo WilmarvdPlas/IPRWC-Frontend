@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserService } from "./user.service";
-import { environment } from "../../environments/environment";
-import {lastValueFrom, Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {UserService} from "./user.service";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,47 +13,29 @@ export class HttpService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   get(destination: string) {
-    const request = this.http.get<any>(this.apiPath + destination, this.getRequestOptions());
-
-    this.authorisedFilter(request);
-
-    return request;
+    return this.http.get<any>(this.apiPath + destination, this.getRequestOptions());
   }
 
   post(destination: string, body: any) {
     body = JSON.stringify(body);
-    const request = this.http.post<any>(this.apiPath + destination, body, this.getRequestOptions())
 
-    this.authorisedFilter(request);
-
-    return request;
+    return this.http.post<any>(this.apiPath + destination, body, this.getRequestOptions());
   }
 
   delete(destination: string) {
-    const request = this.http.delete(this.apiPath + destination, this.getRequestOptions())
-
-    this.authorisedFilter(request);
-
-    return request;
+    return this.http.delete(this.apiPath + destination, this.getRequestOptions());
   }
 
   put(destination: string, body: any) {
     body = JSON.stringify(body);
-    const request = this.http.put<any>(this.apiPath + destination, body, this.getRequestOptions())
 
-    this.authorisedFilter(request);
-
-    return request;
+    return this.http.put<any>(this.apiPath + destination, body, this.getRequestOptions());
   }
 
-  authorisedFilter(request: Observable<any>) {
-    request.subscribe({
-      error: (error) => {
-        if (error.status == 403) {
-          this.userService.onUnauthorised();
-        }
-      }
-    })
+  authorisedFilter(status: number) {
+    if (status) {
+      this.userService.onUnauthorised();
+    }
   }
 
   private getRequestOptions() {

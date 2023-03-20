@@ -23,7 +23,10 @@ export class AccountManagementComponent implements OnInit {
   setAccounts() {
     this.httpService.get('account').subscribe({
       next: (response) => { this.accounts = response.body; },
-      error: () => { this.toastrService.danger('Accounts could not be fetched.', 'Error');}
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Accounts could not be fetched.', 'Error');
+      }
     })
   }
 

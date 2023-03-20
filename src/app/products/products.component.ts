@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../services/http.service";
 import {Product} from "../models/product.model";
 import {NbToastrService} from "@nebular/theme";
-import {Action} from "rxjs/internal/scheduler/Action";
-import {KeyValue} from "@angular/common";
 
 @Component({
   selector: 'app-products',
@@ -37,7 +35,10 @@ export class ProductsComponent implements OnInit {
         this.searchFilterProducts = this.products;
         this.priceFilterProducts = this.products;
       },
-      error: () => { this.toastrService.danger('Items could not be fetched.', 'Error'); }
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Items could not be fetched.', 'Error');
+      }
     })
   }
 

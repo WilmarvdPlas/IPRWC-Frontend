@@ -39,7 +39,8 @@ export class AccountManagementDialogComponent {
         this.dialogRef.close();
         this.toastrService.success('Account has been granted administrative rights.', 'Success');
       },
-      error: () => {
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
         this.dialogRef.close();
         this.toastrService.danger('Account could not be granted administrative rights.', 'Error');
       }
@@ -58,7 +59,8 @@ export class AccountManagementDialogComponent {
         }, 1);
 
       },
-      error: () => {
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
         this.dialogRef.close();
         this.toastrService.danger('Account could not be deleted.', 'Error');
       }

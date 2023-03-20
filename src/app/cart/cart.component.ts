@@ -44,7 +44,10 @@ export class CartComponent implements OnInit {
         this.setFullPriceProducts(response.body);
         this.setProductCount(response.body);
       },
-      error: () => { this.toastrService.danger('Items in cart could not be fetched.', 'Error'); }
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Items in cart could not be fetched.', 'Error');
+      }
     })
   }
 
@@ -118,7 +121,7 @@ export class CartComponent implements OnInit {
           });
         },
         error: (error) => {
-          console.log(error)
+          this.httpService.authorisedFilter(error.status);
         }
       })
     }
@@ -131,7 +134,7 @@ export class CartComponent implements OnInit {
   lowerStock(cartProduct: CartProduct) {
     this.httpService.put('product/' + cartProduct.product?.id + "/edit_stock", -cartProduct.count!).subscribe({
       next: (response) => { console.log(response); },
-      error: (error) => { console.log(error); }
+      error: (error) => { this.httpService.authorisedFilter(error.status); }
     })
   }
 

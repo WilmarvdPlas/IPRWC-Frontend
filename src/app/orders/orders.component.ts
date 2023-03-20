@@ -26,7 +26,10 @@ export class OrdersComponent implements OnInit {
         response.body.sort((a: { date: Date }, b: { date: Date; }) => (a.date! > b.date!) ? 1 : -1);
         this.transactions = response.body;
       },
-      error: () => { this.toastrService.danger('Orders could not be fetched', 'Error'); }
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Orders could not be fetched', 'Error');
+      }
     })
   }
 

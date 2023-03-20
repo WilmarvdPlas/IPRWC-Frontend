@@ -37,6 +37,7 @@ export class ProductListComponent {
     this.httpService.post('cart_product', cartProduct).subscribe({
       next: () => { this.toastrService.success('"' + product.name + '" added to cart.', 'Success'); },
       error: (error) => {
+        this.httpService.authorisedFilter(error.status);
         error.status == 406
           ? this.toastrService.danger("You can't add more than 100 copies of this item to your cart." , 'Error')
           : this.toastrService.danger('Item could not be added to cart.', 'Error');
@@ -50,7 +51,10 @@ export class ProductListComponent {
         this.toastrService.success( '"' + cartProduct.product?.name + '" removed from cart.', 'Success');
         this.setProducts.emit();
       },
-      error: () => { this.toastrService.danger('"' + cartProduct.product?.name + '" could not be removed to cart.', 'Error'); }
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('"' + cartProduct.product?.name + '" could not be removed to cart.', 'Error');
+      }
     })
   }
 
@@ -61,7 +65,7 @@ export class ProductListComponent {
   updateCount(cartProduct: CartProduct) {
     this.httpService.put('cart_product/' + cartProduct.id + "/update_count", this.cartProductsCountArray![this.products?.indexOf(cartProduct.product!)!]).subscribe({
       next: () => { this.setProducts.emit(); },
-      error: (error) => { console.log(error); }
+      error: (error) => { this.httpService.authorisedFilter(error.status); }
     })
   }
 

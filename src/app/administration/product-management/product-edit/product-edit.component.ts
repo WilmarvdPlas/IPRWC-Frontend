@@ -55,7 +55,8 @@ export class ProductEditComponent {
         this.setProducts.emit();
         this.clear();
       },
-      error: () => {
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
         this.toastrService.danger('Product could not be saved.', 'Error');
         this.setProducts.emit();
       }
@@ -69,7 +70,8 @@ export class ProductEditComponent {
           this.toastrService.success('Stock has been changed.', 'Success');
           this.setProducts.emit();
         },
-        error: () => {
+        error: (error) => {
+          this.httpService.authorisedFilter(error.status);
           this.toastrService.danger('Stock could not be changed.', 'Error');
           this.setProducts.emit();
         }
