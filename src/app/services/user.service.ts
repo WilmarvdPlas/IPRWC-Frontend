@@ -54,7 +54,11 @@ export class UserService {
 
   getActiveAccount() {
     let activeAccount: any = sessionStorage.getItem('active-account');
-    activeAccount = JSON.parse(activeAccount);
+    try {
+      activeAccount = JSON.parse(activeAccount);
+    } catch (syntaxError) {
+      return undefined;
+    }
     this.activeAccount = activeAccount;
 
     this.checkIllegalRoute(activeAccount)
@@ -76,7 +80,12 @@ export class UserService {
 
   getJwtToken() {
     let jwtToken: any = sessionStorage.getItem('jwt-token');
-    jwtToken = JSON.parse(jwtToken);
+
+    try {
+      jwtToken = JSON.parse(jwtToken);
+    } catch (syntaxError) {
+      return undefined;
+    }
     this.jwtToken = jwtToken;
 
     return this.jwtToken;
