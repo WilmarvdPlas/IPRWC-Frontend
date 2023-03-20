@@ -9,7 +9,7 @@
             <div class="vertical">
               <label>First- and last name</label>
               <input nbInput fullWidth placeholder="Your name" [(ngModel)]="account.name">
-              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.nameSufficient(account.name!)">
+              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.nameSufficient(account.name)">
                 <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
                 Name can't be empty.
               </small>
@@ -17,7 +17,7 @@
             <div class="vertical">
               <label>E-mail address</label>
               <input nbInput fullWidth placeholder="Your e-mail address" [(ngModel)]="account.email">
-              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.emailSufficient(account.email!)">
+              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.emailSufficient(account.email)">
                 <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
                 E-mail address must be valid.
               </small>
