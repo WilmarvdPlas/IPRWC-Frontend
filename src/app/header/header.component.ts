@@ -6,11 +6,11 @@ import {Subscription} from "rxjs";
 import {Account} from "../models/account.model";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(public userService: UserService, public router: Router, private menuService: NbMenuService) {}
 

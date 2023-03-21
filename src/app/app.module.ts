@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -54,7 +54,7 @@ import {CartService} from "./services/cart.service";
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent,
+    HeaderComponent,
     PageNotFoundComponent,
     FooterComponent,
     AdministrationComponent,
