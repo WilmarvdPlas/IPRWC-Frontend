@@ -9,8 +9,8 @@
       <div class="product-card-main-section horizontal gap">
         <img [src]="product.imageLink" [alt]="'Image of ' + product?.name">
         <div class="vertical" style="width: 100%">
-          <h6>{{product.name}}</h6>
-          <div class="horizontal price-tag">
+          <h6 class="wrap">{{product.name}}</h6>
+          <div class="horizontal wrap">
             <h6 [style]="product.discountPercentage! > 0 && type != 'MANAGEMENT' ?
               {'text-decoration': 'line-through', 'text-decoration-thickness': '3px', 'text-decoration-color': '#ff4057'} : {}">
               €{{product.priceEuro?.toFixed(2)}}</h6>

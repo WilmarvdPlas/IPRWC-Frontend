@@ -4,9 +4,10 @@ img {
   max-width: 30%;
 }
 
-.price-tag {
+.wrap {
   display: flex;
   flex-wrap: wrap;
+  word-break: break-word;
 }
 
 .product-card {
@@ -19,7 +20,7 @@ img {
   display: flex;
   box-sizing: border-box;
   height: 100%;
-  width: calc(70% - 2.5px);
+  width: calc(65% - 2.5px);
   padding: 1rem;
   align-items: flex-start;
 }
