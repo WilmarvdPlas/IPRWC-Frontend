@@ -11,7 +11,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {ProductComponent} from "./products/product/product.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'administration', component: AdministrationComponent },

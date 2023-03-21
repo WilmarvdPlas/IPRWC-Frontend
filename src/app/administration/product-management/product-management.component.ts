@@ -3,6 +3,7 @@ import {Product} from "../../models/product.model";
 import {ProductEditComponent} from "./product-edit/product-edit.component";
 import {HttpService} from "../../services/http.service";
 import {NbToastrService} from "@nebular/theme";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-product-management',
@@ -20,10 +21,12 @@ export class ProductManagementComponent implements AfterViewChecked, OnInit {
   products?: Product[];
   selectedProduct?: Product;
 
-  constructor(private httpService: HttpService, private toastrService: NbToastrService) {}
+  constructor(private httpService: HttpService, private toastrService: NbToastrService, private userService: UserService) {}
 
   ngOnInit() {
-    this.setProducts()
+    if (this.userService.accountIsActive()) {
+      this.setProducts()
+    }
   }
 
   ngAfterViewChecked() {

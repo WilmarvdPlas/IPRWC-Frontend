@@ -7,6 +7,7 @@ import {CartProduct} from "../models/cart-product.model";
 import {lastValueFrom} from "rxjs";
 import {Transaction} from "../models/transaction.model";
 import {TransactionProduct} from "../models/transaction-product.model";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-cart',
@@ -23,32 +24,52 @@ export class CartComponent implements OnInit {
   fullPriceProducts: number = 0;
   productCount: number = 0;
 
-  constructor(private httpService: HttpService, private userService: UserService, private toastrService: NbToastrService) {}
+  constructor(private httpService: HttpService, private userService: UserService, private toastrService: NbToastrService, private cartService: CartService) {}
 
   ngOnInit() {
     this.setProducts();
   }
 
   setProducts() {
+    if (this.userService.accountIsActive()) {
+      this.httpSetProducts();
+    } else {
+      this.sessionStorageSetProducts();
+    }
+  }
+
+  httpSetProducts() {
     this.httpService.get('cart_product/account=' + this.userService.getActiveAccount()?.id).subscribe({
       next: (response) => {
         response.body.sort((a: { product: Product }, b: { product: Product; }) => (a.product.name! > b.product.name!) ? 1 : -1);
-        this.cartProducts = [];
-        this.products = [];
-        this.cartProductsCountArray = [];
-
+        this.emptyArrays();
         this.cartProducts = response.body;
-
-        this.postageCosts = this.cartProducts.length > 0 ? 3.99 : 0;
-        this.copyToProductsArray(response.body);
-        this.setFullPriceProducts(response.body);
-        this.setProductCount(response.body);
+        this.setDetails();
       },
       error: (error) => {
         this.httpService.authorisedFilter(error.status);
         this.toastrService.danger('Items in cart could not be fetched.', 'Error');
       }
     })
+  }
+
+  setDetails() {
+    this.postageCosts = this.cartProducts.length > 0 ? 3.99 : 0;
+    this.copyToProductsArray(this.cartProducts);
+    this.setFullPriceProducts(this.cartProducts);
+    this.setProductCount(this.cartProducts);
+  }
+
+  emptyArrays() {
+    this.cartProducts = [];
+    this.products = [];
+    this.cartProductsCountArray = [];
+  }
+
+  sessionStorageSetProducts() {
+    this.emptyArrays();
+    this.cartProducts = this.cartService.getSessionStoredCartProducts();
+    this.setDetails();
   }
 
   copyToProductsArray(cartProducts: CartProduct[]) {
@@ -73,6 +94,11 @@ export class CartComponent implements OnInit {
   }
 
   async toPayment() {
+    if (!this.userService.accountIsActive()) {
+      this.toastrService.danger('You must be logged in to check out.', 'Error');
+      return;
+    }
+
     if(await this.sufficientStock()) {
       this.postTransaction()
     }

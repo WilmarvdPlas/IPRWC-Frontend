@@ -1,10 +1,10 @@
 <nb-layout>
   <nb-layout-header><app-navbar></app-navbar></nb-layout-header>
-  <nb-layout-column [hidden]="product == undefined">
+  <nb-layout-column [hidden]="!routeProductIdIsValidUuid()">
     <nb-card class="card full-height">
       <nb-card-header class="horizontal"><mat-icon>gamepad</mat-icon><h4>{{product?.name}}</h4></nb-card-header>
       <nb-card-body class="horizontal gap">
-        <img [src]="product?.imageLink">
+        <img [src]="product?.imageLink" [alt]="'Image of ' + product.name">
         <div class="vertical product-info-section">
           <div class="horizontal width-100">
             <h4 [style]="product?.discountPercentage! > 0 ?
@@ -24,7 +24,7 @@
       </nb-card-footer>
     </nb-card>
   </nb-layout-column>
-  <nb-layout-column class="not-found-column" [hidden]="product != undefined">
+  <nb-layout-column class="not-found-column" [hidden]="routeProductIdIsValidUuid()">
     <div class="vertical gap">
       <div>
         <h1>Product not found...</h1>

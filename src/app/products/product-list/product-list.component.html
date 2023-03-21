@@ -7,10 +7,10 @@
              [style]="product == selectedProduct ? {'background-color': 'rgba(0, 0, 0, 0.4)', 'border-color': 'white'} : {}"
              [class]=" (type == 'MANAGEMENT') ? 'selectable-product' : ''">
       <div class="main-section horizontal gap">
-        <img [src]="product.imageLink">
+        <img [src]="product.imageLink" [alt]="'Image of ' + product.name">
         <div class="vertical" style="width: 100%">
           <h6>{{product.name}}</h6>
-          <div class="horizontal">
+          <div class="horizontal price-tag">
             <h6 [style]="product.discountPercentage! > 0 && type != 'MANAGEMENT' ?
               {'text-decoration': 'line-through', 'text-decoration-thickness': '3px', 'text-decoration-color': '#ff4057'} : {}">
               €{{product.priceEuro?.toFixed(2)}}</h6>
@@ -28,13 +28,13 @@
           <button status="danger" nbButton fullWidth (click)="removeFromCart(cartProducts![products?.indexOf(product)!])"><mat-icon>delete</mat-icon>Remove</button>
           <nb-form-field>
             <p nbPrefix>x</p>
-            <nb-select fullWidth [(ngModel)]="cartProductsCountArray![products?.indexOf(product)!]" (ngModelChange)="updateCount(cartProducts![products?.indexOf(product)!])">
+            <nb-select fullWidth [(ngModel)]="cartProductCountsArray![products?.indexOf(product)!]" (ngModelChange)="updateCount(cartProducts![products?.indexOf(product)!])">
               <nb-option *ngFor="let number of getRangeOneHundred()" [value]="number">{{number}}</nb-option>
             </nb-select>
           </nb-form-field>
           <div class="fullPrice horizontal">
             <label class="width-50">Subtotal</label>
-            <label class="width-50 align-end">€{{((product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)) * cartProductsCountArray![products?.indexOf(product)!]).toFixed(2)}}</label>
+            <label class="width-50 align-end">€{{((product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)) * cartProductCountsArray![products?.indexOf(product)!]).toFixed(2)}}</label>
           </div>
         </div>
         <div [hidden]="type != 'SHOP'" class="vertical">

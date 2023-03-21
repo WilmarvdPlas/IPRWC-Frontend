@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {HttpService} from "../services/http.service";
 import {NbToastrService} from "@nebular/theme";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,11 @@ export class LoginComponent {
   loginCredentials: LoginCredentials = new LoginCredentials('', '');
   logInCalled: boolean = false;
 
-  constructor(public router: Router, private userService: UserService, private httpService: HttpService, private toastrService: NbToastrService) {
-  }
+  constructor(public router: Router,
+              private userService: UserService,
+              private httpService: HttpService,
+              private toastrService: NbToastrService,
+              private cartService: CartService) {}
 
   logIn() {
     this.logInCalled = true;
@@ -29,6 +33,7 @@ export class LoginComponent {
     this.httpService.post("auth/authenticate", this.loginCredentials).subscribe({
       next: (response) => {
         this.userService.logIn(response.body.account, response.body.token);
+        this.cartService.postSessionStoredCartProducts(response.body.account);
       },
       error: (error) => {
         error.status == 401

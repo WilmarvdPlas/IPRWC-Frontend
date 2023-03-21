@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../models/transaction.model";
 import {HttpService} from "../services/http.service";
 import {NbToastrService} from "@nebular/theme";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-administration',
@@ -14,14 +15,16 @@ export class AdministrationComponent implements OnInit {
 
   transactions: Transaction[] = []
 
-  constructor(private httpService: HttpService, private toastrService: NbToastrService) {}
+  constructor(private httpService: HttpService, private toastrService: NbToastrService, private userService: UserService) {}
 
   updateSelectedMenu(value: any): void {
     this.selectedMenu = value;
   }
 
   ngOnInit() {
-    this.setTransactions();
+    if (this.userService.accountIsActive()) {
+      this.setTransactions();
+    }
   }
 
   setTransactions() {

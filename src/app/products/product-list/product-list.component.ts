@@ -4,6 +4,7 @@ import {HttpService} from "../../services/http.service";
 import {CartProduct} from "../../models/cart-product.model";
 import {UserService} from "../../services/user.service";
 import {NbToastrService} from "@nebular/theme";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-product-list',
@@ -15,15 +16,15 @@ export class ProductListComponent {
   selectedProduct?: Product;
 
   @Input() products?: Product[];
-  @Input() cartProductsCountArray?: number[] = [];
-  @Input() cartProducts?: CartProduct[] = [];
+  @Input() cartProductCountsArray: number[] = [];
+  @Input() cartProducts: CartProduct[] = [];
   @Input() type?: string;
 
   @Output() setProducts = new EventEmitter();
   @Output() updateSelectedProduct = new EventEmitter<Product>();
   @Output() editProduct = new EventEmitter<Product>();
 
-  constructor(private httpService: HttpService, private userService: UserService, private toastrService: NbToastrService) {}
+  constructor(private httpService: HttpService, private userService: UserService, private toastrService: NbToastrService, private cartService: CartService) {}
 
   setSelectedProduct(product: Product) {
     if (this.type == 'MANAGEMENT') {
@@ -34,8 +35,17 @@ export class ProductListComponent {
 
   addToCart(product: Product) {
     let cartProduct = new CartProduct(undefined, 1, product, this.userService.getActiveAccount());
+
+    if (this.userService.accountIsActive()) {
+      this.httpPostCartProduct(cartProduct)
+    } else {
+      this.cartService.addSessionStoredCartProduct(cartProduct);
+    }
+  }
+
+  httpPostCartProduct(cartProduct: CartProduct) {
     this.httpService.post('cart_product', cartProduct).subscribe({
-      next: () => { this.toastrService.success('"' + product.name + '" added to cart.', 'Success'); },
+      next: () => { this.toastrService.success('"' + cartProduct.product?.name + '" added to cart.', 'Success'); },
       error: (error) => {
         this.httpService.authorisedFilter(error.status);
         error.status == 406
@@ -45,7 +55,7 @@ export class ProductListComponent {
     })
   }
 
-  removeFromCart(cartProduct: CartProduct) {
+  httpDeleteCartProduct(cartProduct: CartProduct) {
     this.httpService.delete('cart_product/' + cartProduct.id).subscribe({
       next: () => {
         this.toastrService.success( '"' + cartProduct.product?.name + '" removed from cart.', 'Success');
@@ -58,12 +68,31 @@ export class ProductListComponent {
     })
   }
 
+  removeFromCart(cartProduct: CartProduct) {
+    if (this.userService.accountIsActive()) {
+      this.httpDeleteCartProduct(cartProduct);
+    } else {
+      this.cartService.removeSessionStoredCartProduct(cartProduct);
+      this.setProducts.emit();
+    }
+  }
+
   getRangeOneHundred() {
     return Array.from(Array(100).keys()).map(x => x + 1);
   }
 
   updateCount(cartProduct: CartProduct) {
-    this.httpService.put('cart_product/' + cartProduct.id + "/update_count", this.cartProductsCountArray![this.products?.indexOf(cartProduct.product!)!]).subscribe({
+    if (this.userService.accountIsActive()) {
+      this.httpUpdateCount(cartProduct)
+    } else {
+      cartProduct.count = this.cartProductCountsArray![this.products?.indexOf(cartProduct.product!)!];
+      this.cartService.updateCountSessionStoredCartProduct(cartProduct);
+      this.setProducts.emit();
+    }
+  }
+
+  httpUpdateCount(cartProduct: CartProduct) {
+    this.httpService.put('cart_product/' + cartProduct.id + "/update_count", this.cartProductCountsArray![this.products?.indexOf(cartProduct.product!)!]).subscribe({
       next: () => { this.setProducts.emit(); },
       error: (error) => { this.httpService.authorisedFilter(error.status); }
     })

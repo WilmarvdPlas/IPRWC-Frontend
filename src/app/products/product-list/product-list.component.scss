@@ -4,6 +4,11 @@ img {
   max-width: 30%;
 }
 
+.price-tag {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .product-card {
   display: flex;
   flex-direction: row;

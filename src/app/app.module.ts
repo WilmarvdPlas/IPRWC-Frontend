@@ -47,6 +47,7 @@ import { AccountManagementDialogComponent } from './administration/account-manag
 import { ProfileComponent } from './profile/profile.component';
 import {AccountRequirementsService} from "./services/account-requirements.service";
 import { ProductComponent } from './products/product/product.component';
+import {CartService} from "./services/cart.service";
 
 @NgModule({
   declarations: [
@@ -99,7 +100,7 @@ import { ProductComponent } from './products/product/product.component';
     NbToggleModule,
     NbDialogModule.forRoot()
   ],
-  providers: [UserService, HttpService, AccountRequirementsService],
+  providers: [UserService, HttpService, AccountRequirementsService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

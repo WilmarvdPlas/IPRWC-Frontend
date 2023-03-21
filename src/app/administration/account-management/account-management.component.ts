@@ -3,6 +3,7 @@ import {HttpService} from "../../services/http.service";
 import {Account} from "../../models/account.model";
 import {NbDialogService, NbToastrService} from "@nebular/theme";
 import {AccountManagementDialogComponent} from "./account-management-dialog/account-management-dialog.component";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-account-management',
@@ -14,10 +15,12 @@ export class AccountManagementComponent implements OnInit {
   accounts?: Account[];
   selectedAccount?: Account;
 
-  constructor(private httpService: HttpService, private toastrService: NbToastrService, private dialogService: NbDialogService) {}
+  constructor(private httpService: HttpService, private toastrService: NbToastrService, private dialogService: NbDialogService, private userService: UserService) {}
 
   ngOnInit() {
-    this.setAccounts();
+    if (this.userService.accountIsActive()) {
+      this.setAccounts();
+    }
   }
 
   setAccounts() {

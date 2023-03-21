@@ -43,7 +43,7 @@ export class UserService {
     this.removeSessionStorage();
 
     this.router.navigate(['/login']).then(() => {
-      this.toastrService.danger('Session is invalid and might have expired.', 'Error', {limit: 1, duration: 0});
+      this.toastrService.danger('Session is invalid and may have expired.', 'Error', {limit: 1, duration: 0});
     });
   }
 
@@ -79,7 +79,13 @@ export class UserService {
       routes.push("/" + route.path)
     }
 
-    if (!this.accountIsActive() && routes.includes(this.router.url) && !(['/login', '/register', '/**'].includes(this.router.url))) {
+    if (!this.accountIsActive() && routes.includes(this.router.url) && !([
+      '/login',
+      '/register',
+      '/**',
+      '/products',
+      '/cart'
+    ].includes(this.router.url))) {
       this.router.navigate(['login'])
     }
   }

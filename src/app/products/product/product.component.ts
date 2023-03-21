@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CartProduct} from "../../models/cart-product.model";
 import {NbToastrService} from "@nebular/theme";
 import {UserService} from "../../services/user.service";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-product',
@@ -14,15 +15,26 @@ import {UserService} from "../../services/user.service";
 export class ProductComponent implements OnInit {
 
   product?: Product;
-  routeProductId?: string;
+  routeProductId: any;
 
-  constructor(private httpService: HttpService, private route: ActivatedRoute, private toastrService: NbToastrService, private userService: UserService) {}
+  constructor(private httpService: HttpService,
+              private route: ActivatedRoute,
+              private toastrService: NbToastrService,
+              private userService: UserService,
+              private cartService: CartService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.routeProductId = params['id'];
-      this.setProduct();
+      if (this.routeProductIdIsValidUuid()) {
+        this.setProduct();
+      }
     })
+  }
+
+  routeProductIdIsValidUuid() {
+    let uuidRegex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/
+    return uuidRegex.test(this?.routeProductId);
   }
 
   setProduct() {
@@ -35,6 +47,14 @@ export class ProductComponent implements OnInit {
   addProductToCart() {
     let cartProduct = new CartProduct(undefined, 1, this.product, this.userService.getActiveAccount());
 
+    if (this.userService.accountIsActive()) {
+      this.httpPostCartProduct(cartProduct);
+    } else {
+      this.cartService.addSessionStoredCartProduct(cartProduct);
+    }
+  }
+
+  httpPostCartProduct(cartProduct: CartProduct) {
     this.httpService.post('cart_product', cartProduct).subscribe({
       next: () => { this.toastrService.success('"' + this.product?.name + '" added to cart.', 'Success'); },
       error: (error) => {
