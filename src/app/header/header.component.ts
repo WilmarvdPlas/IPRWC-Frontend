@@ -32,11 +32,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (value.item.data == "LOGOUT") {
           this.userService.logOut();
         } else if (value.item.data == "PROFILE") {
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/profile']).then();
         } else if (value.item.data == 'REGISTER') {
-          this.router.navigate(['/register']);
+          this.router.navigate(['/register']).then();
         } else if (value.item.data == 'LOGIN') {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login']).then();
         }
       }
     });

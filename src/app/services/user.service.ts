@@ -85,10 +85,10 @@ export class UserService {
     let userRoutes = ['/orders', '/profile'].concat(guestRoutes);
 
     if (!this.accountIsActive() && routes.includes(this.router.url) && !(guestRoutes.includes(this.router.url))) {
-      this.router.navigate(['products'])
+      this.router.navigate(['products']).then()
       return;
     } else if (this.accountIsActive() && !account.administrator && routes.includes(this.router.url) && !(userRoutes.includes(this.router.url))) {
-      this.router.navigate(['products'])
+      this.router.navigate(['products']).then()
     }
   }
 
