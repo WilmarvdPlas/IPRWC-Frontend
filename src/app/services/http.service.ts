@@ -32,8 +32,8 @@ export class HttpService {
     return this.http.put<any>(this.apiPath + destination, body, this.getRequestOptions());
   }
 
-  authorisedFilter(status: number) {
-    if (status) {
+  authorisedFilter(statusCode: number) {
+    if (statusCode == 401) {
       this.userService.onUnauthorised();
     }
   }
