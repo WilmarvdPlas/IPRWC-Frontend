@@ -48,7 +48,7 @@ export class ProductListComponent {
       next: () => { this.toastrService.success('"' + cartProduct.product?.name + '" added to cart.', 'Success'); },
       error: (error) => {
         this.httpService.authorisedFilter(error.status);
-        error.status == 406
+        error.status == 409
           ? this.toastrService.danger("You can't add more than 100 copies of this item to your cart." , 'Error')
           : this.toastrService.danger('Item could not be added to cart.', 'Error');
       }
