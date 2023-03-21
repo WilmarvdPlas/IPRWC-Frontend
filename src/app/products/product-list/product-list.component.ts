@@ -39,7 +39,7 @@ export class ProductListComponent {
     if (this.userService.accountIsActive()) {
       this.httpPostCartProduct(cartProduct)
     } else {
-      this.cartService.addSessionStoredCartProduct(cartProduct);
+      this.cartService.addLocalStoredCartProduct(cartProduct);
     }
   }
 
@@ -72,7 +72,7 @@ export class ProductListComponent {
     if (this.userService.accountIsActive()) {
       this.httpDeleteCartProduct(cartProduct);
     } else {
-      this.cartService.removeSessionStoredCartProduct(cartProduct);
+      this.cartService.removeLocalStoredCartProduct(cartProduct);
       this.setProducts.emit();
     }
   }
@@ -86,7 +86,7 @@ export class ProductListComponent {
       this.httpUpdateCount(cartProduct)
     } else {
       cartProduct.count = this.cartProductCountsArray![this.products?.indexOf(cartProduct.product!)!];
-      this.cartService.updateCountSessionStoredCartProduct(cartProduct);
+      this.cartService.updateCountLocalStoredCartProduct(cartProduct);
       this.setProducts.emit();
     }
   }

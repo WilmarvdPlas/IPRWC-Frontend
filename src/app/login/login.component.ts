@@ -33,7 +33,7 @@ export class LoginComponent {
     this.httpService.post("auth/authenticate", this.loginCredentials).subscribe({
       next: (response) => {
         this.userService.logIn(response.body.account, response.body.token);
-        this.cartService.postSessionStoredCartProducts(response.body.account);
+        this.cartService.postLocalStoredCartProducts(response.body.account);
       },
       error: (error) => {
         error.status == 401

@@ -68,7 +68,7 @@ export class CartComponent implements OnInit {
 
   sessionStorageSetProducts() {
     this.emptyArrays();
-    this.cartProducts = this.cartService.getSessionStoredCartProducts();
+    this.cartProducts = this.cartService.getLocalStoredCartProducts();
     this.setDetails();
   }
 

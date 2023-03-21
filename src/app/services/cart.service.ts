@@ -12,8 +12,8 @@ export class CartService {
 
   constructor(private httpService: HttpService, private toastrService: NbToastrService) { }
 
-  getSessionStoredCartProducts() {
-    let cartProducts: any = sessionStorage.getItem('cart_products');
+  getLocalStoredCartProducts() {
+    let cartProducts: any = localStorage.getItem('cart_products');
 
     try {
       cartProducts = JSON.parse(cartProducts);
@@ -29,12 +29,12 @@ export class CartService {
     return cartProducts;
   }
 
-  setSessionStoredCartProducts(cartProducts: CartProduct[]) {
-    sessionStorage.setItem('cart_products', JSON.stringify(cartProducts))
+  setLocalStoredCartProducts(cartProducts: CartProduct[]) {
+    localStorage.setItem('cart_products', JSON.stringify(cartProducts))
   }
 
-  postSessionStoredCartProducts(account: Account) {
-    let cartProducts = this.getSessionStoredCartProducts();
+  postLocalStoredCartProducts(account: Account) {
+    let cartProducts = this.getLocalStoredCartProducts();
 
     if (cartProducts.length != 0) {
       for (let cartProduct of cartProducts) {
@@ -43,7 +43,7 @@ export class CartService {
       this.httpService.post('cart_product/transfer_cart', cartProducts).subscribe({
         next: () => {
           this.toastrService.success('Contents of cart have been transferred to your account.', 'Success');
-          sessionStorage.removeItem('cart_products');
+          localStorage.removeItem('cart_products');
         },
         error: (error) => {
           this.httpService.authorisedFilter(error.status);
@@ -53,41 +53,41 @@ export class CartService {
     }
   }
 
-  updateCountSessionStoredCartProduct(cartProduct: CartProduct) {
-    let cartProducts = this.getSessionStoredCartProducts();
+  updateCountLocalStoredCartProduct(cartProduct: CartProduct) {
+    let cartProducts = this.getLocalStoredCartProducts();
 
-    let cartProductInSessionStorage = cartProducts.find((sessionStoredCartProduct: CartProduct) => sessionStoredCartProduct.product?.id == cartProduct.product?.id);
-    cartProducts[cartProducts.indexOf(cartProductInSessionStorage)] = cartProduct
+    let cartProductInLocalStorage = cartProducts.find((localStoredCartProduct: CartProduct) => localStoredCartProduct.product?.id == cartProduct.product?.id);
+    cartProducts[cartProducts.indexOf(cartProductInLocalStorage)] = cartProduct
 
-    this.setSessionStoredCartProducts(cartProducts)
+    this.setLocalStoredCartProducts(cartProducts)
   }
 
-  removeSessionStoredCartProduct(cartProduct: CartProduct) {
-    let cartProducts = this.getSessionStoredCartProducts();
+  removeLocalStoredCartProduct(cartProduct: CartProduct) {
+    let cartProducts = this.getLocalStoredCartProducts();
 
-    cartProducts = cartProducts.filter((sessionStoredCartProduct: CartProduct) => sessionStoredCartProduct.product?.id != cartProduct.product?.id)
+    cartProducts = cartProducts.filter((localStoredCartProduct: CartProduct) => localStoredCartProduct.product?.id != cartProduct.product?.id)
 
-    this.setSessionStoredCartProducts(cartProducts);
+    this.setLocalStoredCartProducts(cartProducts);
     this.toastrService.success( '"' + cartProduct.product?.name + '" removed from cart.', 'Success');
   }
 
-  addSessionStoredCartProduct(cartProduct: CartProduct) {
-    let cartProducts = this.getSessionStoredCartProducts();
+  addLocalStoredCartProduct(cartProduct: CartProduct) {
+    let cartProducts = this.getLocalStoredCartProducts();
 
-    let cartProductInSessionStorage = cartProducts.find((sessionStoredCartProduct: CartProduct) => sessionStoredCartProduct.product?.id == cartProduct.product?.id);
+    let cartProductInLocalStorage = cartProducts.find((localStoredCartProduct: CartProduct) => localStoredCartProduct.product?.id == cartProduct.product?.id);
 
-    if (cartProductInSessionStorage == undefined) {
+    if (cartProductInLocalStorage == undefined) {
       cartProducts.push(cartProduct);
-    } else if (cartProductInSessionStorage.count >= 100) {
+    } else if (cartProductInLocalStorage.count >= 100) {
       this.toastrService.danger("You can't add more than 100 copies of this item to your cart." , 'Error')
       return;
     } else {
-      cartProductInSessionStorage.count += 1;
+      cartProductInLocalStorage.count += 1;
     }
 
     this.toastrService.success('"' + cartProduct.product?.name + '" added to cart.', 'Success');
 
-    this.setSessionStoredCartProducts(cartProducts);
+    this.setLocalStoredCartProducts(cartProducts);
   }
 
 }

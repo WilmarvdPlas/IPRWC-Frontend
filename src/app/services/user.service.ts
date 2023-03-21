@@ -11,15 +11,15 @@ export class UserService {
   constructor(private router: Router, private toastrService: NbToastrService) { }
 
   setActiveAccount(activeAccount: Account) {
-    sessionStorage.setItem('active-account', JSON.stringify(activeAccount));
+    localStorage.setItem('active-account', JSON.stringify(activeAccount));
   }
 
   setJwtToken(jwtToken: string) {
-    sessionStorage.setItem('jwt-token', JSON.stringify(jwtToken))
+    localStorage.setItem('jwt-token', JSON.stringify(jwtToken))
   }
 
   logOut() {
-    this.removeSessionStorage();
+    this.removeLocalStorage();
 
     this.router.navigate(['/login']).then(() => {
       setTimeout(() => {
@@ -40,7 +40,7 @@ export class UserService {
   }
 
   onUnauthorised() {
-    this.removeSessionStorage();
+    this.removeLocalStorage();
 
     this.router.navigate(['/login']).then(() => {
       setTimeout(() => {
@@ -50,7 +50,7 @@ export class UserService {
   }
 
   getActiveAccount() {
-    let activeAccount: any = sessionStorage.getItem('active-account');
+    let activeAccount: any = localStorage.getItem('active-account');
     try {
       activeAccount = JSON.parse(activeAccount);
     } catch (syntaxError) {
@@ -63,7 +63,7 @@ export class UserService {
   }
 
   accountIsActive() {
-    let activeAccount: any = sessionStorage.getItem('active-account');
+    let activeAccount: any = localStorage.getItem('active-account');
 
     try {
       activeAccount = JSON.parse(activeAccount);
@@ -93,7 +93,7 @@ export class UserService {
   }
 
   getJwtToken() {
-    let jwtToken: any = sessionStorage.getItem('jwt-token');
+    let jwtToken: any = localStorage.getItem('jwt-token');
 
     try {
       jwtToken = JSON.parse(jwtToken);
@@ -104,8 +104,8 @@ export class UserService {
     return jwtToken;
   }
 
-  private removeSessionStorage() {
-    sessionStorage.removeItem('active-account');
-    sessionStorage.removeItem('jwt-token');
+  private removeLocalStorage() {
+    localStorage.removeItem('active-account');
+    localStorage.removeItem('jwt-token');
   }
 }

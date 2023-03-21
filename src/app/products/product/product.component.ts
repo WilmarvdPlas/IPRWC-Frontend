@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
     if (this.userService.accountIsActive()) {
       this.httpPostCartProduct(cartProduct);
     } else {
-      this.cartService.addSessionStoredCartProduct(cartProduct);
+      this.cartService.addLocalStoredCartProduct(cartProduct);
     }
   }
 
