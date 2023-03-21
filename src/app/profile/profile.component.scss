@@ -4,6 +4,10 @@
   align-items: stretch;
 }
 
+.card-container {
+  min-width: 100%;
+}
+
 @media (max-width: 900px) {
   .card-container {
     flex-direction: column;
