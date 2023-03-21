@@ -4,7 +4,7 @@
     <nb-card class="card full-height">
       <nb-card-header class="horizontal"><mat-icon>gamepad</mat-icon><h4>{{product?.name}}</h4></nb-card-header>
       <nb-card-body class="horizontal gap">
-        <img [src]="product?.imageLink" [alt]="'Image of ' + product.name">
+        <img [src]="product?.imageLink" [alt]="'Image of ' + product?.name">
         <div class="vertical product-info-section">
           <div class="horizontal width-100">
             <h4 [style]="product?.discountPercentage! > 0 ?
