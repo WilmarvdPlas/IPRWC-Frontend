@@ -15,7 +15,7 @@ img {
   min-height: 25vh;
 }
 
-.main-section {
+.product-card-main-section {
   display: flex;
   box-sizing: border-box;
   height: 100%;
@@ -24,7 +24,7 @@ img {
   align-items: flex-start;
 }
 
-.sub-section {
+.product-card-sub-section {
   width: calc(35% - 2.5px);
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
@@ -62,12 +62,6 @@ img {
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.fullPrice {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
 .cart-options {
   height: 100%;
 }
@@ -84,13 +78,13 @@ img {
     align-items: stretch;
   }
 
-  .sub-section {
+  .product-card-sub-section {
     border-left: none;
     border-top: 0.0625rem solid #101426;
     width: 100%;
   }
 
-  .main-section {
+  .product-card-main-section {
     width: 100%;
   }
 }
