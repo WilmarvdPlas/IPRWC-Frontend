@@ -42,12 +42,12 @@ export class CartService {
       }
       this.httpService.post('cart_product/transfer_cart', cartProducts).subscribe({
         next: () => {
-          this.toastrService.success('Cart has been transferred to your account.', 'Success');
+          this.toastrService.success('Contents of cart have been transferred to your account.', 'Success');
           sessionStorage.removeItem('cart_products');
         },
         error: (error) => {
           this.httpService.authorisedFilter(error.status);
-          this.toastrService.danger('Cart could not be transferred to your account.', 'Error');
+          this.toastrService.danger('Contents of cart could not be transferred to your account.', 'Error');
         }
       })
     }
