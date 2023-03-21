@@ -2,7 +2,7 @@
   <nb-layout-header fixed><app-header></app-header></nb-layout-header>
   <nb-layout-column [hidden]="!routeProductIdIsValidUuid()">
     <nb-card class="card full-height">
-      <nb-card-header class="horizontal"><mat-icon>gamepad</mat-icon><h4>{{product?.name}}</h4></nb-card-header>
+      <nb-card-header class="horizontal wrap"><mat-icon>gamepad</mat-icon><h4>{{product?.name}}</h4></nb-card-header>
       <nb-card-body class="horizontal gap">
         <img [src]="product?.imageLink" [alt]="'Image of ' + product?.name">
         <div class="vertical product-info-section">
@@ -15,7 +15,7 @@
             <h3 [hidden]="product?.discountPercentage! == 0">-{{product?.discountPercentage}}%!</h3>
           </div>
           <hr class="width-100">
-          <p>{{product?.description}}</p>
+          <p class="wrap">{{product?.description}}</p>
         </div>
       </nb-card-body>
       <nb-card-footer class="horizontal gap">

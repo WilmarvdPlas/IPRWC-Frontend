@@ -103,6 +103,13 @@ button {
   white-space: break-spaces !important;
 }
 
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  word-break: break-word;
+  white-space: break-spaces;
+}
+
 .divider {
   border-left: 2px white solid;
   margin-left: 10px;

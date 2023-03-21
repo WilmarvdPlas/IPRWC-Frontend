@@ -4,12 +4,6 @@ img {
   max-width: 30%;
 }
 
-.wrap {
-  display: flex;
-  flex-wrap: wrap;
-  word-break: break-word;
-}
-
 .product-card {
   display: flex;
   flex-direction: row;
@@ -23,6 +17,10 @@ img {
   width: calc(65% - 2.5px);
   padding: 1rem;
   align-items: flex-start;
+}
+
+.product-description {
+  word-break: break-word;
 }
 
 .product-card-sub-section {
