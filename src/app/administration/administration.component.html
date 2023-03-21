@@ -14,7 +14,7 @@
     <app-product-management class="right-section card" [style]="selectedMenu != 'productManagement' ? {'display': 'none'} : {}"></app-product-management>
     <app-account-management class="right-section card" [style]="selectedMenu != 'accountManagement' ? {'display': 'none'} : {}"></app-account-management>
     <nb-card class="right-section orders-card card" [style]="selectedMenu != 'orders' ? {'display': 'none'} : {}">
-      <nb-card-header class="horizontal"><mat-icon>receipt</mat-icon><h4>ORDERS</h4></nb-card-header>
+      <nb-card-header class="horizontal"><mat-icon>receipt</mat-icon><h4>ORDERS ({{transactions.length}})</h4></nb-card-header>
       <nb-card-body><app-order-list [transactions]="transactions" type="administration"></app-order-list></nb-card-body>
       <nb-card-footer></nb-card-footer>
     </nb-card>
