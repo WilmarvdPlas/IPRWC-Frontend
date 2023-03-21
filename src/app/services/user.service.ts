@@ -43,7 +43,9 @@ export class UserService {
     this.removeSessionStorage();
 
     this.router.navigate(['/login']).then(() => {
-      this.toastrService.danger('Session is invalid and may have expired.', 'Error', {limit: 1, duration: 0});
+      setTimeout(() => {
+        this.toastrService.danger('Session is invalid and may have expired.', 'Error', {limit: 1, duration: 0});
+      }, 1)
     });
   }
 
