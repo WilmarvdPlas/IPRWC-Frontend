@@ -48,6 +48,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {AccountRequirementsService} from "./services/account-requirements.service";
 import { ProductComponent } from './products/product/product.component';
 import {CartService} from "./services/cart.service";
+import { ProductDeleteDialogComponent } from './administration/product-management/product-delete-dialog/product-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {CartService} from "./services/cart.service";
     AccountManagementDialogComponent,
     ProfileComponent,
     ProductComponent,
+    ProductDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,

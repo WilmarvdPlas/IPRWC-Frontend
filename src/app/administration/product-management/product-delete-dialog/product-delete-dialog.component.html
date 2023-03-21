@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header><h4>Are you sure?</h4></nb-card-header>
+  <nb-card-body class="vertical gap">
+    <p>You are about to delete the following product:</p>
+    <div class="product-info">
+      <p>{{product?.name}}</p>
+      <p>€{{(product?.priceEuro)?.toFixed(2)}}</p>
+    </div>
+    <p>If you delete this product, it will disappear from the items section of the web shop and the administration panel.
+      There will be no possibility of recovering this product using the in-app interface.
+    </p>
+  </nb-card-body>
+  <nb-card-footer class="horizontal gap">
+    <button nbButton fullWidth status="danger" (click)="confirm()">Yes, I am sure</button>
+    <button nbButton fullWidth (click)="close()">Cancel</button>
+  </nb-card-footer>
+</nb-card>
+
+

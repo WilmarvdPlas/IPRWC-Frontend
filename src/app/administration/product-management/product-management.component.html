@@ -24,7 +24,7 @@
       <button [style]="editingProduct ? {'display': 'none'} : {}"
               class="full-height"
               [disabled]="selectedProduct == undefined"
-              (click)="deleteProduct()"
+              (click)="openDeleteDialog()"
               nbButton fullWidth status="danger">Delete product</button>
       <button [style]="!editingProduct ? {'display': 'none'} : {}"
               class="full-height"
