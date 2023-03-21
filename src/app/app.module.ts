@@ -30,8 +30,6 @@ import {
   NbToastrModule, NbToggleModule
 } from "@nebular/theme";
 import {NbEvaIconsModule} from "@nebular/eva-icons";
-import {UserService} from "./services/user.service";
-import {HttpService} from "./services/http.service";
 import { FooterComponent } from './footer/footer.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { ProductManagementComponent } from './administration/product-management/product-management.component';
@@ -45,9 +43,7 @@ import { AccountManagementComponent } from './administration/account-management/
 import { AccountCreateComponent } from './administration/account-management/account-create/account-create.component';
 import { AccountManagementDialogComponent } from './administration/account-management/account-management-dialog/account-management-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
-import {AccountRequirementsService} from "./services/account-requirements.service";
 import { ProductComponent } from './products/product/product.component';
-import {CartService} from "./services/cart.service";
 import { ProductDeleteDialogComponent } from './administration/product-management/product-delete-dialog/product-delete-dialog.component';
 
 @NgModule({
@@ -102,7 +98,7 @@ import { ProductDeleteDialogComponent } from './administration/product-managemen
     NbToggleModule,
     NbDialogModule.forRoot()
   ],
-  providers: [UserService, HttpService, AccountRequirementsService, CartService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
