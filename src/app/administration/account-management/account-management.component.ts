@@ -18,7 +18,7 @@ export class AccountManagementComponent implements OnInit {
   constructor(private httpService: HttpService, private toastrService: NbToastrService, private dialogService: NbDialogService, private userService: UserService) {}
 
   ngOnInit() {
-    if (this.userService.accountIsActive()) {
+    if (this.userService.accountIsActive() && this.userService.getActiveAccount().administrator) {
       this.setAccounts();
     }
   }

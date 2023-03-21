@@ -24,7 +24,7 @@ export class ProductManagementComponent implements AfterViewChecked, OnInit {
   constructor(private httpService: HttpService, private toastrService: NbToastrService, private userService: UserService) {}
 
   ngOnInit() {
-    if (this.userService.accountIsActive()) {
+    if (this.userService.accountIsActive() && this.userService.getActiveAccount().administrator) {
       this.setProducts()
     }
   }

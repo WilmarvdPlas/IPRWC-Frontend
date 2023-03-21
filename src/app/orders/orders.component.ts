@@ -17,7 +17,9 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setTransactions();
+    if (this.userService.accountIsActive()) {
+      this.setTransactions();
+    }
   }
 
   setTransactions() {

@@ -22,7 +22,7 @@ export class AdministrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.userService.accountIsActive()) {
+    if (this.userService.accountIsActive() && this.userService.getActiveAccount().administrator) {
       this.setTransactions();
     }
   }

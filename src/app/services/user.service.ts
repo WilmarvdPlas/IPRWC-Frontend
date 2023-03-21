@@ -55,7 +55,7 @@ export class UserService {
       return undefined;
     }
 
-    this.checkIllegalRoute()
+    this.checkIllegalRoute(activeAccount)
 
     return activeAccount;
   }
@@ -72,21 +72,21 @@ export class UserService {
     return activeAccount != undefined;
   }
 
-  private checkIllegalRoute() {
+  private checkIllegalRoute(account: Account) {
     let routes = [];
 
     for (let route of this.router.config) {
       routes.push("/" + route.path)
     }
 
-    if (!this.accountIsActive() && routes.includes(this.router.url) && !([
-      '/login',
-      '/register',
-      '/**',
-      '/products',
-      '/cart'
-    ].includes(this.router.url))) {
-      this.router.navigate(['login'])
+    let guestRoutes = ['/login', '/register', '/**', '/products', '/cart'];
+    let userRoutes = ['/orders', '/profile'].concat(guestRoutes);
+
+    if (!this.accountIsActive() && routes.includes(this.router.url) && !(guestRoutes.includes(this.router.url))) {
+      this.router.navigate(['products'])
+      return;
+    } else if (this.accountIsActive() && !account.administrator && routes.includes(this.router.url) && !(userRoutes.includes(this.router.url))) {
+      this.router.navigate(['products'])
     }
   }
 
