@@ -115,7 +115,6 @@ export class CartComponent implements OnInit {
 
       this.httpService.post('transaction_product', transactionProduct).subscribe({
         next: () => {
-          this.lowerStock(cartProduct);
           this.deleteCartProduct(cartProduct).then(() => {
             this.setProducts();
           });
@@ -128,15 +127,6 @@ export class CartComponent implements OnInit {
   }
 
   async deleteCartProduct(cartProduct: CartProduct) {
-    await lastValueFrom(this.httpService.delete('cart_product/' + cartProduct.id))
+    await lastValueFrom(this.httpService.delete('cart_product/' + cartProduct.id + '/buy_product'))
   }
-
-  lowerStock(cartProduct: CartProduct) {
-    this.httpService.put('product/' + cartProduct.product?.id + "/edit_stock", -cartProduct.count!).subscribe({
-      next: (response) => { console.log(response); },
-      error: (error) => { this.httpService.authorisedFilter(error.status); }
-    })
-  }
-
-
 }
