@@ -10,7 +10,7 @@
         <div class="divider"></div>
         <div class="vertical">
           <p>{{transaction.id}}</p>
-          <p [hidden]="type != 'administration'">{{transaction.account?.email}}</p>
+          <p *ngIf="type == 'administration'">{{transaction.account?.email}}</p>
         </div>
       </nb-accordion-item-header>
       <nb-accordion-item-body>

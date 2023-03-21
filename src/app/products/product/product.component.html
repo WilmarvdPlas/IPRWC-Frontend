@@ -1,6 +1,6 @@
 <nb-layout>
   <nb-layout-header fixed><app-header></app-header></nb-layout-header>
-  <nb-layout-column [hidden]="!routeProductIdIsValidUuid()">
+  <nb-layout-column *ngIf="routeProductIdIsValidUuid()">
     <nb-card class="card full-height">
       <nb-card-header class="horizontal wrap"><mat-icon>gamepad</mat-icon><h4>{{product?.name}}</h4></nb-card-header>
       <nb-card-body class="horizontal gap">
@@ -10,9 +10,9 @@
             <h4 [style]="product?.discountPercentage! > 0 ?
               {'text-decoration': 'line-through', 'text-decoration-thickness': '6px', 'text-decoration-color': '#ff4057'} : {}">
               €{{product?.priceEuro?.toFixed(2)}}</h4>
-            <h3 class="discount-color" [hidden]="product?.discountPercentage! == 0">
+            <h3 class="discount-color" *ngIf="product?.discountPercentage! != 0">
               €{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h3>
-            <h3 [hidden]="product?.discountPercentage! == 0">-{{product?.discountPercentage}}%!</h3>
+            <h3 *ngIf="product?.discountPercentage! != 0">-{{product?.discountPercentage}}%!</h3>
           </div>
           <hr class="width-100">
           <p class="wrap">{{product?.description}}</p>
@@ -24,7 +24,7 @@
       </nb-card-footer>
     </nb-card>
   </nb-layout-column>
-  <nb-layout-column class="not-found-column" [hidden]="routeProductIdIsValidUuid()">
+  <nb-layout-column class="not-found-column" *ngIf="!routeProductIdIsValidUuid()">
     <div class="vertical gap">
       <div>
         <h1>Product not found...</h1>

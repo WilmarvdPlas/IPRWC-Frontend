@@ -8,11 +8,11 @@
        [style]="router.url == '/cart' ? {'border-color': '#ff4057'} : {}">
       <h4><mat-icon>shopping_cart</mat-icon><span class="link-text">CART</span></h4></a>
     <a [routerLink]="['/orders']"
-       [hidden]="this.hideHeaderContent()"
+       *ngIf="!this.hideHeaderContent()"
        [style]="router.url == '/orders' ? {'border-color': '#ff4057'} : {}">
       <h4><mat-icon>receipt</mat-icon><span class="link-text">ORDERS</span></h4></a>
     <a [routerLink]="['/administration']"
-       [hidden]="!activeAccount?.administrator"
+       *ngIf="activeAccount?.administrator"
        [style]="router.url == '/administration' ? {'border-color': '#ff4057'} : {}">
       <h4><mat-icon>security</mat-icon><span class="link-text">MANAGEMENT</span></h4></a>
   </div>

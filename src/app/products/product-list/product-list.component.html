@@ -14,9 +14,9 @@
             <h6 [style]="product.discountPercentage! > 0 && type != 'MANAGEMENT' ?
               {'text-decoration': 'line-through', 'text-decoration-thickness': '3px', 'text-decoration-color': '#ff4057'} : {}">
               €{{product.priceEuro?.toFixed(2)}}</h6>
-            <h5 class="discount-color" [hidden]="product.discountPercentage! == 0 || type == 'MANAGEMENT'">
+            <h5 class="discount-color" *ngIf="product.discountPercentage! != 0 && type != 'MANAGEMENT'">
               €{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h5>
-            <h5 [hidden]="product.discountPercentage! == 0 || type == 'MANAGEMENT'">-{{product.discountPercentage}}%!</h5>
+            <h5 *ngIf="product.discountPercentage! != 0 && type != 'MANAGEMENT'">-{{product.discountPercentage}}%!</h5>
           </div>
           <hr style="width: 100%">
           <p class="ellipsis product-description">{{product.description}}</p>
@@ -24,7 +24,7 @@
       </div>
       <div class="product-card-sub-section vertical">
         <button nbButton fullWidth [routerLink]="'/product/' + product.id"><mat-icon>search</mat-icon>To product</button>
-        <div [hidden]="type != 'CART'" class="vertical cart-options">
+        <div *ngIf="type == 'CART'" class="vertical cart-options">
           <button status="danger" nbButton fullWidth (click)="removeFromCart(cartProducts![products?.indexOf(product)!])"><mat-icon>delete</mat-icon>Remove</button>
           <nb-form-field>
             <p nbPrefix>x</p>
@@ -37,10 +37,10 @@
             <label class="width-50 align-end">€{{((product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)) * cartProductCountsArray![products?.indexOf(product)!]).toFixed(2)}}</label>
           </div>
         </div>
-        <div [hidden]="type != 'SHOP'" class="vertical">
+        <div *ngIf="type == 'SHOP'" class="vertical">
           <button status="success" nbButton fullWidth (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon>Add to cart</button>
         </div>
-        <div class="vertical" [hidden]="type != 'MANAGEMENT'">
+        <div class="vertical" *ngIf="type == 'MANAGEMENT'">
           <div class="horizontal">
             <label class="width-50">Stock</label>
             <label class="width-50 align-end">{{product.stock}}</label>

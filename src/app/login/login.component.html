@@ -9,7 +9,7 @@
         <div class="vertical">
           <label>E-mail address</label>
           <input nbInput fullWidth [status]="(!logInCalled || loginCredentials.email != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.email" placeholder="Enter e-mail address">
-          <small class="horizontal" style="color: #ff3d71" [hidden]="!logInCalled || loginCredentials.email != ''">
+          <small class="horizontal" style="color: #ff3d71" *ngIf="logInCalled && loginCredentials.email == ''">
             <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
             E-mail address field is empty.
           </small>
@@ -17,7 +17,7 @@
         <div class="vertical">
           <label>Password</label>
           <input nbInput fullWidth type="password" [status]="(!logInCalled || loginCredentials.password != '') ? 'basic' : 'danger'" [(ngModel)]="loginCredentials.password" placeholder="Enter password">
-          <small class="horizontal" style="color: #ff3d71" [hidden]="!logInCalled || loginCredentials.password != ''">
+          <small class="horizontal" style="color: #ff3d71" *ngIf="logInCalled && loginCredentials.password == ''">
             <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
             Password field is empty.
           </small>

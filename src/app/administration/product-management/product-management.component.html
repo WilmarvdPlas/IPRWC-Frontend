@@ -11,7 +11,7 @@
   </nb-card>
   <nb-card class="card edit-product-card products-scroll-card">
     <nb-card-header class="horizontal"><mat-icon>edit</mat-icon><h4>EDIT PRODUCT</h4></nb-card-header>
-    <nb-card-body class="product-list-container" [hidden]="editingProduct">
+    <nb-card-body class="product-list-container" *ngIf="!editingProduct">
       <app-product-list [products]="products" [type]="'MANAGEMENT'" (updateSelectedProduct)="this.selectedProduct = $event" (editProduct)="editProduct($event)"></app-product-list>
     </nb-card-body>
     <nb-card-body [style]="!editingProduct ? {'display': 'none'} : {}"><app-product-edit (setProducts)="setProducts()"></app-product-edit></nb-card-body>

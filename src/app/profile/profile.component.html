@@ -9,7 +9,7 @@
             <div class="vertical">
               <label>First- and last name</label>
               <input nbInput fullWidth placeholder="Your name" [(ngModel)]="account.name">
-              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.nameSufficient(account.name)">
+              <small class="horizontal" style="color: #ff3d71" *ngIf="!accountRequirementsService.nameSufficient(account.name)">
                 <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
                 Name can't be empty.
               </small>
@@ -17,7 +17,7 @@
             <div class="vertical">
               <label>E-mail address</label>
               <input nbInput fullWidth placeholder="Your e-mail address" [(ngModel)]="account.email">
-              <small class="horizontal" style="color: #ff3d71" [hidden]="accountRequirementsService.emailSufficient(account.email)">
+              <small class="horizontal" style="color: #ff3d71" *ngIf="!accountRequirementsService.emailSufficient(account.email)">
                 <div><nb-icon  icon="alert-circle-outline"></nb-icon></div>
                 E-mail address must be valid.
               </small>
@@ -38,7 +38,7 @@
           <div class="vertical">
             <label>Current password</label>
             <input nbInput fullWidth [(ngModel)]="oldPassword" type="password">
-            <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" [hidden]="oldPasswordSufficient() || !changePasswordCalled">
+            <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" *ngIf="!oldPasswordSufficient() && changePasswordCalled">
               <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
               Password can't be empty.
             </small>
@@ -46,7 +46,7 @@
           <div class="vertical">
             <label>New password</label>
             <input nbInput fullWidth [(ngModel)]="newPassword" type="password">
-            <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" [hidden]="accountRequirementsService.passwordSufficient(newPassword)">
+            <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" *ngIf="!accountRequirementsService.passwordSufficient(newPassword)">
               <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
               A password must be 8-32 characters long and must contain at least one lower-case letter, one upper-case letter, one special character and one number.
             </small>
@@ -54,7 +54,7 @@
           <div class="vertical">
             <label>Confirm new password</label>
             <input nbInput fullWidth [(ngModel)]="newPasswordRepeat" type="password">
-            <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" [hidden]="!changePasswordCalled || passwordRepeatSufficient()">
+            <small class="horizontal" [style]="changePasswordCalled ? {'color': '#ff3d71'} : {}" *ngIf="changePasswordCalled && !passwordRepeatSufficient()">
               <div><nb-icon icon="alert-circle-outline"></nb-icon></div>
               Both passwords must be identical.
             </small>
