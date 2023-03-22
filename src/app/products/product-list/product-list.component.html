@@ -15,8 +15,8 @@
               {'text-decoration': 'line-through', 'text-decoration-thickness': '3px', 'text-decoration-color': '#ff4057'} : {}"
             >€{{product.priceEuro?.toFixed(2)}}
             </h6>
-            <h5 class="discount-color" *ngIf="product.discountPercentage! != 0 && type != 'MANAGEMENT'">
-              €{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h5>
+            <h5 class="discount-color" *ngIf="product.discountPercentage! != 0 && type != 'MANAGEMENT'"
+            >€{{(product?.priceEuro! - ((product?.discountPercentage! / 100) * product?.priceEuro!)).toFixed(2)}}</h5>
             <h5 *ngIf="product.discountPercentage! != 0 && type != 'MANAGEMENT'">-{{product.discountPercentage}}%!</h5>
           </div>
           <hr style="width: 100%">
