@@ -59,7 +59,9 @@ export class ProductEditComponent {
     this.httpService.post('product', this.product).subscribe({
       next: (response) => {
         this.toastrService.success('Product has been saved.', 'Success');
-        this.postStock(response.body, this.addedStock)
+        if (this.addedStock > 0) {
+          this.postStock(response.body, this.addedStock)
+        }
         this.setProducts.emit();
         this.clear();
       },
