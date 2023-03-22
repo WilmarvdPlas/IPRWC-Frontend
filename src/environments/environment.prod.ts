@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://gamecenter/api"
+  apiUrl: "http://146.190.19.247:80/api"
 }
