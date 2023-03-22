@@ -22,7 +22,7 @@ export class AccountRequirementsService {
     if (email == undefined) {
       return false;
     }
-    const emailRegex = new RegExp(/^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/);
+    const emailRegex = new RegExp("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
     return emailRegex.test(email)
   }
 
