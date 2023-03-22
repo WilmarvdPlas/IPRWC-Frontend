@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpService} from "../../../services/http.service";
 import {Product} from "../../../models/product.model";
 import {NbToastrService} from "@nebular/theme";
+import {formatNumber} from "@angular/common";
 
 @Component({
   selector: 'app-product-edit',
@@ -24,11 +25,15 @@ export class ProductEditComponent {
   }
 
   postAllowed() {
-    return this.allFieldsFilled() && this.validDiscount();
+    return this.allFieldsFilled() && this.validDiscount() && this.validPrice();
   }
 
   validDiscount() {
     return this.product.discountPercentage == undefined ? false : this.product.discountPercentage >= 0 && this.product.discountPercentage <= 100
+  }
+
+  validPrice() {
+    return this.product.priceEuro == undefined ? false : this.product.priceEuro >= 0.01;
   }
 
   clear() {
