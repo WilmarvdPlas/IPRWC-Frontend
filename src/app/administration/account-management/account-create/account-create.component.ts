@@ -68,7 +68,9 @@ export class AccountCreateComponent {
 
   onHttpSuccess() {
     this.router.navigate(['/login']).then(() => {
-      this.toastrService.success('Account has been created.', 'Success')
+      setTimeout(() => {
+        this.toastrService.success('Account has been created.', 'Success')
+      }, 1)
     });
   }
 
