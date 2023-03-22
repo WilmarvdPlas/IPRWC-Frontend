@@ -22,8 +22,8 @@
       </nb-card-body>
     </div>
     <nb-card-footer class="horizontal gap">
-      <button (click)="openAdministratorDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="primary">Grant administrator</button>
-      <button (click)="openDeleteDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="danger">Delete account</button>
+      <button (click)="openAdministratorDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="primary" class="full-height">Grant administrator</button>
+      <button (click)="openDeleteDialog()" [disabled]="selectedAccount == undefined || selectedAccount.administrator" nbButton fullWidth status="danger" class="full-height">Delete account</button>
     </nb-card-footer>
   </nb-card>
 </body>
