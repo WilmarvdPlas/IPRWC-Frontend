@@ -2,7 +2,6 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpService} from "../../../services/http.service";
 import {Product} from "../../../models/product.model";
 import {NbToastrService} from "@nebular/theme";
-import {formatNumber} from "@angular/common";
 
 @Component({
   selector: 'app-product-edit',
