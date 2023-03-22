@@ -24,7 +24,7 @@ export class ProductEditComponent {
   }
 
   postAllowed() {
-    return this.allFieldsFilled() && this.validDiscount() && this.validPrice();
+    return this.allFieldsFilled() && this.validDiscount() && this.validPrice() && this.validStock();
   }
 
   validDiscount() {
@@ -33,6 +33,10 @@ export class ProductEditComponent {
 
   validPrice() {
     return this.product.priceEuro == undefined ? false : this.product.priceEuro >= 0.01;
+  }
+
+  validStock() {
+    return this.addedStock == undefined ? false : this.addedStock >= 0;
   }
 
   clear() {
@@ -68,19 +72,16 @@ export class ProductEditComponent {
   }
 
   postStock(id: string, addedStock: number) {
-    if (addedStock > 0) {
-      this.httpService.put('product/' + id + "/edit_stock", addedStock).subscribe({
-        next: () => {
-          this.toastrService.success('Stock has been changed.', 'Success');
-          this.setProducts.emit();
-        },
-        error: (error) => {
-          this.httpService.authorisedFilter(error.status);
-          this.toastrService.danger('Stock could not be changed.', 'Error');
-          this.setProducts.emit();
-        }
-      })
-    }
+    this.httpService.put('product/' + id + "/edit_stock", addedStock).subscribe({
+      next: () => {
+        this.toastrService.success('Stock has been changed.', 'Success');
+        this.setProducts.emit();
+      },
+      error: (error) => {
+        this.httpService.authorisedFilter(error.status);
+        this.toastrService.danger('Stock could not be changed.', 'Error');
+        this.setProducts.emit();
+      }
+    })
   }
-
 }
