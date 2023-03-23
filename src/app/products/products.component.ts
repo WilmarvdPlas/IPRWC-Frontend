@@ -12,7 +12,7 @@ export class ProductsComponent implements OnInit {
 
   products?: Product[];
 
-  filteredProducts?: Product[];
+  filteredProducts?: Product[] = [];
 
   searchFilterProducts?: Product[];
   priceFilterProducts?: Product[];
