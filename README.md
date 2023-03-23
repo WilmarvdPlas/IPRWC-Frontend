@@ -1,5 +1,5 @@
 # IPRWC-Frontend
-Front-end repository for assignment of the "IPRWC" module at the "University of Applied Sciences Leiden". The assigment consisted of creating a webshop. The front end of the webshop was created using the Angular framework and the back end was created in Java, using the Spring Boot framework.
+Front-end repository for assignment of the IPRWC module at the University of Applied Sciences Leiden. The assigment consisted of creating a webshop. The front end of the webshop was created using the Angular framework and the back end was created in Java, using the Spring Boot framework.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
