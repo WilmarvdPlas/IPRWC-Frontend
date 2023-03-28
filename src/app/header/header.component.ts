@@ -17,11 +17,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   profileSubscription?: Subscription;
   profileItems: any;
   activeAccount?: Account;
+  accountIsActive?: boolean;
 
   ngOnInit() {
     this.activeAccount = this.userService.getActiveAccount();
+    this.accountIsActive = this.userService.accountIsActive();
 
-    if (this.userService.accountIsActive()) {
+    if (this.accountIsActive) {
       this.profileItems = [{ title: 'Profile', data: "PROFILE" }, { title: 'Log out', data: "LOGOUT" }]
     } else {
       this.profileItems = [{ title: 'Create account', data: "REGISTER" }, { title: 'Log in', data: "LOGIN" }]
@@ -44,9 +46,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.profileSubscription?.unsubscribe();
-  }
-
-  hideHeaderContent() {
-    return !this.userService.accountIsActive() || ['/login', '/register'].includes(this.router.url);
   }
 }
